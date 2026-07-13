@@ -3,7 +3,7 @@
 # Dapodik API Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dapodik-org/dapodik-laravel-api.svg?style=flat-square)](https://packagist.org/packages/dapodik-org/dapodik-laravel-api)
-[![Laravel](https://img.shields.io/badge/Laravel-7%20|%208-red?style=flat-square&logo=laravel)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/Laravel-9%20–%2013-red?style=flat-square&logo=laravel)](https://laravel.com)
 [![GitHub Tests Action Status](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/tests.yml/badge.svg)](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/dapodik-org/dapodik-laravel-api.svg?style=flat-square)](https://packagist.org/packages/dapodik-org/dapodik-laravel-api)
 
@@ -12,8 +12,8 @@ Library ini memudahkan koneksi dan interaksi dengan REST API dan WebService Apli
 
 ## Persyaratan
 
-- PHP >=7.2.5
-- Laravel 7 || 8
+- PHP >=8.1
+- Laravel 9 – 13
 - [Aplikasi Dapodik](https://dapo.dikdasmen.go.id/unduhan) sudah berjalan di server atau komputer Anda.
 
 ## Instalasi

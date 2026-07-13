@@ -3,7 +3,7 @@
 # Dapodik Eloquent Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dapodik-org/dapodik-laravel-eloquent.svg?style=flat-square)](https://packagist.org/packages/dapodik-org/dapodik-laravel-eloquent)
-[![Laravel](https://img.shields.io/badge/Laravel-7%20|%208-red?style=flat-square&logo=laravel)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/Laravel-9%20–%2013-red?style=flat-square&logo=laravel)](https://laravel.com)
 [![GitHub Tests Action Status](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/tests.yml/badge.svg)](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/tests.yml)
 [![GitHub Code Style Action Status](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/fix-php-code-style-issues.yml/badge.svg)](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/fix-php-code-style-issues.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/dapodik-org/dapodik-laravel-eloquent.svg?style=flat-square)](https://packagist.org/packages/dapodik-org/dapodik-laravel-eloquent)
@@ -13,8 +13,8 @@ Paket ini menyediakan model, migrasi, dan command untuk menerbitkan model Dapodi
 
 ## Persyaratan
 
-- PHP >=7.2.5
-- Laravel 7 || 8
+- PHP >=8.1
+- Laravel 9 – 13
 - [Aplikasi Dapodik](https://dapo.dikdasmen.go.id/unduhan) sudah terinstal dan database sudah tersedia
 
 ## Instalasi

@@ -2,15 +2,19 @@
 
 ## Branch strategy
 
-| Branch | Laravel | PHP       | CS Fixer       | Testing | Testbench   |
-|--------|---------|-----------|----------------|---------|-------------|
-| `main` | 7, 8    | >=7.2.5   | php-cs-fixer   | PHPUnit | ^5.0 || ^6.0 |
+| Branch | Laravel | PHP       | CS Fixer | Testing | Testbench            |
+|--------|---------|-----------|----------|---------|----------------------|
+| `main` | 9–13    | >=8.1     | Pint     | Pest    | ^7.0 \|\| ^8.0 \|\| ^9.0 \|\| ^10.0 \|\| ^11.0 |
+| `1.x`  | 7, 8    | >=7.2.5   | php-cs-fixer | PHPUnit | ^5.0 \|\| ^6.0  |
 
-- **`main`** = Laravel 7|8 (current)
-- Saat support Laravel 9+, buat branch baru
-- Split CI: `.github/workflows/split.yml` — push ke `main` atau tags
+- **`main`** = Laravel 9–13 (current)
+- **`1.x`** = Laravel 7|8 (legacy)
+- Saat support Laravel 14+, buat branch baru
+- Split CI: `.github/workflows/split.yml` — push ke `main` atau `1.x` atau tags
 - Push ke `main` → split ke sub-repo branch `main`
-- Tag `v1.*` → tag `v1.*` di sub-repo
+- Push ke `1.x` → split ke sub-repo branch `1.x`
+- Tag `v2.*` → tag `v2.*` di sub-repo (main)
+- Tag `v1.*` → tag `v1.*` di sub-repo (1.x)
 - `SPLIT_TOKEN` secret: Personal Access Token with `repo` scope
 
 ## Monorepo structure
@@ -27,29 +31,28 @@ API/         → split to dapodik-org/dapodik-laravel-api
 composer test
 ```
 
-- Eloquent: orchestra/testbench ^5.0 || ^6.0 + phpunit ^8.0||^9.0, SQLite in-memory
-- API: orchestra/testbench ^5.0 || ^6.0 + phpunit ^8.0||^9.0, no database
-- CI matrix: `.github/workflows/tests.yml` — PHP 7.2/7.4/8.0 × Eloquent/API
+- Eloquent: orchestra/testbench ^7.0 || ^8.0 || ^9.0 + Pest ^2.0, SQLite in-memory
+- API: orchestra/testbench ^7.0 || ^8.0 || ^9.0 + Pest ^2.0, no database
+- CI matrix: `.github/workflows/tests.yml` — PHP 8.1/8.2/8.3/8.4 × Eloquent/API
 
 ## Lint & static analysis
 
 ```bash
-composer lint             # php-cs-fixer --dry-run
-composer cs-fix           # php-cs-fixer auto-fix
+composer lint             # pint --test
+composer cs-fix           # pint
 composer analyse          # phpstan level 0
 composer check            # lint → analyse → test
 ```
 
-Root configs: `.php-cs-fixer.dist.php` and `phpstan.neon.dist`.
+Root configs: `pint.json` and `phpstan.neon.dist`.
 
 ## PHP & Framework constraints
 
-- PHP >=7.2.5: no typed properties, no arrow functions, no native enums, no union types, no match
-- Laravel 7|8 (illuminate/* ^7.0 || ^8.0)
-- `Public` is reserved in PHP 7.2 — use namespace `Publik` instead
-- Enums are class constants (`const LakiLaki = 'L'`) with static `label()`
-- No `spatie/laravel-package-tools`
-- `class_exists()` cannot detect traits — use `trait_exists()`
+- PHP >=8.1: typed properties, arrow functions, native enums, union types, match
+- Laravel 9–13 (illuminate/* ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0)
+- Enums are backed string enums
+- Use `spatie/laravel-package-tools` for ServiceProviders (if applicable)
+- `class_exists()` can detect traits — use `class_exists()`
 
 ## Key subpackage conventions (src/laravel/Eloquent/)
 

@@ -1,9 +1,14 @@
 # Dapodik Laravel — Repositori Utama
 
 [![Tests](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/tests.yml/badge.svg)](https://github.com/dapodik-org/dapodik-laravel/actions/workflows/tests.yml)
-[![Laravel](https://img.shields.io/badge/Laravel-7%20|%208-red?style=flat-square&logo=laravel)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/Laravel-9%20–%2013-red?style=flat-square&logo=laravel)](https://laravel.com)
 
 Monorepo untuk paket-paket Laravel Dapodik.
+
+## Persyaratan
+
+- PHP >=8.1
+- Laravel 9 – 13
 
 ## Paket
 
