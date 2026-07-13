@@ -39,12 +39,9 @@ jobs:
           git commit -m "chore: update changelog for ${{ inputs.version }}"
           git push
 
-      - name: Create Release
+      - name: Push tag
         run: |
-          gh release create "$VERSION" \
-            --title "$VERSION" \
-            --notes-file /tmp/release-body.md \
-            --latest
+          git tag "$VERSION"
+          git push origin "$VERSION"
         env:
-          GITHUB_TOKEN: ${{ github.token }}
           VERSION: ${{ inputs.version }}
