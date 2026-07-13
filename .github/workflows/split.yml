@@ -31,22 +31,37 @@ jobs:
           BRANCH="${GITHUB_REF#refs/heads/}"
           echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
 
-      - name: Initialize target repo if empty
+      - name: Initialize target branch if missing
         if: "!startsWith(github.ref, 'refs/tags/')"
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           TARGET_BRANCH: ${{ steps.vars.outputs.branch }}
         run: |
           REPO="dapodik-org/${{ matrix.package.split_repository }}"
-          if ! gh api "repos/${REPO}/git/refs/heads/${TARGET_BRANCH}" &>/dev/null; then
-            echo "Creating initial commit on branch ${TARGET_BRANCH}..."
-            CONTENT=$(printf "# %s" "${{ matrix.package.split_repository }}" | base64 -w0)
-            gh api "repos/${REPO}/contents/README.md" \
-              --method PUT \
-              --field message="Initial commit" \
-              --field content="${CONTENT}" \
-              --field branch="${TARGET_BRANCH}"
+          # Already exists — nothing to do
+          if gh api "repos/${REPO}/git/refs/heads/${TARGET_BRANCH}" &>/dev/null; then
+            echo "Branch ${TARGET_BRANCH} already exists"
+            exit 0
           fi
+          # Repo has commits — create branch from default branch HEAD
+          DEFAULT_BRANCH=$(gh api "repos/${REPO}" --jq '.default_branch' 2>/dev/null || echo "main")
+          if gh api "repos/${REPO}/git/refs/heads/${DEFAULT_BRANCH}" &>/dev/null; then
+            SHA=$(gh api "repos/${REPO}/git/refs/heads/${DEFAULT_BRANCH}" --jq '.object.sha')
+            gh api "repos/${REPO}/git/refs" \
+              --method POST \
+              --field ref="refs/heads/${TARGET_BRANCH}" \
+              --field sha="${SHA}"
+            echo "Created branch ${TARGET_BRANCH} from ${DEFAULT_BRANCH} (${SHA})"
+            exit 0
+          fi
+          # Repo is completely empty — create initial commit
+          echo "Creating initial commit on branch ${TARGET_BRANCH}..."
+          CONTENT=$(printf "# %s" "${{ matrix.package.split_repository }}" | base64 -w0)
+          gh api "repos/${REPO}/contents/README.md" \
+            --method PUT \
+            --field message="Initial commit" \
+            --field content="${CONTENT}" \
+            --field branch="${TARGET_BRANCH}"
 
       - if: "!startsWith(github.ref, 'refs/tags/')"
         uses: danharrin/monorepo-split-github-action@v2.4.5
