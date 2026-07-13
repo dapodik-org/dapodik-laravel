@@ -49,7 +49,7 @@ jobs:
           git tag "$VERSION"
           git push origin "$VERSION"
 
-      - name: Push tag & create release to sub-packages
+      - name: Detect changed packages & release only those
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           VERSION: ${{ inputs.version }}
@@ -58,9 +58,20 @@ jobs:
           DIR_MAP["dapodik-laravel-eloquent"]="src/laravel/Eloquent"
           DIR_MAP["dapodik-laravel-api"]="src/laravel/API"
 
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+
           for REPO in "${!DIR_MAP[@]}"; do
             SRC_DIR="${DIR_MAP[$REPO]}"
             TARGET="dapodik-org/${REPO}"
+
+            # Skip if no changes since last tag
+            if [ -n "$LAST_TAG" ]; then
+              CHANGES=$(git diff --name-only "$LAST_TAG" HEAD -- "$SRC_DIR" 2>/dev/null)
+              if [ -z "$CHANGES" ]; then
+                echo "==> No changes in $SRC_DIR since $LAST_TAG — skipping $REPO"
+                continue
+              fi
+            fi
 
             echo "==> Splitting $SRC_DIR to $TARGET"
 
