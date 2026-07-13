@@ -40,7 +40,7 @@ jobs:
           git pull --rebase
           git push
 
-      - name: Push tag (with SPLIT_TOKEN to trigger child workflows)
+      - name: Push tag to monorepo
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           VERSION: ${{ inputs.version }}
@@ -48,3 +48,37 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/dapodik-org/dapodik-laravel.git"
           git tag "$VERSION"
           git push origin "$VERSION"
+
+      - name: Push tag & create release to sub-packages
+        env:
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          declare -A DIR_MAP
+          DIR_MAP["dapodik-laravel-eloquent"]="src/laravel/Eloquent"
+          DIR_MAP["dapodik-laravel-api"]="src/laravel/API"
+
+          for REPO in "${!DIR_MAP[@]}"; do
+            SRC_DIR="${DIR_MAP[$REPO]}"
+            TARGET="dapodik-org/${REPO}"
+
+            echo "==> Splitting $SRC_DIR to $TARGET"
+
+            TMP_DIR=$(mktemp -d)
+            git archive --format=tar "$VERSION" -- "$SRC_DIR" | tar -x -C "$TMP_DIR" --strip-components=3
+
+            cd "$TMP_DIR"
+            git init
+            git add -A
+            git config user.name "github-actions[bot]"
+            git config user.email "actions@github.com"
+            git commit -m "Release $VERSION" --allow-empty
+            git tag "$VERSION"
+            git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${TARGET}.git"
+            git push origin "$VERSION"
+            cd "$OLDPWD"
+            rm -rf "$TMP_DIR"
+
+            echo "==> Creating release on $TARGET"
+            gh release create "$VERSION" --repo "$TARGET" --title "$VERSION" --generate-notes
+          done

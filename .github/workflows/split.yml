@@ -3,7 +3,6 @@ name: Monorepo Split
 on:
   push:
     branches: [main]
-    tags: ['*']
 
 env:
   GITHUB_TOKEN: ${{ secrets.SPLIT_TOKEN }}
@@ -73,22 +72,4 @@ jobs:
           user_name: "github-actions"
           user_email: "actions@github.com"
 
-      - if: startsWith(github.ref, 'refs/tags/')
-        uses: danharrin/monorepo-split-github-action@v2.4.5
-        with:
-          tag: ${{ github.ref_name }}
-          package_directory: ${{ matrix.package.local_path }}
-          repository_organization: dapodik-org
-          repository_name: ${{ matrix.package.split_repository }}
-          user_name: "github-actions"
-          user_email: "actions@github.com"
 
-      - if: startsWith(github.ref, 'refs/tags/')
-        name: Create Release on sub-package
-        env:
-          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
-        run: |
-          gh release create "${{ github.ref_name }}" \
-            --repo "dapodik-org/${{ matrix.package.split_repository }}" \
-            --title "${{ github.ref_name }}" \
-            --generate-notes
