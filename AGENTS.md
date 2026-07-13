@@ -4,7 +4,7 @@
 
 | Branch | Laravel | PHP       | CS Fixer | Testing | Testbench            |
 |--------|---------|-----------|----------|---------|----------------------|
-| `main` | 9–13    | >=8.1     | Pint     | Pest (v1 L9 / v2 L10+) | ^7.0 or ^8.0 or ^9.0 or ^10.0 or ^11.0 |
+| `main` | 9–13    | >=8.1     | Pint     | Pest (v1 L9, v2 L10+) | ^7.0 or ^8.0 or ^9.0 or ^10.0 or ^11.0 |
 | `1.x`  | 7, 8    | >=7.2.5   | php-cs-fixer | PHPUnit | ^5.0 \|\| ^6.0  |
 
 - **`main`** = Laravel 9–13 (current); L9 → Pest v1, L10+ → Pest v2
@@ -31,8 +31,8 @@ API/         → split to dapodik-org/dapodik-laravel-api
 composer test
 ```
 
-- Eloquent: orchestra/testbench ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 + Pest (v1 L9, v2 L10+), SQLite in-memory
-- API: orchestra/testbench ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 + Pest (v1 L9, v2 L10+), no database
+- Eloquent: orchestra/testbench ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 + Pest (v1 L9 / v2 L10+), SQLite in-memory
+- API: orchestra/testbench ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 + Pest (v1 L9 / v2 L10+), no database
 - CI matrix: `.github/workflows/tests.yml` — PHP 8.2/8.3/8.4 × Laravel 9–13 × Eloquent/API
 
 ## Lint & static analysis
@@ -51,6 +51,7 @@ Root configs: `pint.json` and `phpstan.neon.dist`.
 - PHP >=8.1: typed properties, arrow functions, native enums, union types, match
 - Laravel 9–13 (illuminate/* ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0)
 - CI Laravel 9: Pest v1 (collision ^5/^6 compatible with testbench 7)
+- Tests are PHPUnit-style classes — `pest-plugin-laravel` not needed
 - Enums are backed string enums
 - Use `spatie/laravel-package-tools` for ServiceProviders (if applicable)
 - `class_exists()` can detect traits — use `class_exists()`
