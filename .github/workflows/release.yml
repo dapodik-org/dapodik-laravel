@@ -40,7 +40,7 @@ jobs:
           git pull --rebase
           git push
 
-      - name: Push tag to monorepo
+      - name: Push tag & create release on monorepo
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           VERSION: ${{ inputs.version }}
@@ -48,6 +48,8 @@ jobs:
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/dapodik-org/dapodik-laravel.git"
           git tag "$VERSION"
           git push origin "$VERSION"
+          gh release create "$VERSION" --repo dapodik-org/dapodik-laravel \
+            --title "$VERSION" --notes-file /tmp/release-body.md
 
       - name: Detect changed packages & release only those
         env:
