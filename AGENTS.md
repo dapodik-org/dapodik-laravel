@@ -4,7 +4,7 @@
 
 | Branch | Laravel | PHP       | CS Fixer | Testing | Testbench            |
 |--------|---------|-----------|----------|---------|----------------------|
-| `main` | 9–13    | >=8.1     | Pint     | Pest    | ^7.0 \|\| ^8.0 \|\| ^9.0 \|\| ^10.0 \|\| ^11.0 |
+| `main` | 9–13    | >=8.1     | Pint     | Pest    | ^8.0 \|\| ^9.0 \|\| ^10.0 \|\| ^11.0 |
 | `1.x`  | 7, 8    | >=7.2.5   | php-cs-fixer | PHPUnit | ^5.0 \|\| ^6.0  |
 
 - **`main`** = Laravel 9–13 (current)
@@ -33,7 +33,7 @@ composer test
 
 - Eloquent: orchestra/testbench ^7.0 || ^8.0 || ^9.0 + Pest ^2.0, SQLite in-memory
 - API: orchestra/testbench ^7.0 || ^8.0 || ^9.0 + Pest ^2.0, no database
-- CI matrix: `.github/workflows/tests.yml` — PHP 8.1/8.2/8.3/8.4 × Eloquent/API
+- CI matrix: `.github/workflows/tests.yml` — PHP 8.2/8.3/8.4 × Laravel 10–13 × Eloquent/API
 
 ## Lint & static analysis
 
