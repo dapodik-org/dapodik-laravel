@@ -33,6 +33,7 @@ jobs:
             rm -rf /tmp/init-repo
             git init /tmp/init-repo
             cd /tmp/init-repo
+            git checkout -b main
             echo "# ${{ matrix.package.split_repository }}" > README.md
             git add README.md
             git config user.name "github-actions"
