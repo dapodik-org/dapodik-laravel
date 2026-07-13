@@ -1,4 +1,4 @@
-name: Tests
+name: tests
 
 on:
   push:
@@ -37,12 +37,15 @@ jobs:
             testbench: 5.*
           - laravel: 8.*
             testbench: 6.*
+        exclude:
+          - php: 7.2
+            laravel: 8.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
