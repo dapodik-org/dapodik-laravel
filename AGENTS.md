@@ -4,7 +4,7 @@
 
 | Branch | Laravel | PHP       | CS Fixer | Testing | Testbench            |
 |--------|---------|-----------|----------|---------|----------------------|
-| `main` | 9–13    | >=8.1     | Pint     | Pest    | ^8.0 \|\| ^9.0 \|\| ^10.0 \|\| ^11.0 |
+| `main` | 9–13    | >=8.1     | Pint     | Pest    | ^8.0 or ^9.0 or ^10.0 or ^11.0 |
 | `1.x`  | 7, 8    | >=7.2.5   | php-cs-fixer | PHPUnit | ^5.0 \|\| ^6.0  |
 
 - **`main`** = Laravel 9–13 (current)
