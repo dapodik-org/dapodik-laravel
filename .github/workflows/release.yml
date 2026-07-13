@@ -39,9 +39,11 @@ jobs:
           git commit -m "chore: update changelog for ${{ inputs.version }}"
           git push
 
-      - name: Push tag
+      - name: Push tag (with SPLIT_TOKEN to trigger child workflows)
+        env:
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+          VERSION: ${{ inputs.version }}
         run: |
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/dapodik-org/dapodik-laravel.git"
           git tag "$VERSION"
           git push origin "$VERSION"
-        env:
-          VERSION: ${{ inputs.version }}
