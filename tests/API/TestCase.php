@@ -34,7 +34,10 @@ class TestCase extends Orchestra
             $this->parseTestMethodAnnotations($app, 'define-env');
         }
 
-        $this->defineEnvironment($app);
+        if (\method_exists($this, 'defineEnvironment')) {
+            $this->defineEnvironment($app);
+        }
+
         $this->getEnvironmentSetUp($app);
 
         $app->make('Illuminate\Foundation\Bootstrap\BootProviders')->bootstrap($app);
