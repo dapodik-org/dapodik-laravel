@@ -1,0 +1,47 @@
+{
+    "name": "dapodik-org/dapodik-laravel-eloquent",
+    "description": "Dapodik Eloquent for Laravel Framework",
+    "keywords": ["dapodik", "dapodik-org", "laravel", "dapodik-laravel", "dapodik-laravel-eloquent"],
+    "homepage": "https://github.com/dapodik-org/dapodik-laravel-eloquent",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dapodik Org",
+            "email": "org.dapodik@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ade Reksi Susanto",
+            "email": "adereksisusanto@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "illuminate/contracts": "^7.0 || ^8.0",
+        "illuminate/support": "^7.0 || ^8.0",
+        "illuminate/database": "^7.0 || ^8.0",
+        "illuminate/console": "^7.0 || ^8.0",
+        "illuminate/filesystem": "^7.0 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dapodik\\Laravel\\Eloquent\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dapodik\\Laravel\\Eloquent\\EloquentServiceProvider"
+            ],
+            "aliases": {
+                "Eloquent": "Dapodik\\Laravel\\Eloquent\\Facades\\Eloquent"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

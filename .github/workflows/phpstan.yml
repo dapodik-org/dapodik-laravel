@@ -1,0 +1,42 @@
+name: PHPStan
+
+on:
+  push:
+    paths:
+      - 'src/laravel/**.php'
+      - 'phpstan.neon.dist'
+      - 'composer.json'
+  pull_request:
+    paths:
+      - 'src/laravel/**.php'
+      - 'phpstan.neon.dist'
+      - 'composer.json'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        php: [7.2, 7.4, 8.0]
+
+    name: PHPStan - PHP ${{ matrix.php }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Install dependencies
+        run: composer update --prefer-stable --prefer-dist --no-interaction
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit=-1 --no-progress

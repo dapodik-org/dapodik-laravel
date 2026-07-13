@@ -1,0 +1,5 @@
+/vendor/
+src/laravel/*/vendor/
+.idea/
+.phpunit.result.cache
+composer.lock

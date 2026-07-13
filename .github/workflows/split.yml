@@ -1,0 +1,21 @@
+name: Monorepo Split
+
+on:
+  push:
+    branches: [main]
+    tags: ['*']
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: symplify/github-action-monorepo-split@v2
+        with:
+          tag: ${GITHUB_REF_NAME}
+          directories-to-repositories: |
+            src/laravel/Eloquent -> https://x-access-token:${{ secrets.SPLIT_TOKEN }}@github.com/dapodik-org/dapodik-laravel-eloquent.git
+            src/laravel/API -> https://x-access-token:${{ secrets.SPLIT_TOKEN }}@github.com/dapodik-org/dapodik-laravel-api.git

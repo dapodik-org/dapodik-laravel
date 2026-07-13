@@ -1,0 +1,86 @@
+{
+  "name": "dapodik-org/dapodik-laravel",
+  "description": "Dapodik Laravel — Monorepo",
+  "keywords": ["dapodik", "dapodik-org", "laravel", "dapodik-laravel"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dapodik Org",
+      "email": "org.dapodik@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Ade Reksi Susanto",
+      "email": "adereksisusanto@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "replace": {
+    "dapodik-org/dapodik-laravel-eloquent": "self.version",
+    "dapodik-org/dapodik-laravel-api": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dapodik\\Laravel\\": "src/laravel/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dapodik\\Laravel\\Eloquent\\Tests\\": "tests/Eloquent/",
+      "Dapodik\\Laravel\\API\\Tests\\": "tests/API/"
+    }
+  },
+  "require": {
+    "php": ">=7.2.5",
+    "guzzlehttp/guzzle": "^7.0",
+    "illuminate/support": "^7.0 || ^8.0",
+    "illuminate/database": "^7.0 || ^8.0",
+    "illuminate/console": "^7.0 || ^8.0",
+    "illuminate/contracts": "^7.0 || ^8.0",
+    "illuminate/filesystem": "^7.0 || ^8.0"
+  },
+  "require-dev": {
+    "doctrine/dbal": "^2.6",
+    "friendsofphp/php-cs-fixer": "~3.4.0",
+    "orchestra/testbench": "^5.0 || ^6.0",
+    "phpstan/phpstan": "^0.12",
+    "phpunit/phpunit": "^8.0||^9.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Dapodik\\Laravel\\Eloquent\\EloquentServiceProvider",
+        "Dapodik\\Laravel\\API\\APIServiceProvider"
+      ],
+      "aliases": {
+        "Eloquent": "Dapodik\\Laravel\\Eloquent\\Facades\\Eloquent",
+        "API": "Dapodik\\Laravel\\API\\Facades\\API"
+      }
+    }
+  },
+  "scripts": {
+    "test:eloquent": "@php vendor/bin/phpunit --testsuite Eloquent",
+    "test:api": "@php vendor/bin/phpunit --testsuite API",
+    "test": [
+      "@test:eloquent",
+      "@test:api"
+    ],
+    "lint": "@php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes --diff --dry-run",
+    "cs-fix": "@php vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes --diff",
+    "analyse": "@php -d error_reporting=24575 vendor/bin/phpstan analyse --memory-limit=-1",
+    "check": [
+      "@lint",
+      "@analyse",
+      "@test"
+    ]
+  },
+  "config": {
+    "process-timeout": 600,
+    "audit": {
+      "block-insecure": false
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
+

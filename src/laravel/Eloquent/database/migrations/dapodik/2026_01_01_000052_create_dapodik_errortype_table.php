@@ -1,0 +1,30 @@
+<?php
+
+use Dapodik\Laravel\Eloquent\Migration;
+use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateDapodikErrortypeTable extends Migration
+{
+    protected $model = Errortype::class;
+
+    public function up()
+    {
+        $this->createSchemaIfNotExist();
+
+        $this->createTable(function(Blueprint $table) {
+            $table->bigInteger('idtype')->primary();
+            $table->bigInteger('kategori_error')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->timestamp('last_sync')->nullable();
+            $table->timestamp('create_date')->nullable();
+            $table->timestamp('last_update')->nullable();
+            $table->softDeletes('expired_date');
+        });
+    }
+
+    public function down()
+    {
+        $this->dropTable();
+    }
+}

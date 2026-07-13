@@ -1,0 +1,45 @@
+{
+    "name": "dapodik-org/dapodik-laravel-api",
+    "description": "Dapodik API for Laravel Framework",
+    "keywords": ["dapodik", "dapodik-org", "laravel", "dapodik-laravel", "dapodik-laravel-api"],
+    "homepage": "https://github.com/dapodik-org/dapodik-laravel-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dapodik Org",
+            "email": "org.dapodik@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ade Reksi Susanto",
+            "email": "adereksisusanto@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "guzzlehttp/guzzle": "^7.0",
+        "illuminate/contracts": "^7.0 || ^8.0",
+        "illuminate/support": "^7.0 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dapodik\\Laravel\\API\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dapodik\\Laravel\\API\\APIServiceProvider"
+            ],
+            "aliases": {
+                "API": "Dapodik\\Laravel\\API\\Facades\\API"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
