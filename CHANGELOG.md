@@ -7,6 +7,12 @@
 
 ## What's Changed
 
+### Fixed
+- fix: use SPLIT_TOKEN for tag push to trigger split workflow
+## 1.0.0 - 2026-07-13
+
+## What's Changed
+
 ### Added
 - feat: create releases on sub-packages instead of mono repo
 
