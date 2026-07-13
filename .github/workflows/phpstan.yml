@@ -2,6 +2,7 @@ name: PHPStan
 
 on:
   push:
+    branches: [main, 1.x]
     paths:
       - 'src/laravel/**.php'
       - 'phpstan.neon.dist'

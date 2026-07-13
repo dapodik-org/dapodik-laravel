@@ -4,13 +4,16 @@
 
 | Branch | Laravel | PHP       | CS Fixer       | Testing | Testbench   |
 |--------|---------|-----------|----------------|---------|-------------|
-| `main` | 7, 8    | >=7.2.5   | php-cs-fixer   | PHPUnit | ^5.0 || ^6.0 |
+| `1.x`  | 7, 8    | >=7.2.5   | php-cs-fixer   | PHPUnit | ^5.0 || ^6.0 |
+| `main` | 9–13    | >=8.1     | Pint           | Pest    | ^7.0–^11.0  |
 
-- **`main`** = Laravel 7|8 (current)
-- Saat support Laravel 9+, buat branch baru
-- Split CI: `.github/workflows/split.yml` — push ke `main` atau tags
+- **`1.x`** = Laravel 7|8 (current, legacy)
+- **`main`** = Laravel 9–13 (2.x, divergen)
+- Split CI: `.github/workflows/split.yml` — push ke `1.x`, `main`, atau tags
+- Push ke `1.x` → split ke sub-repo branch `1.x`
 - Push ke `main` → split ke sub-repo branch `main`
-- Tag `v1.*` → tag `v1.*` di sub-repo
+- Tag `v1.*` → tag `v1.*` di sub-repo (1.x)
+- Tag `v2.*` → tag `v2.*` di sub-repo (main)
 - `SPLIT_TOKEN` secret: Personal Access Token with `repo` scope
 
 ## Monorepo structure
