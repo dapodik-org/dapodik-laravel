@@ -29,10 +29,12 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.2, 8.3, 8.4]
-        laravel: [10.*, 11.*, 12.*, 13.*]
+        laravel: [9.*, 10.*, 11.*, 12.*, 13.*]
         stability: [prefer-lowest, prefer-stable]
         package: [Eloquent, API]
         include:
+          - laravel: 9.*
+            testbench: 7.*
           - laravel: 10.*
             testbench: 8.*
           - laravel: 11.*
@@ -67,7 +69,11 @@ jobs:
           composer config allow-plugins.pestphp/pest-plugin true
           composer require --no-update "laravel/framework:${{ matrix.laravel }}"
           composer require --dev --no-update "orchestra/testbench:${{ matrix.testbench }}"
-          composer require --dev --no-update "pestphp/pest-plugin-laravel:^2.0"
+          if [ "${{ matrix.laravel }}" = "9.*" ]; then
+            composer require --dev --no-update "pestphp/pest:^1.0"
+          else
+            composer require --dev --no-update "pestphp/pest-plugin-laravel:^2.0"
+          fi
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: List Installed Dependencies
