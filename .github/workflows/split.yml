@@ -25,25 +25,33 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Resolve target branch
+        id: vars
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
+
       - name: Initialize target repo if empty
         if: "!startsWith(github.ref, 'refs/tags/')"
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+          TARGET_BRANCH: ${{ steps.vars.outputs.branch }}
         run: |
           REPO="dapodik-org/${{ matrix.package.split_repository }}"
-          if ! gh api "repos/${REPO}/git/refs/heads/main" &>/dev/null; then
-            echo "Creating initial commit in empty repo..."
+          if ! gh api "repos/${REPO}/git/refs/heads/${TARGET_BRANCH}" &>/dev/null; then
+            echo "Creating initial commit on branch ${TARGET_BRANCH}..."
             CONTENT=$(printf "# %s" "${{ matrix.package.split_repository }}" | base64 -w0)
             gh api "repos/${REPO}/contents/README.md" \
               --method PUT \
               --field message="Initial commit" \
               --field content="${CONTENT}" \
-              --field branch="main"
+              --field branch="${TARGET_BRANCH}"
           fi
 
       - if: "!startsWith(github.ref, 'refs/tags/')"
         uses: danharrin/monorepo-split-github-action@v2.4.5
         with:
+          branch: ${{ steps.vars.outputs.branch }}
           package_directory: ${{ matrix.package.local_path }}
           repository_organization: dapodik-org
           repository_name: ${{ matrix.package.split_repository }}
