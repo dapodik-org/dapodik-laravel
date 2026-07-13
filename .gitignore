@@ -1,5 +1,6 @@
 /vendor/
 src/laravel/*/vendor/
 .idea/
+.vscode/
 .phpunit.result.cache
 composer.lock
