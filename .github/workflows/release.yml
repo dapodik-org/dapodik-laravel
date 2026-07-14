@@ -20,6 +20,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Determine release branch
+        id: branch
+        run: |
+          if [[ "${{ inputs.version }}" == v1.* ]]; then
+            echo "name=1.x" >> $GITHUB_OUTPUT
+          else
+            echo "name=main" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout release branch
+        run: git checkout ${{ steps.branch.outputs.name }}
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
