@@ -37,7 +37,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add CHANGELOG.md
           git commit -m "chore: update changelog for ${{ inputs.version }}"
-          git pull --rebase
           git push
 
       - name: Push tag & create release on monorepo
@@ -51,11 +50,17 @@ jobs:
           gh release create "$VERSION" --repo dapodik-org/dapodik-laravel \
             --title "$VERSION" --notes-file /tmp/release-body.md
 
-      - name: Detect changed packages & release only those
+      - name: Tag sub-packages
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           VERSION: ${{ inputs.version }}
         run: |
+          if [[ "$VERSION" == v1.* ]]; then
+            SUB_BRANCH="1.x"
+          else
+            SUB_BRANCH="main"
+          fi
+
           declare -A DIR_MAP
           DIR_MAP["dapodik-laravel-eloquent"]="src/laravel/Eloquent"
           DIR_MAP["dapodik-laravel-api"]="src/laravel/API"
@@ -66,7 +71,6 @@ jobs:
             SRC_DIR="${DIR_MAP[$REPO]}"
             TARGET="dapodik-org/${REPO}"
 
-            # Skip if no changes since last tag
             if [ -n "$LAST_TAG" ]; then
               CHANGES=$(git diff --name-only "$LAST_TAG" HEAD -- "$SRC_DIR" 2>/dev/null)
               if [ -z "$CHANGES" ]; then
@@ -75,19 +79,13 @@ jobs:
               fi
             fi
 
-            echo "==> Splitting $SRC_DIR to $TARGET"
+            echo "==> Tagging $TARGET on branch $SUB_BRANCH"
 
             TMP_DIR=$(mktemp -d)
-            git archive --format=tar "$VERSION" -- "$SRC_DIR" | tar -x -C "$TMP_DIR" --strip-components=3
-
+            git clone "https://x-access-token:${GH_TOKEN}@github.com/${TARGET}.git" "$TMP_DIR"
             cd "$TMP_DIR"
-            git init
-            git add -A
-            git config user.name "github-actions[bot]"
-            git config user.email "actions@github.com"
-            git commit -m "Release $VERSION" --allow-empty
+            git checkout "$SUB_BRANCH"
             git tag "$VERSION"
-            git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${TARGET}.git"
             git push origin "$VERSION"
             cd "$OLDPWD"
             rm -rf "$TMP_DIR"
