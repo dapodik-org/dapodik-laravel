@@ -51,6 +51,12 @@ jobs:
           git commit -m "chore: update changelog for ${{ inputs.version }}"
           git push
 
+      - name: Save last tag for change detection
+        id: last_tag
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          echo "name=${LAST_TAG}" >> $GITHUB_OUTPUT
+
       - name: Push tag & create release on monorepo
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
@@ -66,6 +72,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           VERSION: ${{ inputs.version }}
+          LAST_TAG: ${{ steps.last_tag.outputs.name }}
         run: |
           if [[ "$VERSION" == v1.* ]]; then
             SUB_BRANCH="1.x"
@@ -76,8 +83,6 @@ jobs:
           declare -A DIR_MAP
           DIR_MAP["dapodik-laravel-eloquent"]="src/laravel/Eloquent"
           DIR_MAP["dapodik-laravel-api"]="src/laravel/API"
-
-          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 
           for REPO in "${!DIR_MAP[@]}"; do
             SRC_DIR="${DIR_MAP[$REPO]}"
