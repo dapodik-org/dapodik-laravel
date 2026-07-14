@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Bank;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBankTable extends Migration
+return new class extends Migration
 {
     protected $model = Bank::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikBankTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

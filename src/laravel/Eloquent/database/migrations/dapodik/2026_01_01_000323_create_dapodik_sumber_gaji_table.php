@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\SumberGaji;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSumberGajiTable extends Migration
+return new class extends Migration
 {
     protected $model = SumberGaji::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikSumberGajiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Frequency;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikFrequencyTable extends Migration
+return new class extends Migration
 {
     protected $model = Frequency::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikFrequencyTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

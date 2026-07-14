@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldJurusanSp;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldJurusanSpTable extends Migration
+return new class extends Migration
 {
     protected $model = VldJurusanSp::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldJurusanSpTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

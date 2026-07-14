@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\TingkatBiblio;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTingkatBiblioTable extends Migration
+return new class extends Migration
 {
     protected $model = TingkatBiblio::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikTingkatBiblioTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

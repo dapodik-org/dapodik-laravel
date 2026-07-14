@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\BantuanPd;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBantuanPdTable extends Migration
+return new class extends Migration
 {
     protected $model = BantuanPd::class;
 
@@ -30,4 +30,4 @@ class CreateDapodikBantuanPdTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldBangunan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldBangunanTable extends Migration
+return new class extends Migration
 {
     protected $model = VldBangunan::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldBangunanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

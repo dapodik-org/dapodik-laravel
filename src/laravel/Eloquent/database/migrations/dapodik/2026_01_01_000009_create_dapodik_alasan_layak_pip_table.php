@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\AlasanLayakPip;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAlasanLayakPipTable extends Migration
+return new class extends Migration
 {
     protected $model = AlasanLayakPip::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikAlasanLayakPipTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

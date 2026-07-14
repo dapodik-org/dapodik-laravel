@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\RwyKepangkatan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRwyKepangkatanTable extends Migration
+return new class extends Migration
 {
     protected $model = RwyKepangkatan::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikRwyKepangkatanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

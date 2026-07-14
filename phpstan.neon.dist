@@ -8,5 +8,4 @@ parameters:
         - src/laravel/Eloquent/vendor
         - src/laravel/API/vendor
         - '*.blade.php'
-    checkMissingIterableValueType: false
     inferPrivatePropertyTypeFromConstructor: true

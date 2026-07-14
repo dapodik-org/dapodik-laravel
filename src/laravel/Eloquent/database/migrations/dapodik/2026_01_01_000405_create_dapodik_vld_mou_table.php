@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldMou;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldMouTable extends Migration
+return new class extends Migration
 {
     protected $model = VldMou::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldMouTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

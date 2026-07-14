@@ -1,89 +1,71 @@
 <?php
 
-namespace Dapodik\Laravel\Eloquent\Tests\Feature;
-
 use Dapodik\Laravel\Eloquent\EloquentManager;
 use Dapodik\Laravel\Eloquent\Facades\Eloquent;
 use Dapodik\Laravel\Eloquent\Models\Ref\Agama;
-use Dapodik\Laravel\Eloquent\Tests\TestCase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
-class MigrateConnectionTest extends TestCase
-{
-    private $migrationsPath;
+beforeEach(function () {
+    Config::set('database.connections.sqlite', [
+        'driver' => 'sqlite',
+        'database' => ':memory:',
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+    ]);
+    Config::set('database.default', 'sqlite');
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['split_connection'] = true;
+    config()->set('dapodik-eloquent', $config);
 
-        Config::set('database.connections.sqlite', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-            'foreign_key_constraints' => true,
-        ]);
-        Config::set('database.default', 'sqlite');
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['split_connection'] = true;
-        config()->set('dapodik-eloquent', $config);
+    $this->migrationsPath = database_path('migrations/dapodik');
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+    File::ensureDirectoryExists($this->migrationsPath);
 
-        $this->migrationsPath = database_path('migrations/dapodik');
-
-        File::ensureDirectoryExists($this->migrationsPath);
-
-        $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
-        foreach ($existing as $file) {
-            File::delete($file);
-        }
-
-        $this->artisan('vendor:publish', ['--tag' => 'dapodik-eloquent-migrations'])
-            ->assertExitCode(0);
+    $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
+    foreach ($existing as $file) {
+        File::delete($file);
     }
 
-    protected function tearDown(): void
-    {
-        $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
-        foreach ($existing as $file) {
-            File::delete($file);
-        }
+    $this->artisan('vendor:publish', ['--tag' => 'dapodik-eloquent-migrations'])
+        ->assertExitCode(0);
+});
 
-        parent::tearDown();
+afterEach(function () {
+    $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
+    foreach ($existing as $file) {
+        File::delete($file);
     }
+});
 
-    /** @test */
-    public function creates_tables_on_model_connection_enabled()
-    {
-        $this->assertTrue(Eloquent::useSplitConnection());
+it('creates tables on model connection enabled', function () {
+    $this->assertTrue(Eloquent::useSplitConnection());
 
-        $this->artisan('migrate')->assertExitCode(0);
+    $this->artisan('migrate')->assertExitCode(0);
 
-        $connection = app(Agama::class)->getConnectionName();
-        $this->assertEquals('sqlite_ref', $connection);
+    $connection = app(Agama::class)->getConnectionName();
+    $this->assertEquals('sqlite_ref', $connection);
 
-        $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_agama'));
-        $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_akreditasi'));
-    }
+    $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_agama'));
+    $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_akreditasi'));
+});
 
-    /** @test */
-    public function drops_and_recreates_tables_via_migrate_fresh_with_connection()
-    {
-        $this->artisan('migrate')->assertExitCode(0);
+it('drops and recreates tables via migrate fresh with connection', function () {
+    $this->artisan('migrate')->assertExitCode(0);
 
-        $connection = app(Agama::class)->getConnectionName();
-        $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_agama'));
+    $connection = app(Agama::class)->getConnectionName();
+    $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_agama'));
 
-        $this->artisan('migrate:fresh')->assertExitCode(0);
+    $this->artisan('migrate:fresh')->assertExitCode(0);
 
-        $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_agama'));
-        $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_akreditasi'));
-    }
-}
+    $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_agama'));
+    $this->assertTrue(Schema::connection($connection)->hasTable('dapodik_ref_akreditasi'));
+});

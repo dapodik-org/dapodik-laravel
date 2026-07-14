@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\IzinOperasional;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikIzinOperasionalTable extends Migration
+return new class extends Migration
 {
     protected $model = IzinOperasional::class;
 
@@ -32,4 +32,4 @@ class CreateDapodikIzinOperasionalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ruang;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRuangTable extends Migration
+return new class extends Migration
 {
     protected $model = Ruang::class;
 
@@ -55,4 +55,4 @@ class CreateDapodikRuangTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

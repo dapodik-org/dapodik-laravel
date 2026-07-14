@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\BentukLembaga;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBentukLembagaTable extends Migration
+return new class extends Migration
 {
     protected $model = BentukLembaga::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikBentukLembagaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

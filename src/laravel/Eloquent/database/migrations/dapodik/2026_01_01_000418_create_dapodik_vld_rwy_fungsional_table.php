@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldRwyFungsional;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldRwyFungsionalTable extends Migration
+return new class extends Migration
 {
     protected $model = VldRwyFungsional::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldRwyFungsionalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

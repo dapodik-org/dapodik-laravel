@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\RwyStruktural;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRwyStrukturalTable extends Migration
+return new class extends Migration
 {
     protected $model = RwyStruktural::class;
 
@@ -30,4 +30,4 @@ class CreateDapodikRwyStrukturalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

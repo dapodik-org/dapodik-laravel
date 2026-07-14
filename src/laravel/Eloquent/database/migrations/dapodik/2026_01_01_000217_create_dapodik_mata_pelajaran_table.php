@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\MataPelajaran;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikMataPelajaranTable extends Migration
+return new class extends Migration
 {
     protected $model = MataPelajaran::class;
 
@@ -31,4 +31,4 @@ class CreateDapodikMataPelajaranTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

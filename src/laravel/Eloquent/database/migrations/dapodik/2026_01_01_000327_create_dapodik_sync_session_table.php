@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\SyncSession;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSyncSessionTable extends Migration
+return new class extends Migration
 {
     protected $model = SyncSession::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikSyncSessionTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

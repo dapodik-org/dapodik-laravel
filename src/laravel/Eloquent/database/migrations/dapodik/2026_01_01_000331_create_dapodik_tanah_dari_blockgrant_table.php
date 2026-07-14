@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\TanahDariBlockgrant;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTanahDariBlockgrantTable extends Migration
+return new class extends Migration
 {
     protected $model = TanahDariBlockgrant::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikTanahDariBlockgrantTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikErrortypeTable extends Migration
+return new class extends Migration
 {
     protected $model = Errortype::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikErrortypeTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

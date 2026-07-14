@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisRombel;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisRombelTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisRombel::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikJenisRombelTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

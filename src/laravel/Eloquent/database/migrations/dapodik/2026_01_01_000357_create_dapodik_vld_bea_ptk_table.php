@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldBeaPtk;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldBeaPtkTable extends Migration
+return new class extends Migration
 {
     protected $model = VldBeaPtk::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldBeaPtkTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

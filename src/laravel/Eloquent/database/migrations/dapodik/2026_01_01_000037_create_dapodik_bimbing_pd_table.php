@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\BimbingPd;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBimbingPdTable extends Migration
+return new class extends Migration
 {
     protected $model = BimbingPd::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikBimbingPdTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

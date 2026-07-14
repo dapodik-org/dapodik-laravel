@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Instalasi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikInstalasiTable extends Migration
+return new class extends Migration
 {
     protected $model = Instalasi::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikInstalasiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\VariabelValue;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVariabelValueTable extends Migration
+return new class extends Migration
 {
     protected $model = VariabelValue::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikVariabelValueTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

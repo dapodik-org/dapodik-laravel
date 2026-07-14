@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Blob\LargeObject;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikLargeObjectTable extends Migration
+return new class extends Migration
 {
     protected $model = LargeObject::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikLargeObjectTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

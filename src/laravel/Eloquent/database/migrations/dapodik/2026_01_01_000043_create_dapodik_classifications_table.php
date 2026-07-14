@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Classifications;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikClassificationsTable extends Migration
+return new class extends Migration
 {
     protected $model = Classifications::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikClassificationsTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

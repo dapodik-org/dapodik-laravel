@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\TanahLongitudinal;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTanahLongitudinalTable extends Migration
+return new class extends Migration
 {
     protected $model = TanahLongitudinal::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikTanahLongitudinalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

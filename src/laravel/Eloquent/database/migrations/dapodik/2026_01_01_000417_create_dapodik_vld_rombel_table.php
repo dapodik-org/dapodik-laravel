@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldRombel;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldRombelTable extends Migration
+return new class extends Migration
 {
     protected $model = VldRombel::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldRombelTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\AnggotaGugus;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAnggotaGugusTable extends Migration
+return new class extends Migration
 {
     protected $model = AnggotaGugus::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikAnggotaGugusTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

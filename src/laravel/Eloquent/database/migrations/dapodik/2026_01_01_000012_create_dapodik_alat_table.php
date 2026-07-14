@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Alat;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAlatTable extends Migration
+return new class extends Migration
 {
     protected $model = Alat::class;
 
@@ -44,4 +44,4 @@ class CreateDapodikAlatTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

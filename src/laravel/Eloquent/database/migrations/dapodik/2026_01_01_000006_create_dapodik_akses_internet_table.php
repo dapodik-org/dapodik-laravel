@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\AksesInternet;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAksesInternetTable extends Migration
+return new class extends Migration
 {
     protected $model = AksesInternet::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikAksesInternetTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

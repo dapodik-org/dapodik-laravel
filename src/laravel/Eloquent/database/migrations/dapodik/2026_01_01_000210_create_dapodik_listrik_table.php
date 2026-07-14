@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Listrik;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikListrikTable extends Migration
+return new class extends Migration
 {
     protected $model = Listrik::class;
 
@@ -35,4 +35,4 @@ class CreateDapodikListrikTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisLembaga;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisLembagaTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisLembaga::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikJenisLembagaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

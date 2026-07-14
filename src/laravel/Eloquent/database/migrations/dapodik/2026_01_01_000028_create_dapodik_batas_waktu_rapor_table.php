@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\BatasWaktuRapor;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBatasWaktuRaporTable extends Migration
+return new class extends Migration
 {
     protected $model = BatasWaktuRapor::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikBatasWaktuRaporTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

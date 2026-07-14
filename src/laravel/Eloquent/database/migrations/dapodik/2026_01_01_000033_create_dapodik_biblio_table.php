@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Biblio;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBiblioTable extends Migration
+return new class extends Migration
 {
     protected $model = Biblio::class;
 
@@ -48,4 +48,4 @@ class CreateDapodikBiblioTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Nilai\Un;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikUnTable extends Migration
+return new class extends Migration
 {
     protected $model = Un::class;
 
@@ -39,4 +39,4 @@ class CreateDapodikUnTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Validasi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikValidasiTable extends Migration
+return new class extends Migration
 {
     protected $model = Validasi::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikValidasiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

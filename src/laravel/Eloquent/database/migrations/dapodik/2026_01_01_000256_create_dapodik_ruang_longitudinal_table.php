@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\RuangLongitudinal;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRuangLongitudinalTable extends Migration
+return new class extends Migration
 {
     protected $model = RuangLongitudinal::class;
 
@@ -65,4 +65,4 @@ class CreateDapodikRuangLongitudinalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

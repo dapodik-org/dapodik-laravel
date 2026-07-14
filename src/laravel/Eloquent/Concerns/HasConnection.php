@@ -24,8 +24,8 @@ trait HasConnection
 
     public function getTable()
     {
-        $prefix = EloquentFacade::getConfig()['prefix'] ?? null;
-        $suffix = EloquentFacade::getConfig()['suffix'] ?? null;
+        $prefix = rtrim(EloquentFacade::getConfig()['prefix'] ?? '', '_') ?: null;
+        $suffix = ltrim(EloquentFacade::getConfig()['suffix'] ?? '', '_') ?: null;
         $parts = $this->getNamespaceParts();
 
         $folder = $parts['folder'];

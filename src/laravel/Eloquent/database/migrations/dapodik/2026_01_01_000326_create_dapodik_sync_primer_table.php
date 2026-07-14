@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\SyncPrimer;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSyncPrimerTable extends Migration
+return new class extends Migration
 {
     protected $model = SyncPrimer::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikSyncPrimerTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

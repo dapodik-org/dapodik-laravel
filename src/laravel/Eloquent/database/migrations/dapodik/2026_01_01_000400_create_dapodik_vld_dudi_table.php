@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldDudi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldDudiTable extends Migration
+return new class extends Migration
 {
     protected $model = VldDudi::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldDudiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

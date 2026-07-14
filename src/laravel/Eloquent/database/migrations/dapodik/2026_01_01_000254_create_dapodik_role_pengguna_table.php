@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\ManAkses\RolePengguna;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRolePenggunaTable extends Migration
+return new class extends Migration
 {
     protected $model = RolePengguna::class;
 
@@ -39,4 +39,4 @@ class CreateDapodikRolePenggunaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

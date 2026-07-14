@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\SasaranBlockgrant;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSasaranBlockgrantTable extends Migration
+return new class extends Migration
 {
     protected $model = SasaranBlockgrant::class;
 
@@ -31,4 +31,4 @@ class CreateDapodikSasaranBlockgrantTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

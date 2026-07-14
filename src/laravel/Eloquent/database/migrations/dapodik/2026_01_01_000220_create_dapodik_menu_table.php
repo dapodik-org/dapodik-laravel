@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\ManAkses\Menu;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikMenuTable extends Migration
+return new class extends Migration
 {
     protected $model = Menu::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikMenuTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

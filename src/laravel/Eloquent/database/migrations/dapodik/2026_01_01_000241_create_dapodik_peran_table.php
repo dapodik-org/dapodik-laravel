@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\ManAkses\Peran;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPeranTable extends Migration
+return new class extends Migration
 {
     protected $model = Peran::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikPeranTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

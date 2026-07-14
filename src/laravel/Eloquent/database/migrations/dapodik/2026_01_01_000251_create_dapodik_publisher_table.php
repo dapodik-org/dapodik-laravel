@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Publisher;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPublisherTable extends Migration
+return new class extends Migration
 {
     protected $model = Publisher::class;
 
@@ -45,4 +45,4 @@ class CreateDapodikPublisherTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSemesterTable extends Migration
+return new class extends Migration
 {
     protected $model = Semester::class;
 
@@ -31,4 +31,4 @@ class CreateDapodikSemesterTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldRegPd;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldRegPdTable extends Migration
+return new class extends Migration
 {
     protected $model = VldRegPd::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldRegPdTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

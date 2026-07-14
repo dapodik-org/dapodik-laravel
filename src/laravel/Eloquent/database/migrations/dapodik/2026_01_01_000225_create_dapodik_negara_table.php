@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Negara;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikNegaraTable extends Migration
+return new class extends Migration
 {
     protected $model = Negara::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikNegaraTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

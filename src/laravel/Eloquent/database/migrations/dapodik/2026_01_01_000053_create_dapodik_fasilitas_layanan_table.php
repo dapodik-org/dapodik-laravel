@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\FasilitasLayanan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikFasilitasLayananTable extends Migration
+return new class extends Migration
 {
     protected $model = FasilitasLayanan::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikFasilitasLayananTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

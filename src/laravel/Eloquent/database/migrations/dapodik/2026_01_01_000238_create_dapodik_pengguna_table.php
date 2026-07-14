@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\ManAkses\Pengguna;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPenggunaTable extends Migration
+return new class extends Migration
 {
     protected $model = Pengguna::class;
 
@@ -56,4 +56,4 @@ class CreateDapodikPenggunaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

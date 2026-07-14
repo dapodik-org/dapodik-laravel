@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VersiDb;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVersiDbTable extends Migration
+return new class extends Migration
 {
     protected $model = VersiDb::class;
 
@@ -25,4 +25,4 @@ class CreateDapodikVersiDbTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -1,243 +1,214 @@
 <?php
 
-namespace Dapodik\Laravel\Eloquent\Tests\Unit;
-
 use Dapodik\Laravel\Eloquent\EloquentManager;
 use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Agama;
-use Dapodik\Laravel\Eloquent\Tests\TestCase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
-class MigrationTest extends TestCase
-{
-    protected function setUp(): void
+beforeEach(function () {
+    Config::set('database.default', 'testing');
+    Config::set('database.connections.testing', [
+        'driver' => 'sqlite',
+        'database' => ':memory:',
+        'prefix' => '',
+    ]);
+
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
+
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
+});
+
+it('returns the model class', function () {
+    $migration = new class extends Migration
     {
-        parent::setUp();
+        protected $model = Agama::class;
+    };
+    $this->assertEquals(Agama::class, $migration->getModel());
+});
 
-        Config::set('database.default', 'testing');
-        Config::set('database.connections.testing', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
-
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
-
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
-    }
-
-    /** @test */
-    public function returns_the_model_class()
+it('returns the table name from the model', function () {
+    $migration = new class extends Migration
     {
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-        $this->assertEquals(Agama::class, $migration->getModel());
-    }
+        protected $model = Agama::class;
+    };
+    $this->assertEquals('dapodik_ref_agama', $migration->getTable());
+});
 
-    /** @test */
-    public function returns_the_table_name_from_the_model()
+it('returns the default connection when split connection is false and no connection config', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
+
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
+
+    $migration = new class extends Migration
     {
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-        $this->assertEquals('dapodik_ref_agama', $migration->getTable());
-    }
+        protected $model = Agama::class;
+    };
+    $this->assertEquals('testing', $migration->getConnection());
+});
 
-    /** @test */
-    public function returns_the_default_connection_when_split_connection_is_false_and_no_connection_config()
+it('returns the configured connection when split connection is false and connection config is set', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['connection'] = 'custom_conn';
+    config()->set('dapodik-eloquent', $config);
+
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
+
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
+    $this->assertEquals('custom_conn', $migration->getConnection());
+});
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+it('returns the split connection when split connection is true', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['split_connection'] = true;
+    $config['connection'] = 'testing';
+    config()->set('dapodik-eloquent', $config);
 
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-        $this->assertEquals('testing', $migration->getConnection());
-    }
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-    /** @test */
-    public function returns_the_configured_connection_when_split_connection_is_false_and_connection_config_is_set()
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['connection'] = 'custom_conn';
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
+    $this->assertEquals('testing_ref', $migration->getConnection());
+});
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+it('does not call create schema if not exist for non pgsql drivers', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['split_connection'] = true;
+    config()->set('dapodik-eloquent', $config);
 
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-        $this->assertEquals('custom_conn', $migration->getConnection());
-    }
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-    /** @test */
-    public function returns_the_split_connection_when_split_connection_is_true()
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['split_connection'] = true;
-        $config['connection'] = 'testing';
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
+    $migration->createSchemaIfNotExist();
+    $this->assertTrue(true);
+});
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+it('creates table via create table', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
 
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-        $this->assertEquals('testing_ref', $migration->getConnection());
-    }
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-    /** @test */
-    public function does_not_call_create_schema_if_not_exist_for_non_pgsql_drivers()
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['split_connection'] = true;
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+    $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
+    $migration->createTable(function ($table) {
+        $table->string('agama_id', 10)->primary();
+        $table->string('nama', 100);
+    });
+    $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
+});
 
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-        $migration->createSchemaIfNotExist();
-        $this->assertTrue(true);
-    }
+it('drops table via drop table', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function creates_table_via_create_table()
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
+
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+    $migration->createTable(function ($table) {
+        $table->string('agama_id', 10)->primary();
+        $table->string('nama', 100);
+    });
+    $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
 
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
+    $migration->dropTable();
+    $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
+});
 
-        $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
-        $migration->createTable(function ($table) {
-            $table->string('agama_id', 10)->primary();
-            $table->string('nama', 100);
-        });
-        $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
-    }
+it('drops columns via drop columns', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function drops_table_via_drop_table()
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
+
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+    $migration->createTable(function ($table) {
+        $table->string('agama_id', 10)->primary();
+        $table->string('nama', 100);
+        $table->string('keterangan', 200)->nullable();
+    });
+    $this->assertTrue(Schema::hasColumn('dapodik_ref_agama', 'keterangan'));
 
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
+    $migration->dropColumns('keterangan');
+    $this->assertFalse(Schema::hasColumn('dapodik_ref_agama', 'keterangan'));
+});
 
-        $migration->createTable(function ($table) {
-            $table->string('agama_id', 10)->primary();
-            $table->string('nama', 100);
-        });
-        $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
+it('is idempotent on create table', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
 
-        $migration->dropTable();
-        $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
-    }
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-    /** @test */
-    public function drops_columns_via_drop_columns()
+    $migration = new class extends Migration
     {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
+        protected $model = Agama::class;
+    };
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
-
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-
-        $migration->createTable(function ($table) {
-            $table->string('agama_id', 10)->primary();
-            $table->string('nama', 100);
-            $table->string('keterangan', 200)->nullable();
-        });
-        $this->assertTrue(Schema::hasColumn('dapodik_ref_agama', 'keterangan'));
-
-        $migration->dropColumns('keterangan');
-        $this->assertFalse(Schema::hasColumn('dapodik_ref_agama', 'keterangan'));
-    }
-
-    /** @test */
-    public function is_idempotent_on_create_table()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
-
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
-
-        $migration = new class extends Migration
-        {
-            protected $model = Agama::class;
-        };
-
-        $migration->createTable(function ($table) {
-            $table->string('agama_id', 10)->primary();
-            $table->string('nama', 100);
-        });
-        $migration->createTable(function ($table) {
-            $table->string('agama_id', 10)->primary();
-            $table->string('nama', 100);
-        });
-        $this->assertTrue(true);
-    }
-}
+    $migration->createTable(function ($table) {
+        $table->string('agama_id', 10)->primary();
+        $table->string('nama', 100);
+    });
+    $migration->createTable(function ($table) {
+        $table->string('agama_id', 10)->primary();
+        $table->string('nama', 100);
+    });
+    $this->assertTrue(true);
+});

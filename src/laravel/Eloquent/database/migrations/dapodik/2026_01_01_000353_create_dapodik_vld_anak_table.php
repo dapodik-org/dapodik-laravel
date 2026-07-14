@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldAnak;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldAnakTable extends Migration
+return new class extends Migration
 {
     protected $model = VldAnak::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldAnakTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

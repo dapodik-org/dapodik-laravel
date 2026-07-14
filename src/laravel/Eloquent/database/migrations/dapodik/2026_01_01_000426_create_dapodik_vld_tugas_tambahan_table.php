@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldTugasTambahan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldTugasTambahanTable extends Migration
+return new class extends Migration
 {
     protected $model = VldTugasTambahan::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldTugasTambahanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

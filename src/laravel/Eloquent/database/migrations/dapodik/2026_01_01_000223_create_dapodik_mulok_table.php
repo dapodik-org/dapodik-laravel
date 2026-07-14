@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Mulok;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikMulokTable extends Migration
+return new class extends Migration
 {
     protected $model = Mulok::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikMulokTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

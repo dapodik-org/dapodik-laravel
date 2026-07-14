@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\KategoriTk;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikKategoriTkTable extends Migration
+return new class extends Migration
 {
     protected $model = KategoriTk::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikKategoriTkTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

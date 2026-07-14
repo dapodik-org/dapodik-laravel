@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\JurSpLong;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJurSpLongTable extends Migration
+return new class extends Migration
 {
     protected $model = JurSpLong::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikJurSpLongTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

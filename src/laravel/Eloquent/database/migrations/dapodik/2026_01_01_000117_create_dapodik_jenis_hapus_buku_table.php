@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisHapusBuku;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisHapusBukuTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisHapusBuku::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikJenisHapusBukuTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\KlasifikasiLembaga;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikKlasifikasiLembagaTable extends Migration
+return new class extends Migration
 {
     protected $model = KlasifikasiLembaga::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikKlasifikasiLembagaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

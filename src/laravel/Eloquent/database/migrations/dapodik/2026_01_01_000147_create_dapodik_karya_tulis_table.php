@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\KaryaTulis;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikKaryaTulisTable extends Migration
+return new class extends Migration
 {
     protected $model = KaryaTulis::class;
 
@@ -32,4 +32,4 @@ class CreateDapodikKaryaTulisTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

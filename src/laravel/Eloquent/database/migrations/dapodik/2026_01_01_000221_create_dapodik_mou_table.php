@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Mou;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikMouTable extends Migration
+return new class extends Migration
 {
     protected $model = Mou::class;
 
@@ -41,4 +41,4 @@ class CreateDapodikMouTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

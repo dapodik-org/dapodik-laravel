@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\BeasiswaPesertaDidik;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBeasiswaPesertaDidikTable extends Migration
+return new class extends Migration
 {
     protected $model = BeasiswaPesertaDidik::class;
 
@@ -32,4 +32,4 @@ class CreateDapodikBeasiswaPesertaDidikTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

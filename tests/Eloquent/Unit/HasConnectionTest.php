@@ -1,135 +1,106 @@
 <?php
 
-namespace Dapodik\Laravel\Eloquent\Tests\Unit;
-
 use Dapodik\Laravel\Eloquent\EloquentManager;
 use Dapodik\Laravel\Eloquent\Models\Ref\Agama;
-use Dapodik\Laravel\Eloquent\Tests\TestCase;
 use Illuminate\Support\Facades\Config;
 
-class HasConnectionTest extends TestCase
-{
-    protected function setUp(): void
-    {
-        parent::setUp();
+beforeEach(function () {
+    Config::set('database.default', 'testing');
 
-        Config::set('database.default', 'testing');
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    config()->set('dapodik-eloquent', $config);
+});
 
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        config()->set('dapodik-eloquent', $config);
-    }
+it('returns config default connection when use split connection is false', function () {
+    Config::set('database.default', 'testing');
+    $model = new Agama;
+    $this->assertEquals('testing', $model->getConnectionName());
+});
 
-    /** @test */
-    public function returns_config_default_connection_when_use_split_connection_is_false()
-    {
-        Config::set('database.default', 'testing');
-        $model = new Agama;
-        $this->assertEquals('testing', $model->getConnectionName());
-    }
+it('returns configured connection name when connection config is set and split is false', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['connection'] = 'dapodik';
+    config()->set('dapodik-eloquent', $config);
+    $model = new Agama;
+    $this->assertEquals('dapodik', $model->getConnectionName());
+});
 
-    /** @test */
-    public function returns_configured_connection_name_when_connection_config_is_set_and_split_is_false()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['connection'] = 'dapodik';
-        config()->set('dapodik-eloquent', $config);
-        $model = new Agama;
-        $this->assertEquals('dapodik', $model->getConnectionName());
-    }
+it('returns split connection name when split connection is true and connection is set', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['split_connection'] = true;
+    $config['connection'] = 'testing';
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function returns_split_connection_name_when_split_connection_is_true_and_connection_is_set()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['split_connection'] = true;
-        $config['connection'] = 'testing';
-        config()->set('dapodik-eloquent', $config);
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+    $model = new Agama;
+    $this->assertEquals('testing_ref', $model->getConnectionName());
+});
 
-        $model = new Agama;
-        $this->assertEquals('testing_ref', $model->getConnectionName());
-    }
+it('returns split connection name when split connection is true and connection is null', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['split_connection'] = true;
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function returns_split_connection_name_when_split_connection_is_true_and_connection_is_null()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['split_connection'] = true;
-        $config['connection'] = null;
-        config()->set('dapodik-eloquent', $config);
+    app()->forgetInstance('dapodik.eloquent.laravel');
+    app()->singleton('dapodik.eloquent.laravel', function ($app) {
+        return new EloquentManager($app);
+    });
+    app('dapodik.eloquent.laravel');
 
-        app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function ($app) {
-            return new EloquentManager($app);
-        });
-        app('dapodik.eloquent.laravel');
+    $model = new Agama;
+    $this->assertEquals('testing_ref', $model->getConnectionName());
+});
 
-        $model = new Agama;
-        $this->assertEquals('testing_ref', $model->getConnectionName());
-    }
+it('returns table name with folder segment for namespaced models', function () {
+    $model = new Agama;
+    $this->assertEquals('dapodik_ref_agama', $model->getTable());
+});
 
-    /** @test */
-    public function returns_table_name_with_folder_segment_for_namespaced_models()
-    {
-        $model = new Agama;
-        $this->assertEquals('dapodik_ref_agama', $model->getTable());
-    }
+it('returns table name with custom prefix', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['prefix'] = 'custom_';
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function returns_table_name_with_custom_prefix()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['prefix'] = 'custom';
-        config()->set('dapodik-eloquent', $config);
-        $model = new Agama;
-        $this->assertEquals('custom_ref_agama', $model->getTable());
-    }
+    $model = new Agama;
+    $this->assertEquals('custom_ref_agama', $model->getTable());
+});
 
-    /** @test */
-    public function returns_table_name_with_suffix()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['suffix'] = '2024';
-        config()->set('dapodik-eloquent', $config);
-        $model = new Agama;
-        $this->assertEquals('dapodik_ref_agama_2024', $model->getTable());
-    }
+it('returns table name with suffix', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['suffix'] = '_suffix';
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function returns_table_name_with_prefix_and_suffix()
-    {
-        $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
-        $config['prefix'] = 'custom';
-        $config['suffix'] = '2024';
-        config()->set('dapodik-eloquent', $config);
-        $model = new Agama;
-        $this->assertEquals('custom_ref_agama_2024', $model->getTable());
-    }
+    $model = new Agama;
+    $this->assertEquals('dapodik_ref_agama_suffix', $model->getTable());
+});
 
-    /** @test */
-    public function get_schema_returns_null_on_fresh_model()
-    {
-        $model = new Agama;
-        $this->assertNull($model->getSchema());
-    }
+it('returns table name with prefix and suffix', function () {
+    $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
+    $config['prefix'] = 'pre_';
+    $config['suffix'] = '_suf';
+    config()->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function set_schema_stores_and_get_schema_retrieves()
-    {
-        $model = new Agama;
-        $model->setSchema('custom_schema');
-        $this->assertEquals('custom_schema', $model->getSchema());
-    }
+    $model = new Agama;
+    $this->assertEquals('pre_ref_agama_suf', $model->getTable());
+});
 
-    /** @test */
-    public function get_guarded_returns_empty_array()
-    {
-        $model = new Agama;
-        $this->assertEquals([], $model->getGuarded());
-    }
-}
+it('get schema returns null on fresh model', function () {
+    $model = new Agama;
+    $this->assertNull($model->getSchema());
+});
+
+it('set schema stores and get schema retrieves', function () {
+    $model = new Agama;
+    $model->setSchema('custom_schema');
+    $this->assertEquals('custom_schema', $model->getSchema());
+});
+
+it('get guarded returns empty array', function () {
+    $model = new Agama;
+    $this->assertEquals([], $model->getGuarded());
+});

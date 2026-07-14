@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Eloquent\SyncStatus;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikEloquentSyncStatusTable extends Migration
+return new class extends Migration
 {
     protected $model = SyncStatus::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikEloquentSyncStatusTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

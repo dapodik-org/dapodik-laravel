@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\LevelWilayah;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikLevelWilayahTable extends Migration
+return new class extends Migration
 {
     protected $model = LevelWilayah::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikLevelWilayahTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

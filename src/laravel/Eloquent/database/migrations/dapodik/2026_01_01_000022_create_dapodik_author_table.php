@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Author;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAuthorTable extends Migration
+return new class extends Migration
 {
     protected $model = Author::class;
 
@@ -30,4 +30,4 @@ class CreateDapodikAuthorTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\SertifikasiPd;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSertifikasiPdTable extends Migration
+return new class extends Migration
 {
     protected $model = SertifikasiPd::class;
 
@@ -36,4 +36,4 @@ class CreateDapodikSertifikasiPdTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

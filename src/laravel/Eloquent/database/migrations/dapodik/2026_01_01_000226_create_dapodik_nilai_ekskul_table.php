@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Nilai\NilaiEkskul;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikNilaiEkskulTable extends Migration
+return new class extends Migration
 {
     protected $model = NilaiEkskul::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikNilaiEkskulTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

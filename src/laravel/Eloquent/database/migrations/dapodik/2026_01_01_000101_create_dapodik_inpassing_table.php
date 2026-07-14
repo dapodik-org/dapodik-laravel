@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Inpassing;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikInpassingTable extends Migration
+return new class extends Migration
 {
     protected $model = Inpassing::class;
 
@@ -35,4 +35,4 @@ class CreateDapodikInpassingTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

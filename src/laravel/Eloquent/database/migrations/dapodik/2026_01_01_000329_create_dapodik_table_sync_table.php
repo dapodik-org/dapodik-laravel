@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\TableSync;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTableSyncTable extends Migration
+return new class extends Migration
 {
     protected $model = TableSync::class;
 
@@ -32,4 +32,4 @@ class CreateDapodikTableSyncTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

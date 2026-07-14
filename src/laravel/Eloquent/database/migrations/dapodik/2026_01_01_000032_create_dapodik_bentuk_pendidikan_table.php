@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\BentukPendidikan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikBentukPendidikanTable extends Migration
+return new class extends Migration
 {
     protected $model = BentukPendidikan::class;
 
@@ -35,4 +35,4 @@ class CreateDapodikBentukPendidikanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

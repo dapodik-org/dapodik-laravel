@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\PtkBaru;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPtkBaruTable extends Migration
+return new class extends Migration
 {
     protected $model = PtkBaru::class;
 
@@ -38,4 +38,4 @@ class CreateDapodikPtkBaruTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

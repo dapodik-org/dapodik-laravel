@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JadwalPaud;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJadwalPaudTable extends Migration
+return new class extends Migration
 {
     protected $model = JadwalPaud::class;
 
@@ -30,4 +30,4 @@ class CreateDapodikJadwalPaudTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

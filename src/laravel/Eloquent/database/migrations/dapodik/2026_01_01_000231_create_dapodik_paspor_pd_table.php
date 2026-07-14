@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\PasporPd;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPasporPdTable extends Migration
+return new class extends Migration
 {
     protected $model = PasporPd::class;
 
@@ -30,4 +30,4 @@ class CreateDapodikPasporPdTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

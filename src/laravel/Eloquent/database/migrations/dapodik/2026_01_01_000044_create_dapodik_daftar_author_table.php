@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\DaftarAuthor;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikDaftarAuthorTable extends Migration
+return new class extends Migration
 {
     protected $model = DaftarAuthor::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikDaftarAuthorTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

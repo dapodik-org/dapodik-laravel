@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\ManAkses\LogOtentikasi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikLogOtentikasiTable extends Migration
+return new class extends Migration
 {
     protected $model = LogOtentikasi::class;
 
@@ -32,4 +32,4 @@ class CreateDapodikLogOtentikasiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

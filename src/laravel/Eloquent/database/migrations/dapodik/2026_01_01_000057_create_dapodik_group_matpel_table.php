@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\GroupMatpel;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikGroupMatpelTable extends Migration
+return new class extends Migration
 {
     protected $model = GroupMatpel::class;
 
@@ -30,4 +30,4 @@ class CreateDapodikGroupMatpelTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

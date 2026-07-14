@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldBukuPtk;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldBukuPtkTable extends Migration
+return new class extends Migration
 {
     protected $model = VldBukuPtk::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldBukuPtkTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

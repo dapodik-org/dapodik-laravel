@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\RiwayatGajiBerkala;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRiwayatGajiBerkalaTable extends Migration
+return new class extends Migration
 {
     protected $model = RiwayatGajiBerkala::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikRiwayatGajiBerkalaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

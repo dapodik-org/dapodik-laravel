@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\PangkatGolongan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPangkatGolonganTable extends Migration
+return new class extends Migration
 {
     protected $model = PangkatGolongan::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikPangkatGolonganTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

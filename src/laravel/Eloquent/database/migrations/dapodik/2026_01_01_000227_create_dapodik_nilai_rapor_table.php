@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Nilai\NilaiRapor;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikNilaiRaporTable extends Migration
+return new class extends Migration
 {
     protected $model = NilaiRapor::class;
 
@@ -42,4 +42,4 @@ class CreateDapodikNilaiRaporTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

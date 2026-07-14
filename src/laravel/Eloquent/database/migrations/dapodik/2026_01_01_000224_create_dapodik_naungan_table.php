@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Naungan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikNaunganTable extends Migration
+return new class extends Migration
 {
     protected $model = Naungan::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikNaunganTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

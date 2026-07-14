@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\NilaiTest;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikNilaiTestTable extends Migration
+return new class extends Migration
 {
     protected $model = NilaiTest::class;
 
@@ -39,4 +39,4 @@ class CreateDapodikNilaiTestTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

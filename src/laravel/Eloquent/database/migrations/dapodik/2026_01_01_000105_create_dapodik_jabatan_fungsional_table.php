@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JabatanFungsional;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJabatanFungsionalTable extends Migration
+return new class extends Migration
 {
     protected $model = JabatanFungsional::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikJabatanFungsionalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

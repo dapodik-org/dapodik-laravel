@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\AnggotaRombel;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAnggotaRombelTable extends Migration
+return new class extends Migration
 {
     protected $model = AnggotaRombel::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikAnggotaRombelTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

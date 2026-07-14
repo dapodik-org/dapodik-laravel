@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Nilai\NilaiSmt;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikNilaiSmtTable extends Migration
+return new class extends Migration
 {
     protected $model = NilaiSmt::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikNilaiSmtTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

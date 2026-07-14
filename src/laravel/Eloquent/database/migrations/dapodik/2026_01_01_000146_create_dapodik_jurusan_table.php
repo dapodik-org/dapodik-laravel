@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\Jurusan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJurusanTable extends Migration
+return new class extends Migration
 {
     protected $model = Jurusan::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikJurusanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

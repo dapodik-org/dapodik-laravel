@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisTest;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisTestTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisTest::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikJenisTestTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

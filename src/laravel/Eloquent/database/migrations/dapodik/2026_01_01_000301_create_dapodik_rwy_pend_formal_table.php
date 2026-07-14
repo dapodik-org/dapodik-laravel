@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\RwyPendFormal;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikRwyPendFormalTable extends Migration
+return new class extends Migration
 {
     protected $model = RwyPendFormal::class;
 
@@ -41,4 +41,4 @@ class CreateDapodikRwyPendFormalTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

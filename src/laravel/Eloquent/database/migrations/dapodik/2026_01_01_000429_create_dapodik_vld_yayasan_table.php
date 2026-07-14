@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldYayasan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldYayasanTable extends Migration
+return new class extends Migration
 {
     protected $model = VldYayasan::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldYayasanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

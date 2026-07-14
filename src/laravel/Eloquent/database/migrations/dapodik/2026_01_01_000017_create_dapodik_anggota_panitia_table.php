@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\AnggotaPanitia;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAnggotaPanitiaTable extends Migration
+return new class extends Migration
 {
     protected $model = AnggotaPanitia::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikAnggotaPanitiaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

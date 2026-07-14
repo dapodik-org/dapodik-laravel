@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\UnitUsahaKerjasama;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikUnitUsahaKerjasamaTable extends Migration
+return new class extends Migration
 {
     protected $model = UnitUsahaKerjasama::class;
 
@@ -36,4 +36,4 @@ class CreateDapodikUnitUsahaKerjasamaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

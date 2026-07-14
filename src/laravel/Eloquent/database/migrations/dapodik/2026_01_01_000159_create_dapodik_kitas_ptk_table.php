@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\KitasPtk;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikKitasPtkTable extends Migration
+return new class extends Migration
 {
     protected $model = KitasPtk::class;
 
@@ -29,4 +29,4 @@ class CreateDapodikKitasPtkTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

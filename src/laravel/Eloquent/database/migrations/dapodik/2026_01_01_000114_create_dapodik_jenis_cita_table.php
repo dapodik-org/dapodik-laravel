@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisCita;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisCitaTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisCita::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikJenisCitaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

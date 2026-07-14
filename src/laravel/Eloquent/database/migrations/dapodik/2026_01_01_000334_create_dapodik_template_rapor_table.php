@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\TemplateRapor;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTemplateRaporTable extends Migration
+return new class extends Migration
 {
     protected $model = TemplateRapor::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikTemplateRaporTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

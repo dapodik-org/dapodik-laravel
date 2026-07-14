@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\StatusKepemilikan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikStatusKepemilikanTable extends Migration
+return new class extends Migration
 {
     protected $model = StatusKepemilikan::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikStatusKepemilikanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

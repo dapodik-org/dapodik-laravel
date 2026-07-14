@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldUn;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldUnTable extends Migration
+return new class extends Migration
 {
     protected $model = VldUn::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldUnTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

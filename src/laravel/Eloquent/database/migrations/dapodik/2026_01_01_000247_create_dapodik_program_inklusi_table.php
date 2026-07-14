@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\ProgramInklusi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikProgramInklusiTable extends Migration
+return new class extends Migration
 {
     protected $model = ProgramInklusi::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikProgramInklusiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

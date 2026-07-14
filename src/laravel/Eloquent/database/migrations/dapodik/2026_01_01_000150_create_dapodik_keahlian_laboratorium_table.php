@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\KeahlianLaboratorium;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikKeahlianLaboratoriumTable extends Migration
+return new class extends Migration
 {
     protected $model = KeahlianLaboratorium::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikKeahlianLaboratoriumTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

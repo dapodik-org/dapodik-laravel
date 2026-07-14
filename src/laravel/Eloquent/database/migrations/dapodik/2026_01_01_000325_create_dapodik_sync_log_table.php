@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\SyncLog;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSyncLogTable extends Migration
+return new class extends Migration
 {
     protected $model = SyncLog::class;
 
@@ -31,4 +31,4 @@ class CreateDapodikSyncLogTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

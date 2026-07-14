@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Tanah;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTanahTable extends Migration
+return new class extends Migration
 {
     protected $model = Tanah::class;
 
@@ -58,4 +58,4 @@ class CreateDapodikTanahTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

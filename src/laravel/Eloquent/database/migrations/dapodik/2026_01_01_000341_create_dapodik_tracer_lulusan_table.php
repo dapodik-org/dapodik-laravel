@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\TracerLulusan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTracerLulusanTable extends Migration
+return new class extends Migration
 {
     protected $model = TracerLulusan::class;
 
@@ -41,4 +41,4 @@ class CreateDapodikTracerLulusanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

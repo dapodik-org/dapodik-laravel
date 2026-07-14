@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Audit\LoggedActions;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikLoggedActionsTable extends Migration
+return new class extends Migration
 {
     protected $model = LoggedActions::class;
 
@@ -37,4 +37,4 @@ class CreateDapodikLoggedActionsTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

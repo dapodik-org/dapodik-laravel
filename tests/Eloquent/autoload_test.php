@@ -6,6 +6,10 @@ use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
 use Dapodik\Laravel\Eloquent\EloquentManager;
 use Dapodik\Laravel\Eloquent\EloquentServiceProvider;
+use Dapodik\Laravel\Eloquent\Enums\JenisKelamin;
+use Dapodik\Laravel\Eloquent\Enums\PosisiGelar;
+use Dapodik\Laravel\Eloquent\Enums\StatusPerkawinan;
+use Dapodik\Laravel\Eloquent\Enums\StatusSekolah;
 use Dapodik\Laravel\Eloquent\Facades\Eloquent;
 use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Model;
@@ -31,10 +35,6 @@ use Dapodik\Laravel\Eloquent\Models\RombonganBelajar;
 use Dapodik\Laravel\Eloquent\Models\Sekolah;
 use Dapodik\Laravel\Eloquent\Models\SyncLog;
 use Dapodik\Laravel\Eloquent\Models\Yayasan;
-use Dapodik\Laravel\Eloquent\Types\JenisKelamin;
-use Dapodik\Laravel\Eloquent\Types\PosisiGelar;
-use Dapodik\Laravel\Eloquent\Types\StatusPerkawinan;
-use Dapodik\Laravel\Eloquent\Types\StatusSekolah;
 
 // Quick autoload test without Laravel framework boot
 

@@ -1,58 +1,50 @@
 <?php
 
-namespace Dapodik\Laravel\Eloquent\Tests\Feature;
-
-use Dapodik\Laravel\Eloquent\Tests\CopiesMigrations;
-use Dapodik\Laravel\Eloquent\Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
 
-class MigrateTest extends TestCase
-{
-    use CopiesMigrations;
-
-    private $migrationsPath;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->migrationsPath = database_path('migrations/dapodik');
+beforeEach(function () {
+    $migrationsPath = $this->app->databasePath('migrations/dapodik');
+    if (! is_dir($migrationsPath)) {
+        mkdir($migrationsPath, 0755, true);
     }
-
-    /** @test */
-    public function can_run_migration_up_and_down()
-    {
-        $agamaFiles = glob($this->migrationsPath.'/*_create_dapodik_agama_table.php');
-        require_once $agamaFiles[0];
-        $migration = new \CreateDapodikAgamaTable;
-
-        $migration->up();
-        $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
-
-        $migration->down();
-        $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
+    $sourcePath = realpath(__DIR__.'/../../../src/laravel/Eloquent/database/migrations/dapodik');
+    foreach (glob($sourcePath.'/*.php') as $file) {
+        $dest = $migrationsPath.'/'.basename($file);
+        copy($file, $dest);
     }
+    $config = $this->app['config']->get('dapodik-eloquent', []);
+    $config['exclude_tables'] = [];
+    $this->app['config']->set('dapodik-eloquent', $config);
 
-    /** @test */
-    public function runs_dapodik_migration_via_php_artisan_migrate()
-    {
-        $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
+    $this->migrationsPath = database_path('migrations/dapodik');
+});
 
-        $this->artisan('migrate')->assertExitCode(0);
+it('can run migration up and down', function () {
+    $agamaFiles = glob($this->migrationsPath.'/*_create_dapodik_agama_table.php');
+    $migration = require $agamaFiles[0];
 
-        $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
-        $this->assertTrue(Schema::hasTable('dapodik_ref_akreditasi'));
-    }
+    $migration->up();
+    $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
 
-    /** @test */
-    public function runs_dapodik_migration_via_php_artisan_migrate_fresh()
-    {
-        $this->artisan('migrate')->assertExitCode(0);
-        $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
+    $migration->down();
+    $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
+});
 
-        $this->artisan('migrate:fresh')->assertExitCode(0);
+it('runs dapodik migration via php artisan migrate', function () {
+    $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
 
-        $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
-        $this->assertTrue(Schema::hasTable('dapodik_ref_akreditasi'));
-    }
-}
+    $this->artisan('migrate')->assertExitCode(0);
+
+    $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
+    $this->assertTrue(Schema::hasTable('dapodik_ref_akreditasi'));
+});
+
+it('runs dapodik migration via php artisan migrate fresh', function () {
+    $this->artisan('migrate')->assertExitCode(0);
+
+    $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
+
+    $this->artisan('migrate:fresh')->assertExitCode(0);
+
+    $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));
+});

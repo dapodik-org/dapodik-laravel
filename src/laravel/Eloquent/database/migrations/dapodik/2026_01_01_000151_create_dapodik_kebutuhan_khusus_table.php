@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\KebutuhanKhusus;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikKebutuhanKhususTable extends Migration
+return new class extends Migration
 {
     protected $model = KebutuhanKhusus::class;
 
@@ -45,4 +45,4 @@ class CreateDapodikKebutuhanKhususTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

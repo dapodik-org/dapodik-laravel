@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisBantuan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisBantuanTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisBantuan::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikJenisBantuanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

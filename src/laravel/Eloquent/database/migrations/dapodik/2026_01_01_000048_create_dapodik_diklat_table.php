@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Diklat;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikDiklatTable extends Migration
+return new class extends Migration
 {
     protected $model = Diklat::class;
 
@@ -36,4 +36,4 @@ class CreateDapodikDiklatTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\SekolahPaud;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikSekolahPaudTable extends Migration
+return new class extends Migration
 {
     protected $model = SekolahPaud::class;
 
@@ -52,4 +52,4 @@ class CreateDapodikSekolahPaudTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

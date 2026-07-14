@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldDemografi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldDemografiTable extends Migration
+return new class extends Migration
 {
     protected $model = VldDemografi::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldDemografiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

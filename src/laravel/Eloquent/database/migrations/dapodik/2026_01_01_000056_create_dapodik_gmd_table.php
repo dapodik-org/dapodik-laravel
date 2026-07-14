@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Gmd;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikGmdTable extends Migration
+return new class extends Migration
 {
     protected $model = Gmd::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikGmdTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\StatusDiKurikulum;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikStatusDiKurikulumTable extends Migration
+return new class extends Migration
 {
     protected $model = StatusDiKurikulum::class;
 
@@ -26,4 +26,4 @@ class CreateDapodikStatusDiKurikulumTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

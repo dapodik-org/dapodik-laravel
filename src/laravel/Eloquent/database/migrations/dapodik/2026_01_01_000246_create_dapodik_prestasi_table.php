@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Prestasi;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPrestasiTable extends Migration
+return new class extends Migration
 {
     protected $model = Prestasi::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikPrestasiTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

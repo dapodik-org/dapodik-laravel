@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\DayaTampung;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikDayaTampungTable extends Migration
+return new class extends Migration
 {
     protected $model = DayaTampung::class;
 
@@ -35,4 +35,4 @@ class CreateDapodikDayaTampungTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

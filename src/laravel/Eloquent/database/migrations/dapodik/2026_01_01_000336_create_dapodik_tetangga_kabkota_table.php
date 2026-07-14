@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\TetanggaKabkota;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikTetanggaKabkotaTable extends Migration
+return new class extends Migration
 {
     protected $model = TetanggaKabkota::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikTetanggaKabkotaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

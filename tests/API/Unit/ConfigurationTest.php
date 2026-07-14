@@ -1,168 +1,177 @@
 <?php
 
-namespace Dapodik\Laravel\API\Tests\Unit;
-
 use Dapodik\Laravel\API\Concerns\Configuration;
-use Dapodik\Laravel\API\Tests\TestCase;
 
-class ConfigurationTest extends TestCase
+function invokeMethod($object, string $methodName, array $parameters = []): mixed
 {
-    /** @test */
-    public function it_parses_valid_driver()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
+    $reflection = new ReflectionClass(get_class($object));
+    $method = $reflection->getMethod($methodName);
+    $method->setAccessible(true);
 
-        $result = $this->invokeMethod($config, 'parseDriver', [['driver' => 'rest']]);
-
-        $this->assertEquals(['driver' => 'rest'], $result);
-    }
-
-    /** @test */
-    public function it_throws_for_invalid_driver()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Driver [invalid] not supported.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parseDriver', [['driver' => 'invalid']]);
-    }
-
-    /** @test */
-    public function it_parses_host()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $result = $this->invokeMethod($config, 'parseHost', [['host' => 'http://localhost']]);
-
-        $this->assertEquals(['host' => 'http://localhost'], $result);
-    }
-
-    /** @test */
-    public function it_throws_without_host()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Host is required.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parseHost', [[]]);
-    }
-
-    /** @test */
-    public function it_parses_username()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $result = $this->invokeMethod($config, 'parseUsername', [['username' => 'user']]);
-
-        $this->assertEquals(['username' => 'user'], $result);
-    }
-
-    /** @test */
-    public function it_throws_without_username()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Username is required.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parseUsername', [[]]);
-    }
-
-    /** @test */
-    public function it_parses_password()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $result = $this->invokeMethod($config, 'parsePassword', [['password' => 'secret']]);
-
-        $this->assertEquals(['password' => 'secret'], $result);
-    }
-
-    /** @test */
-    public function it_throws_without_password()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Password is required.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parsePassword', [[]]);
-    }
-
-    /** @test */
-    public function it_parses_kode_registrasi()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $result = $this->invokeMethod($config, 'parseKodeRegistrasi', [['kode_registrasi' => 'abc123']]);
-
-        $this->assertEquals(['kode_registrasi' => 'abc123'], $result);
-    }
-
-    /** @test */
-    public function it_throws_without_kode_registrasi()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Kode Registrasi is required.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parseKodeRegistrasi', [[]]);
-    }
-
-    /** @test */
-    public function it_parses_npsn()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $result = $this->invokeMethod($config, 'parseNpsn', [['npsn' => '12345678']]);
-
-        $this->assertEquals(['npsn' => '12345678'], $result);
-    }
-
-    /** @test */
-    public function it_throws_without_npsn()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('NPSN is required.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parseNpsn', [[]]);
-    }
-
-    /** @test */
-    public function it_parses_token()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $result = $this->invokeMethod($config, 'parseToken', [['token' => 'tokensecret']]);
-
-        $this->assertEquals(['token' => 'tokensecret'], $result);
-    }
-
-    /** @test */
-    public function it_throws_without_token()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Token is required.');
-
-        $config = $this->getMockForTrait(Configuration::class);
-        $this->invokeMethod($config, 'parseToken', [[]]);
-    }
-
-    /** @test */
-    public function it_returns_supported_drivers()
-    {
-        $config = $this->getMockForTrait(Configuration::class);
-
-        $drivers = $this->invokeMethod($config, 'supportDrivers');
-
-        $this->assertEquals(['rest', 'webservice'], $drivers);
-    }
-
-    protected function invokeMethod($object, $methodName, array $parameters = [])
-    {
-        $reflection = new \ReflectionClass(get_class($object));
-        $method = $reflection->getMethod($methodName);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $parameters);
-    }
+    return $method->invokeArgs($object, $parameters);
 }
+
+it('parses valid driver', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parseDriver', [['driver' => 'rest']]);
+
+    $this->assertEquals(['driver' => 'rest'], $result);
+});
+
+it('throws for invalid driver', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('Driver [invalid] not supported.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parseDriver', [['driver' => 'invalid']]);
+});
+
+it('parses host', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parseHost', [['host' => 'http://localhost']]);
+
+    $this->assertEquals(['host' => 'http://localhost'], $result);
+});
+
+it('throws without host', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('Host is required.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parseHost', [[]]);
+});
+
+it('parses username', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parseUsername', [['username' => 'user']]);
+
+    $this->assertEquals(['username' => 'user'], $result);
+});
+
+it('throws without username', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('Username is required.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parseUsername', [[]]);
+});
+
+it('parses password', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parsePassword', [['password' => 'secret']]);
+
+    $this->assertEquals(['password' => 'secret'], $result);
+});
+
+it('throws without password', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('Password is required.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parsePassword', [[]]);
+});
+
+it('parses kode registrasi', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parseKodeRegistrasi', [['kode_registrasi' => 'abc123']]);
+
+    $this->assertEquals(['kode_registrasi' => 'abc123'], $result);
+});
+
+it('throws without kode registrasi', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('Kode Registrasi is required.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parseKodeRegistrasi', [[]]);
+});
+
+it('parses npsn', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parseNpsn', [['npsn' => '12345678']]);
+
+    $this->assertEquals(['npsn' => '12345678'], $result);
+});
+
+it('throws without npsn', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('NPSN is required.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parseNpsn', [[]]);
+});
+
+it('parses token', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $result = invokeMethod($config, 'parseToken', [['token' => 'tokensecret']]);
+
+    $this->assertEquals(['token' => 'tokensecret'], $result);
+});
+
+it('throws without token', function () {
+    $this->expectException(InvalidArgumentException::class);
+    $this->expectExceptionMessage('Token is required.');
+
+    $config = new class
+    {
+        use Configuration;
+    };
+    invokeMethod($config, 'parseToken', [[]]);
+});
+
+it('returns supported drivers', function () {
+    $config = new class
+    {
+        use Configuration;
+    };
+
+    $drivers = invokeMethod($config, 'supportDrivers');
+
+    $this->assertEquals(['rest', 'webservice'], $drivers);
+});

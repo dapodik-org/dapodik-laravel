@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Nilai\MatevRapor;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikMatevRaporTable extends Migration
+return new class extends Migration
 {
     protected $model = MatevRapor::class;
 
@@ -34,4 +34,4 @@ class CreateDapodikMatevRaporTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

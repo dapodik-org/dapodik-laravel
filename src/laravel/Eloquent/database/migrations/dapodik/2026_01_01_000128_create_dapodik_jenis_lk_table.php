@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisLk;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikJenisLkTable extends Migration
+return new class extends Migration
 {
     protected $model = JenisLk::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikJenisLkTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\MapBidangMataPelajaran;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikMapBidangMataPelajaranTable extends Migration
+return new class extends Migration
 {
     protected $model = MapBidangMataPelajaran::class;
 
@@ -28,4 +28,4 @@ class CreateDapodikMapBidangMataPelajaranTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

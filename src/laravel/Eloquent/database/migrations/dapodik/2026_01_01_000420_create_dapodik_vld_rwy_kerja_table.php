@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\VldRwyKerja;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikVldRwyKerjaTable extends Migration
+return new class extends Migration
 {
     protected $model = VldRwyKerja::class;
 
@@ -33,4 +33,4 @@ class CreateDapodikVldRwyKerjaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

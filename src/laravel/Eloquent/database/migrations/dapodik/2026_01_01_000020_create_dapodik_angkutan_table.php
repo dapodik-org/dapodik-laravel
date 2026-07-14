@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Angkutan;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAngkutanTable extends Migration
+return new class extends Migration
 {
     protected $model = Angkutan::class;
 
@@ -47,4 +47,4 @@ class CreateDapodikAngkutanTable extends Migration
     {
         $this->dropTable();
     }
-}
+};

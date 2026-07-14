@@ -4,7 +4,7 @@ use Dapodik\Laravel\Eloquent\Migration;
 use Dapodik\Laravel\Eloquent\Models\Ref\PemakaiSarana;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikPemakaiSaranaTable extends Migration
+return new class extends Migration
 {
     protected $model = PemakaiSarana::class;
 
@@ -27,4 +27,4 @@ class CreateDapodikPemakaiSaranaTable extends Migration
     {
         $this->dropTable();
     }
-}
+};
