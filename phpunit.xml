@@ -3,7 +3,8 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
          colors="true"
          failOnRisky="true"
-         failOnWarning="true">
+         failOnWarning="true"
+         bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="Eloquent">
             <directory>tests/Eloquent</directory>
