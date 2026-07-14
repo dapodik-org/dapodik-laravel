@@ -3,6 +3,15 @@
 ## Unreleased
 
 
+## 2.1.0 - 2026-07-14
+
+## What's Changed
+
+### Added
+- feat: add new enum types for educational entities and refactor test cases
+
+### Fixed
+- fix: update PHP versions in test matrix and add bootstrap file for error handling
 ## 2.0.0 - 2026-07-14
 
 ## What's Changed
