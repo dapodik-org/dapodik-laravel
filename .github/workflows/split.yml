@@ -2,7 +2,7 @@ name: Monorepo Split
 
 on:
   push:
-    branches: [main, 1.x]
+    branches: [1.x]
 
 env:
   GITHUB_TOKEN: ${{ secrets.SPLIT_TOKEN }}
