@@ -12,7 +12,7 @@ class CreateDapodikPublisherTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_publisher')->primary();
             $table->string('name')->nullable();
             $table->string('address')->nullable();

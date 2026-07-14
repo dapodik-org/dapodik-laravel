@@ -12,7 +12,7 @@ class CreateDapodikAnggotaAktPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_ang_akt_pd')->primary();
             $table->uuid('id_akt_pd');
             $table->uuid('registrasi_id');

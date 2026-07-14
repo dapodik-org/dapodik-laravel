@@ -12,7 +12,7 @@ class CreateDapodikJenisPendaftaranTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_pendaftaran_id')->primary();
             $table->string('nama');
             $table->boolean('daftar_sekolah');

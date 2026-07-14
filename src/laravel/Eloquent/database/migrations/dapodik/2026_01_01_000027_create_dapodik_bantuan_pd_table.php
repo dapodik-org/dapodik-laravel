@@ -12,7 +12,7 @@ class CreateDapodikBantuanPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_bantuan_pd')->primary();
             $table->integer('jenis_bantuan_id');
             $table->uuid('anggota_rombel_id');

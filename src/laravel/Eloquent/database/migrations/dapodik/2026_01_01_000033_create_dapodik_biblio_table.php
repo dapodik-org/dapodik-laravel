@@ -12,7 +12,7 @@ class CreateDapodikBiblioTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_biblio')->primary();
             $table->integer('id_freq')->nullable();
             $table->uuid('id_publisher')->nullable();

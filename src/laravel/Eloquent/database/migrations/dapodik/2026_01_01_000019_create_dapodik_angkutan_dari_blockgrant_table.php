@@ -12,7 +12,7 @@ class CreateDapodikAngkutanDariBlockgrantTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('blockgrant_id');
             $table->uuid('id_angkutan');
             $table->primary(['blockgrant_id', 'id_angkutan']);

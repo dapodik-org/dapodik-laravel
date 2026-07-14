@@ -11,7 +11,7 @@ trait HasConnection
 
     public function getConnectionName()
     {
-        if (!EloquentFacade::useSplitConnection()) {
+        if (! EloquentFacade::useSplitConnection()) {
             return EloquentFacade::getConfig()['connection'] ?? $this->connection ?? config('database.default');
         }
 
@@ -61,7 +61,7 @@ trait HasConnection
         }
 
         $parts = explode('\\', $afterModels);
-        $snakeParts = array_map(function($part) {
+        $snakeParts = array_map(function ($part) {
             return Str::snake($part);
         }, $parts);
 

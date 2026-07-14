@@ -12,7 +12,7 @@ class CreateDapodikRombonganBelajarTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('rombongan_belajar_id')->primary();
             $table->char('semester_id', 5);
             $table->uuid('id_ruang');

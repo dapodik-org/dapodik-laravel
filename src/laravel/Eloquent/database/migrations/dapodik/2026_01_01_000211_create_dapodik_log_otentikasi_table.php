@@ -12,7 +12,7 @@ class CreateDapodikLogOtentikasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('token_sesi')->primary();
             $table->uuid('pengguna_id');
             $table->timestamp('last_activity')->nullable();

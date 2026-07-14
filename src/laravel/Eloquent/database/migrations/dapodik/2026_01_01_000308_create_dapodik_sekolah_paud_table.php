@@ -12,7 +12,7 @@ class CreateDapodikSekolahPaudTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('sekolah_id');
             $table->char('semester_id', 5);
             $table->primary(['sekolah_id', 'semester_id']);

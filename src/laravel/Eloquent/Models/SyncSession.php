@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SyncSession extends Model
 {
     use HasConnection;
+
     public const CREATED_AT = 'create_date';
 
     public const UPDATED_AT = 'last_update';

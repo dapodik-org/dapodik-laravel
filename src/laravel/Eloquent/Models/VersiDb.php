@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VersiDb extends Model
 {
     use HasConnection;
+
     public const CREATED_AT = 'create_date';
 
     public const UPDATED_AT = 'last_update';

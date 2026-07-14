@@ -24,7 +24,7 @@ class MigrateTest extends TestCase
     {
         $agamaFiles = glob($this->migrationsPath.'/*_create_dapodik_agama_table.php');
         require_once $agamaFiles[0];
-        $migration = new \CreateDapodikAgamaTable();
+        $migration = new \CreateDapodikAgamaTable;
 
         $migration->up();
         $this->assertTrue(Schema::hasTable('dapodik_ref_agama'));

@@ -39,13 +39,13 @@ class EloquentManager
     private function createConnections($useSplitConnection)
     {
         $paths = File::directories(__DIR__.'/Models');
-        $directoryNames = array_map(function($path) {
+        $directoryNames = array_map(function ($path) {
             return Str::snake(basename($path));
         }, $paths);
 
         $baseConnection = $this->getConnectionName();
 
-        if (!Config::has("database.connections.{$baseConnection}")) {
+        if (! Config::has("database.connections.{$baseConnection}")) {
             $templateConnection = Schema::getConnection()->getName();
             $templateConfig = Config::get("database.connections.{$templateConnection}");
 
@@ -59,7 +59,7 @@ class EloquentManager
             $currentSchemas = array_map('trim', explode(',', $currentSchema));
 
             foreach ($directoryNames as $directoryName) {
-                if (!in_array($directoryName, $currentSchemas, true)) {
+                if (! in_array($directoryName, $currentSchemas, true)) {
                     $currentSchemas[] = $directoryName;
                 }
             }
@@ -67,14 +67,14 @@ class EloquentManager
             Config::set("database.connections.{$baseConnection}.schema", implode(', ', $currentSchemas));
         }
 
-        if (!$useSplitConnection) {
+        if (! $useSplitConnection) {
             return;
         }
 
         $baseConnection = $this->getConnectionName();
         $baseConfig = Config::get("database.connections.{$baseConnection}");
 
-        if (!$baseConfig) {
+        if (! $baseConfig) {
             throw new \RuntimeException("Base database connection '{$baseConnection}' configuration not found.");
         }
 
@@ -105,8 +105,8 @@ class EloquentManager
 
                         $newPath = $directory.DIRECTORY_SEPARATOR.$pathInfo['filename'].'_'.$directoryName.'.'.($pathInfo['extension'] ?? 'sqlite');
 
-                        if (!file_exists($newPath)) {
-                            if (!is_dir($directory)) {
+                        if (! file_exists($newPath)) {
+                            if (! is_dir($directory)) {
                                 mkdir($directory, 0755, true);
                             }
                             touch($newPath);
@@ -126,7 +126,7 @@ class EloquentManager
 
     public function dropAllTables()
     {
-        if (!$this->useSplitConnection()) {
+        if (! $this->useSplitConnection()) {
             return;
         }
 
@@ -143,7 +143,7 @@ class EloquentManager
     public function getDriverName()
     {
         $driver = Schema::getConnection()->getDriverName();
-        if (!in_array($driver, $this->supportedDrivers(), true)) {
+        if (! in_array($driver, $this->supportedDrivers(), true)) {
             throw new InvalidArgumentException(
                 "The database driver '{$driver}' is not supported. Supported drivers are: ".implode(', ', $this->supportedDrivers())
             );
@@ -185,7 +185,7 @@ class EloquentManager
     private function validateConfig(array $config, array $type)
     {
         foreach ($type as $key => $expectedTypes) {
-            if (!array_key_exists($key, $config)) {
+            if (! array_key_exists($key, $config)) {
                 throw new InvalidArgumentException("Missing required configuration key: '{$key}'");
             }
 
@@ -201,7 +201,7 @@ class EloquentManager
 
             $allowedTypes = explode('|', $expectedTypes);
 
-            if (!in_array($currentType, $allowedTypes)) {
+            if (! in_array($currentType, $allowedTypes)) {
                 throw new InvalidArgumentException(
                     "Invalid config type for '{$key}'. Expected '{$expectedTypes}', got '{$currentType}'."
                 );

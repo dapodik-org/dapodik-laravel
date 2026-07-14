@@ -12,7 +12,7 @@ class CreateDapodikJenisKoneksiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_koneksi_id')->primary();
             $table->string('jenis_koneksi');
             $table->timestamp('last_sync')->nullable();

@@ -12,7 +12,7 @@ class CreateDapodikDataDynamicTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('sekolah_id');
             $table->uuid('variabel_id');
             $table->primary(['sekolah_id', 'variabel_id']);

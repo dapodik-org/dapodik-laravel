@@ -12,7 +12,7 @@ class CreateDapodikJenisTestTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_test_id')->primary();
             $table->string('jenis_test');
             $table->string('keterangan')->nullable();

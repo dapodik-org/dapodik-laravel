@@ -12,7 +12,7 @@ class CreateDapodikPengawasTerdaftarTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('pengawas_terdaftar_id')->primary();
             $table->uuid('lembaga_id');
             $table->uuid('ptk_id');

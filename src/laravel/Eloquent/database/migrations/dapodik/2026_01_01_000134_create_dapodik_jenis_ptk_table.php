@@ -12,7 +12,7 @@ class CreateDapodikJenisPtkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_ptk_id')->primary();
             $table->string('jenis_ptk');
             $table->timestamp('last_sync')->nullable();

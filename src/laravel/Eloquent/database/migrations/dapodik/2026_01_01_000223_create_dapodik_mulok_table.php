@@ -12,7 +12,7 @@ class CreateDapodikMulokTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('kode_wilayah', 8);
             $table->bigInteger('mata_pelajaran_id');
             $table->string('sk_mulok', 80);

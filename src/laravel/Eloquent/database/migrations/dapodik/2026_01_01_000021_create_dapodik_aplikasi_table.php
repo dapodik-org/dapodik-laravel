@@ -12,7 +12,7 @@ class CreateDapodikAplikasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_aplikasi')->primary();
             $table->string('nm_aplikasi');
             $table->string('ket_aplikasi')->nullable();

@@ -5,6 +5,7 @@ namespace Dapodik\Laravel\Eloquent\Types;
 class StatusPerkawinan
 {
     const Kawin = 1;
+
     const BelumKawin = 2;
 
     public static function label($value)

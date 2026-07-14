@@ -12,7 +12,7 @@ class CreateDapodikRuangLongitudinalTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_ruang');
             $table->char('semester_id', 5);
             $table->primary(['id_ruang', 'semester_id']);

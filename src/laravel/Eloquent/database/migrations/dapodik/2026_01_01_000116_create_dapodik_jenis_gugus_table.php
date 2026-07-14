@@ -12,7 +12,7 @@ class CreateDapodikJenisGugusTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_gugus_id')->primary();
             $table->string('jenis_gugus');
             $table->timestamp('last_sync')->nullable();

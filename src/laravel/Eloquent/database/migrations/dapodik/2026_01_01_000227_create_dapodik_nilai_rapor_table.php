@@ -12,7 +12,7 @@ class CreateDapodikNilaiRaporTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('nilai_id')->primary();
             $table->uuid('id_evaluasi');
             $table->uuid('anggota_rombel_id');

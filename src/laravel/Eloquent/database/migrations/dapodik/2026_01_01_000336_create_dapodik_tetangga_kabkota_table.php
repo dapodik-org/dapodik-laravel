@@ -12,7 +12,7 @@ class CreateDapodikTetanggaKabkotaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('kode_wilayah1', 8);
             $table->char('kode_wilayah2', 8);
             $table->primary(['kode_wilayah1', 'kode_wilayah2']);

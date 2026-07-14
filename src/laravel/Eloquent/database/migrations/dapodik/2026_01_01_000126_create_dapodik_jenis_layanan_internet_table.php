@@ -12,7 +12,7 @@ class CreateDapodikJenisLayananInternetTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_layanan_internet_id')->primary();
             $table->string('jenis_layanan');
             $table->timestamp('last_sync')->nullable();

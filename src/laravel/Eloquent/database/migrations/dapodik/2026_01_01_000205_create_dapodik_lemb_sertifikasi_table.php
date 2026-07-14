@@ -12,7 +12,7 @@ class CreateDapodikLembSertifikasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('kode_lemb_sert')->primary();
             $table->string('nm_lemb_sert');
             $table->date('tmt_lemb_sert');

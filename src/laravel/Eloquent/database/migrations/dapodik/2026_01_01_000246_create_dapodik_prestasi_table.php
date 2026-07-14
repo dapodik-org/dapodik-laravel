@@ -12,7 +12,7 @@ class CreateDapodikPrestasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('prestasi_id')->primary();
             $table->integer('jenis_prestasi_id');
             $table->integer('tingkat_prestasi_id');

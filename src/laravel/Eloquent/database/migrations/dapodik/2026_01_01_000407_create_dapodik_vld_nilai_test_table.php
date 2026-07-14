@@ -12,7 +12,7 @@ class CreateDapodikVldNilaiTestTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('nilai_test_id');
             $table->integer('idtype');

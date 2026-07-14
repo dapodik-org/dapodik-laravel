@@ -12,7 +12,7 @@ class CreateDapodikMataPelajaranTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('mata_pelajaran_id')->primary();
             $table->string('nama');
             $table->boolean('pilihan_sekolah');

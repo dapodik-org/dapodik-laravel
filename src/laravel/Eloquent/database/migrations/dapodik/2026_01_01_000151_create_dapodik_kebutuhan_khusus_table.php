@@ -12,7 +12,7 @@ class CreateDapodikKebutuhanKhususTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('kebutuhan_khusus_id')->primary();
             $table->string('kebutuhan_khusus');
             $table->boolean('kk_a');

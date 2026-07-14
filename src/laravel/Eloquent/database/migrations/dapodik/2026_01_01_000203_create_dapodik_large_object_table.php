@@ -12,7 +12,7 @@ class CreateDapodikLargeObjectTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('blob_id')->primary();
             $table->binary('blob_content');
             $table->uuid('updater_id');

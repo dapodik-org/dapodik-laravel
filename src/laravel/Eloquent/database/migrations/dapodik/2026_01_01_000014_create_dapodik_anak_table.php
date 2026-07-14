@@ -12,7 +12,7 @@ class CreateDapodikAnakTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('anak_id')->primary();
             $table->uuid('ptk_id');
             $table->decimal('status_anak_id', 1, 0);

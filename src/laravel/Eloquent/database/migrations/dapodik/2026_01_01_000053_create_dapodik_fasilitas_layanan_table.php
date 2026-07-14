@@ -12,7 +12,7 @@ class CreateDapodikFasilitasLayananTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('fasilitas_layanan_id')->primary();
             $table->string('nama')->nullable();
             $table->timestamp('last_sync')->nullable();

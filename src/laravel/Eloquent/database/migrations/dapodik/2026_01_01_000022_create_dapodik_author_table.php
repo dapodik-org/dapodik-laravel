@@ -12,7 +12,7 @@ class CreateDapodikAuthorTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_author')->primary();
             $table->string('nm_auhor', 100);
             $table->string('nm_alias1', 100)->nullable();

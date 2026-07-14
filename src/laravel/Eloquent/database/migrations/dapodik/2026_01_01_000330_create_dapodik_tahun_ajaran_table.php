@@ -12,7 +12,7 @@ class CreateDapodikTahunAjaranTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('tahun_ajaran_id')->primary();
             $table->string('nama');
             $table->boolean('periode_aktif');

@@ -12,7 +12,7 @@ class CreateDapodikBankTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('id_bank', 3)->primary();
             $table->string('nm_bank');
             $table->timestamp('last_sync')->nullable();

@@ -12,7 +12,7 @@ class CreateDapodikKelompokBidangTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('level_bidang_id', 5)->primary();
             $table->string('nama_level_bidang');
             $table->boolean('untuk_sma');

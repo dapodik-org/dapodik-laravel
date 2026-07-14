@@ -12,7 +12,7 @@ class CreateDapodikRwySertifikasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('riwayat_sertifikasi_id')->primary();
             $table->decimal('kode_lemb_sert', 5, 0);
             $table->uuid('ptk_id');

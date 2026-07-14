@@ -12,7 +12,7 @@ class CreateDapodikJurusanKerjasamaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('mou_id');
             $table->uuid('jurusan_sp_id');
             $table->primary(['mou_id', 'jurusan_sp_id']);

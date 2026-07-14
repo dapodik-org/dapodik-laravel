@@ -12,7 +12,7 @@ class CreateDapodikPemakaiPrasaranaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_prasarana_id');
             $table->char('jurusan_id', 25);
             $table->integer('jml_std_min')->default(0);

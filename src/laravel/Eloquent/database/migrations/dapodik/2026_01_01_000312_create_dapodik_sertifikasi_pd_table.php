@@ -12,7 +12,7 @@ class CreateDapodikSertifikasiPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_sert_pd')->primary();
             $table->decimal('id_jenis_sertifikasi', 3, 0);
             $table->uuid('peserta_didik_id');

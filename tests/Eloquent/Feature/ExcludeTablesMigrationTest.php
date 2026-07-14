@@ -53,23 +53,28 @@ class ExcludeTablesMigrationTest extends TestCase
                 if ($isRegex) {
                     if (preg_match($excluded, $basenameNoExt)) {
                         @unlink($filePath);
+
                         continue 2;
                     }
                     if ($info !== null && (preg_match($excluded, $info['table']) || preg_match($excluded, $info['table_full']) || preg_match($excluded, $info['model']))) {
                         @unlink($filePath);
+
                         continue 2;
                     }
+
                     continue;
                 }
 
                 if ($basenameNoExt === $excluded) {
                     @unlink($filePath);
+
                     continue 2;
                 }
 
                 if ($info !== null) {
                     if ($info['table'] === $excluded || $info['table_full'] === $excluded || $info['model'] === $excluded) {
                         @unlink($filePath);
+
                         continue 2;
                     }
                 }
@@ -171,7 +176,7 @@ class ExcludeTablesMigrationTest extends TestCase
         $this->assertFalse(Schema::hasTable('dapodik_ref_akreditasi'));
 
         $migrations = DB::table('migrations')->pluck('migration');
-        $akreditasiExists = $migrations->contains(function($m) {
+        $akreditasiExists = $migrations->contains(function ($m) {
             return strpos($m, 'create_dapodik_akreditasi_table') !== false;
         });
 

@@ -12,7 +12,7 @@ class CreateDapodikNaunganTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('naungan_id')->primary();
             $table->uuid('sekolah_id');
             $table->uuid('lembaga_id');

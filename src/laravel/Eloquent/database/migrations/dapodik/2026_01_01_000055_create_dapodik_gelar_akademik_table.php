@@ -12,7 +12,7 @@ class CreateDapodikGelarAkademikTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('gelar_akademik_id')->primary();
             $table->string('kode');
             $table->string('nama');

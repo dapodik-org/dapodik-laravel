@@ -12,7 +12,7 @@ class CreateDapodikJenisLembagaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_lembaga_id')->primary();
             $table->string('nama');
             $table->boolean('tempat_pengawas');

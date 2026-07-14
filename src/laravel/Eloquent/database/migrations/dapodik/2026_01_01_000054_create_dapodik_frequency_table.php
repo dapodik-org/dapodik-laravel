@@ -12,7 +12,7 @@ class CreateDapodikFrequencyTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->integer('id_freq')->primary();
             $table->string('freq');
             $table->integer('interval');

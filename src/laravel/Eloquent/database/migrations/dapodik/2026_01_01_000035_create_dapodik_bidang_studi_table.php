@@ -12,7 +12,7 @@ class CreateDapodikBidangStudiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('bidang_studi_id')->primary();
             $table->bigInteger('kelompok_bidang_studi_id')->nullable();
             $table->string('kode')->nullable();

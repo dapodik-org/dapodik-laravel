@@ -12,7 +12,7 @@ class CreateDapodikVldRwySertifikasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('riwayat_sertifikasi_id');
             $table->integer('idtype');

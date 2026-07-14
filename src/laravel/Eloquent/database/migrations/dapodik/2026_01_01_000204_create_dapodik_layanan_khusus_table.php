@@ -12,7 +12,7 @@ class CreateDapodikLayananKhususTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_lk')->primary();
             $table->char('id_jenis_lk', 6);
             $table->uuid('sekolah_id');

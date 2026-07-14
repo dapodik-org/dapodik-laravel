@@ -12,7 +12,7 @@ class CreateDapodikJabatanPtkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jabatan_ptk_id')->primary();
             $table->bigInteger('jenis_ptk_id');
             $table->string('jabatan_ptk');

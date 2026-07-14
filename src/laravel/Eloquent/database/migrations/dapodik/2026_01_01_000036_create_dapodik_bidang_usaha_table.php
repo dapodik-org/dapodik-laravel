@@ -12,7 +12,7 @@ class CreateDapodikBidangUsahaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('bidang_usaha_id', 10)->primary();
             $table->string('nama_bidang_usaha');
             $table->string('level_bidang_usaha')->nullable();

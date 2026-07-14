@@ -8,7 +8,7 @@ trait CopiesMigrations
     {
         $migrationsPath = $app->databasePath('migrations/dapodik');
 
-        if (!is_dir($migrationsPath)) {
+        if (! is_dir($migrationsPath)) {
             mkdir($migrationsPath, 0755, true);
         }
 

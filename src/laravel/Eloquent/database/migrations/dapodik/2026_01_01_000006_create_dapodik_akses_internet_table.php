@@ -12,7 +12,7 @@ class CreateDapodikAksesInternetTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('akses_internet_id')->primary();
             $table->string('nama');
             $table->decimal('media', 1, 0);

@@ -12,7 +12,7 @@ class CreateDapodikRwyKepangkatanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('riwayat_kepangkatan_id')->primary();
             $table->uuid('ptk_id');
             $table->decimal('pangkat_golongan_id', 2, 0);

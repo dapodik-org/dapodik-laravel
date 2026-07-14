@@ -12,7 +12,7 @@ class CreateDapodikJenisIjazahTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_ijazah_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

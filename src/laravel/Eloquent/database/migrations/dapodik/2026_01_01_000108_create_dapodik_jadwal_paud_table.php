@@ -12,7 +12,7 @@ class CreateDapodikJadwalPaudTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jadwal_id')->primary();
             $table->string('nama');
             $table->boolean('kesehatan');

@@ -12,7 +12,7 @@ class CreateDapodikJenisRombelTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_rombel')->primary();
             $table->string('nm_jenis_rombel');
             $table->timestamp('last_sync')->nullable();

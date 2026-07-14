@@ -8,6 +8,10 @@ use Illuminate\Support\Str;
 
 class DapodikEloquentPublishCommand extends Command
 {
+    const SUCCESS = 0;
+
+    const FAILURE = 1;
+
     protected $signature = 'dapodik:eloquent-publish {model? : The model key to publish (e.g. agama)} {--force : Overwrite existing files without confirmation}';
 
     protected $description = 'Publish Eloquent model stubs from the package to the application';
@@ -19,7 +23,7 @@ class DapodikEloquentPublishCommand extends Command
         $sourceRoot = __DIR__.'/../Models';
         $destinationRoot = app_path('Models/Dapodik');
 
-        if (!$files->isDirectory($sourceRoot)) {
+        if (! $files->isDirectory($sourceRoot)) {
             $this->error('Source models directory not found.');
 
             return self::FAILURE;
@@ -29,7 +33,7 @@ class DapodikEloquentPublishCommand extends Command
 
         if ($model) {
             $models = $filesToPublish
-                ->filter(function($file) use ($model) {
+                ->filter(function ($file) use ($model) {
                     return $file->getBasename('.php') === Str::studly($model);
                 });
 
@@ -65,7 +69,7 @@ class DapodikEloquentPublishCommand extends Command
 
         $files->ensureDirectoryExists($destinationDirectory);
 
-        if ($files->exists($destinationFile) && !$force) {
+        if ($files->exists($destinationFile) && ! $force) {
             $this->line("Skipped (already exists): {$relativePath}");
 
             return;
@@ -87,7 +91,7 @@ class DapodikEloquentPublishCommand extends Command
     protected function getPublishableFiles(Filesystem $files, $sourceRoot)
     {
         return collect($files->allFiles($sourceRoot))
-            ->reject(function($file) {
+            ->reject(function ($file) {
                 return $file->getBasename('.php') === 'Model';
             });
     }

@@ -12,7 +12,7 @@ class CreateDapodikGroupMatpelTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('gmp_id')->primary();
             $table->string('nama_group', 80);
             $table->decimal('jumlah_jam_maksimum', 2, 0);

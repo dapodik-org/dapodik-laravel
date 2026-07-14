@@ -12,7 +12,7 @@ class CreateDapodikMatevRaporTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_evaluasi')->primary();
             $table->string('nm_mata_evaluasi');
             $table->boolean('a_dari_template');

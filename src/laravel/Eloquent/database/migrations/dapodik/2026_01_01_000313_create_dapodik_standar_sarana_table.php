@@ -12,7 +12,7 @@ class CreateDapodikStandarSaranaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_std_sarana')->primary();
             $table->bigInteger('jenis_prasarana_id');
             $table->bigInteger('jenis_sarana_id');

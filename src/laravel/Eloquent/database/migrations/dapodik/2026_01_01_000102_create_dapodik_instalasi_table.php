@@ -12,7 +12,7 @@ class CreateDapodikInstalasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_instalasi')->primary();
             $table->char('kode_wilayah', 8)->nullable();
             $table->uuid('sekolah_id')->nullable();

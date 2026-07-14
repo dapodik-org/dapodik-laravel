@@ -9,7 +9,8 @@ class RequestTest extends TestCase
 {
     protected function getRequestMock()
     {
-        return new class() {
+        return new class
+        {
             use Request {
                 setHeaders as public;
                 getHeaders as public;

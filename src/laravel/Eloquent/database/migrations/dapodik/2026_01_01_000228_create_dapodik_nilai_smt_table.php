@@ -12,7 +12,7 @@ class CreateDapodikNilaiSmtTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('anggota_rombel_id')->primary();
             $table->decimal('nilai_afektif_angka', 5, 2)->nullable();
             $table->string('nilai_afektif_huruf')->nullable();

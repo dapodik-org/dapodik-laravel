@@ -12,7 +12,7 @@ class CreateDapodikAnggotaPanitiaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_ang_panitia')->primary();
             $table->uuid('id_panitia');
             $table->string('nm_ang', 100)->nullable();

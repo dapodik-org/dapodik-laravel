@@ -12,7 +12,7 @@ class CreateDapodikInternetTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('internet_id')->primary();
             $table->uuid('sekolah_id');
             $table->decimal('jenis_layanan_internet_id', 2, 0)->nullable();

@@ -10,7 +10,7 @@ class APIServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/config/dapodik-api.php', 'dapodik-api');
 
-        $this->app->singleton('dapodik.api.laravel', function($app) {
+        $this->app->singleton('dapodik.api.laravel', function ($app) {
             return new APIManager($app);
         });
     }

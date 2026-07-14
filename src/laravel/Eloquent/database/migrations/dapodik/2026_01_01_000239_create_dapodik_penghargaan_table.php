@@ -12,7 +12,7 @@ class CreateDapodikPenghargaanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('penghargaan_id')->primary();
             $table->integer('tingkat_penghargaan_id');
             $table->uuid('ptk_id');

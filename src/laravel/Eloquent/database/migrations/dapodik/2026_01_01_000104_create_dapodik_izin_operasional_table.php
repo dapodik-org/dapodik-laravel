@@ -12,7 +12,7 @@ class CreateDapodikIzinOperasionalTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_izin_operasional')->primary();
             $table->uuid('sekolah_id');
             $table->uuid('lembaga_id')->nullable();

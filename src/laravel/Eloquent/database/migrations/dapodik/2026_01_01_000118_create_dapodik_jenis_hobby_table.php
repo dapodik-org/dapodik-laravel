@@ -12,7 +12,7 @@ class CreateDapodikJenisHobbyTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_hobby')->primary();
             $table->string('nm_hobby');
             $table->timestamp('last_sync')->nullable();

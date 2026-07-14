@@ -12,7 +12,7 @@ class CreateDapodikLoggedActionsTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigIncrements('event_id');
             $table->string('schema_name');
             $table->string('table_name');

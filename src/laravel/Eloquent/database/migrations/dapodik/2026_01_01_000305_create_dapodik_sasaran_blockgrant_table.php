@@ -12,7 +12,7 @@ class CreateDapodikSasaranBlockgrantTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('sasaran_blockgrant_id')->primary();
             $table->decimal('tahun_ajaran_id', 4, 0);
             $table->bigInteger('jenis_sarana_id')->nullable();

@@ -12,7 +12,7 @@ class CreateDapodikMouTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('mou_id')->primary();
             $table->decimal('id_jns_ks', 6, 0);
             $table->uuid('dudi_id')->nullable();

@@ -12,7 +12,7 @@ class CreateDapodikPesertaDidikBaruTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('pdb_id')->primary();
             $table->uuid('sekolah_id');
             $table->decimal('tahun_ajaran_id', 4, 0);

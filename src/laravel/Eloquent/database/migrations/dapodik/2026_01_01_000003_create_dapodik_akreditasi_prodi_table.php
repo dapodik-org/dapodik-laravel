@@ -12,7 +12,7 @@ class CreateDapodikAkreditasiProdiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('akred_prodi_id')->primary();
             $table->decimal('akreditasi_id', 1, 0);
             $table->char('la_id', 5);

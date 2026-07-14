@@ -12,7 +12,7 @@ class CreateDapodikJenisHapusBukuTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('id_hapus_buku', 1)->primary();
             $table->string('ket_hapus_buku');
             $table->boolean('u_prasarana');

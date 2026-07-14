@@ -32,7 +32,7 @@ class DropAllTablesTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
@@ -90,7 +90,7 @@ class DropAllTablesTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');

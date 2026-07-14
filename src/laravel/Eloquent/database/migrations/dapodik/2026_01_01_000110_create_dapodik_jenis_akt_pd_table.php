@@ -12,7 +12,7 @@ class CreateDapodikJenisAktPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_jns_akt_pd')->primary();
             $table->string('nm_jns_akt_pd');
             $table->string('ket_jns_akt_pd')->nullable();

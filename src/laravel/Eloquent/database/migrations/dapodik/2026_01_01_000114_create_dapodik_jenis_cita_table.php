@@ -12,7 +12,7 @@ class CreateDapodikJenisCitaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_cita')->primary();
             $table->string('nm_cita');
             $table->timestamp('last_sync')->nullable();

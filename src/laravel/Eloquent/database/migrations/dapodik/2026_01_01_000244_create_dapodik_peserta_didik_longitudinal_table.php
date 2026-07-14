@@ -12,7 +12,7 @@ class CreateDapodikPesertaDidikLongitudinalTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('peserta_didik_id');
             $table->char('semester_id', 5);
             $table->primary(['peserta_didik_id', 'semester_id']);

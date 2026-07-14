@@ -12,7 +12,7 @@ class CreateDapodikJurusanSpTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('jurusan_sp_id')->primary();
             $table->uuid('sekolah_id');
             $table->integer('kebutuhan_khusus_id');

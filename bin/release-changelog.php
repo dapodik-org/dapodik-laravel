@@ -5,7 +5,7 @@ $version = $argv[1] ?? '';
 $tag = ltrim($version, 'v');
 $date = gmdate('Y-m-d');
 
-$changelogFile = __DIR__ . '/../CHANGELOG.md';
+$changelogFile = __DIR__.'/../CHANGELOG.md';
 $lines = file($changelogFile, FILE_IGNORE_NEW_LINES);
 
 $unreleasedStart = null;
@@ -53,5 +53,5 @@ foreach ($lines as $i => $line) {
 }
 array_splice($lines, $headerIdx ?? 1, 0, ['', '## Unreleased', '']);
 
-file_put_contents($changelogFile, implode("\n", $lines) . "\n");
+file_put_contents($changelogFile, implode("\n", $lines)."\n");
 echo "CHANGELOG.md updated for release $version.\n";

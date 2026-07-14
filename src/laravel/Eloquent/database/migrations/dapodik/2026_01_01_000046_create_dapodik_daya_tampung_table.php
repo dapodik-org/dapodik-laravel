@@ -12,7 +12,7 @@ class CreateDapodikDayaTampungTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('daya_tampung_id')->primary();
             $table->uuid('sekolah_id');
             $table->uuid('jurusan_sp_id')->nullable();

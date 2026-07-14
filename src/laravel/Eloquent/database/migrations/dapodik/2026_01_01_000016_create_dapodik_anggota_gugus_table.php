@@ -12,7 +12,7 @@ class CreateDapodikAnggotaGugusTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('gugus_id');
             $table->uuid('sekolah_id');
             $table->primary(['gugus_id', 'sekolah_id']);

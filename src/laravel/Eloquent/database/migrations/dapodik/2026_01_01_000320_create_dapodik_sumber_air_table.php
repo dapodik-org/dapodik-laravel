@@ -12,7 +12,7 @@ class CreateDapodikSumberAirTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('sumber_air_id')->primary();
             $table->string('nama');
             $table->boolean('sumber_air')->nullable();

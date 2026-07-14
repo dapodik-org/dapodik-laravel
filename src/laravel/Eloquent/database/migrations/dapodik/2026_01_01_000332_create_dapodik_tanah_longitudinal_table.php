@@ -12,7 +12,7 @@ class CreateDapodikTanahLongitudinalTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_tanah');
             $table->decimal('tahun_ajaran_id', 4, 0);
             $table->primary(['id_tanah', 'tahun_ajaran_id']);

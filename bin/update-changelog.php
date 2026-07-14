@@ -1,10 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-$changelogFile = __DIR__ . '/../CHANGELOG.md';
+$changelogFile = __DIR__.'/../CHANGELOG.md';
 
 exec('git describe --tags --abbrev=0 2>/dev/null', $output, $code);
-if ($code !== 0 || !isset($output[0])) {
+if ($code !== 0 || ! isset($output[0])) {
     exec('git rev-list --max-parents=0 HEAD', $output, $code);
 }
 $prev = $output[0] ?? 'HEAD';
@@ -13,11 +13,11 @@ $commits = [];
 exec(sprintf('git log "%s"..HEAD --pretty=format:"- %%s" --no-merges 2>/dev/null', $prev), $commits);
 
 $categories = [
-    '### Added'   => [],
+    '### Added' => [],
     '### Changed' => [],
-    '### Fixed'   => [],
+    '### Fixed' => [],
     '### Removed' => [],
-    '### Docs'    => [],
+    '### Docs' => [],
 ];
 
 foreach ($commits as $commit) {

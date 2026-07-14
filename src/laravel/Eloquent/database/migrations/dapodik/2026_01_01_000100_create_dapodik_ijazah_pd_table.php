@@ -12,7 +12,7 @@ class CreateDapodikIjazahPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('ijazah_id')->primary();
             $table->uuid('registrasi_id');
             $table->decimal('jenis_ijazah_id', 2, 0);

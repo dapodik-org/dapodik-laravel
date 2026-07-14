@@ -12,7 +12,7 @@ class CreateDapodikJenisPesanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->smallInteger('jenis_pesan_id')->primary();
             $table->string('kelompok', 25);
             $table->string('nama', 50);

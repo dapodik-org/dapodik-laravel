@@ -10,7 +10,9 @@ use Illuminate\Support\Str;
 class ModelStructureTest extends TestCase
 {
     private $schemaDirs;
+
     private $schemaNs;
+
     private $rootDir;
 
     protected function setUp(): void
@@ -43,7 +45,7 @@ class ModelStructureTest extends TestCase
     private function getModelFqcns()
     {
         foreach ($this->schemaDirs as $key => $dir) {
-            if (!is_dir($dir)) {
+            if (! is_dir($dir)) {
                 continue;
             }
 
@@ -68,7 +70,7 @@ class ModelStructureTest extends TestCase
         try {
             $rc = new \ReflectionClass($class);
 
-            if (!$rc->hasConstant($const)) {
+            if (! $rc->hasConstant($const)) {
                 return false;
             }
 
@@ -87,7 +89,7 @@ class ModelStructureTest extends TestCase
 
         foreach ($this->getModelFqcns() as $fqcn) {
             $this->assertTrue(class_exists($fqcn), "Class {$fqcn} not found");
-            $this->assertInstanceOf(Model::class, new $fqcn());
+            $this->assertInstanceOf(Model::class, new $fqcn);
             $count++;
         }
 
@@ -107,7 +109,7 @@ class ModelStructureTest extends TestCase
     public function all_models_have_a_primary_key()
     {
         foreach ($this->getModelFqcns() as $fqcn) {
-            $instance = new $fqcn();
+            $instance = new $fqcn;
             $this->assertNotEmpty($instance->getKeyName(), "{$fqcn} has empty primaryKey");
         }
     }
@@ -122,7 +124,7 @@ class ModelStructureTest extends TestCase
                 continue;
             }
 
-            $instance = new $fqcn();
+            $instance = new $fqcn;
 
             if ($this->hasOwnConstant($fqcn, 'CREATED_AT')) {
                 $this->assertEquals('create_date', $instance->getCreatedAtColumn(), "{$fqcn} CREATED_AT");
@@ -149,7 +151,7 @@ class ModelStructureTest extends TestCase
             }
 
             $basename = (new \ReflectionClass($fqcn))->getShortName();
-            $instance = new $fqcn();
+            $instance = new $fqcn;
 
             if ($this->hasOwnConstant($fqcn, 'DELETED_AT')) {
                 $shortName = Str::snake($basename);
@@ -172,7 +174,7 @@ class ModelStructureTest extends TestCase
             }
 
             $basename = (new \ReflectionClass($fqcn))->getShortName();
-            $instance = new $fqcn();
+            $instance = new $fqcn;
             $shortName = Str::snake($basename);
 
             if ($this->hasOwnConstant($fqcn, 'CREATED_AT')) {
@@ -198,7 +200,7 @@ class ModelStructureTest extends TestCase
                 continue;
             }
 
-            $instance = new $fqcn();
+            $instance = new $fqcn;
 
             if ($this->hasOwnConstant($fqcn, 'CREATED_AT')) {
                 $this->assertEquals('create_date', $instance->getCreatedAtColumn());
@@ -222,7 +224,7 @@ class ModelStructureTest extends TestCase
                 continue;
             }
 
-            $instance = new $fqcn();
+            $instance = new $fqcn;
 
             if ($this->hasOwnConstant($fqcn, 'CREATED_AT')) {
                 $this->assertEquals('create_date', $instance->getCreatedAtColumn());
@@ -240,7 +242,7 @@ class ModelStructureTest extends TestCase
     public function blob_schema_large_object_constants()
     {
         $fqcn = $this->schemaNs['blob'].'\\LargeObject';
-        $instance = new $fqcn();
+        $instance = new $fqcn;
         $this->assertEquals('create_date', $instance->getCreatedAtColumn());
         $this->assertEquals('last_update', $instance->getUpdatedAtColumn());
         $this->assertEquals('soft_delete', $instance->getDeletedAtColumn());
@@ -253,7 +255,7 @@ class ModelStructureTest extends TestCase
         $this->assertFalse($this->hasOwnConstant($fqcn, 'CREATED_AT'));
         $this->assertFalse($this->hasOwnConstant($fqcn, 'UPDATED_AT'));
         $this->assertFalse($this->hasOwnConstant($fqcn, 'DELETED_AT'));
-        $this->assertFalse((new $fqcn())->timestamps);
+        $this->assertFalse((new $fqcn)->timestamps);
     }
 
     /** @test */
@@ -262,7 +264,7 @@ class ModelStructureTest extends TestCase
         config()->set('dapodik-eloquent', require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php');
 
         foreach ($this->getModelFqcns() as $fqcn) {
-            $instance = new $fqcn();
+            $instance = new $fqcn;
             $table = $instance->getTable();
             $this->assertStringContainsString('dapodik_', $table);
         }
@@ -274,7 +276,7 @@ class ModelStructureTest extends TestCase
         config()->set('dapodik-eloquent', require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php');
 
         foreach ($this->getModelFqcns() as $fqcn) {
-            $instance = new $fqcn();
+            $instance = new $fqcn;
             $connection = $instance->getConnectionName();
             $this->assertNotEmpty($connection);
         }

@@ -12,7 +12,7 @@ class CreateDapodikSumberGajiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('sumber_gaji_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

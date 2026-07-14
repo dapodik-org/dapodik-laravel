@@ -2,6 +2,7 @@
 
 namespace Dapodik\Laravel\API\Facades;
 
+use Dapodik\Laravel\API\APIManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static bool isConnect()
  * @method static string getDefaultConnection()
  *
- * @see \Dapodik\Laravel\API\APIManager
+ * @see APIManager
  */
 class API extends Facade
 {

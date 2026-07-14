@@ -12,7 +12,7 @@ class CreateDapodikJurusanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('jurusan_id', 25)->primary();
             $table->string('nama_jurusan');
             $table->boolean('untuk_sma');

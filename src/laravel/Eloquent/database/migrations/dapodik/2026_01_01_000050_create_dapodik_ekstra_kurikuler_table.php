@@ -12,7 +12,7 @@ class CreateDapodikEkstraKurikulerTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_ekskul')->primary();
             $table->string('nm_ekskul');
             $table->boolean('u_sd')->default(false);

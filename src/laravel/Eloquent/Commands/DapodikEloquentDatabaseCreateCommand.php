@@ -10,6 +10,10 @@ use PDO;
 
 class DapodikEloquentDatabaseCreateCommand extends Command
 {
+    const SUCCESS = 0;
+
+    const FAILURE = 1;
+
     protected $signature = 'dapodik:eloquent-db-create
         {--connection= : The database connection name to use}
         {--database= : The database name to create}';
@@ -50,7 +54,7 @@ class DapodikEloquentDatabaseCreateCommand extends Command
     protected function handleSplitConnection(array $config, $driver, $database)
     {
         $paths = File::directories(__DIR__.'/../Models');
-        $folders = array_map(function($path) {
+        $folders = array_map(function ($path) {
             return Str::snake(basename($path));
         }, $paths);
 
@@ -220,7 +224,7 @@ class DapodikEloquentDatabaseCreateCommand extends Command
             $isAbsolute = (bool) preg_match('/^[A-Za-z]:\\\\/', $databasePath);
         }
 
-        if (!$isAbsolute) {
+        if (! $isAbsolute) {
             $databasePath = database_path($databasePath);
         }
 
@@ -233,7 +237,7 @@ class DapodikEloquentDatabaseCreateCommand extends Command
 
         $directory = dirname($databasePath);
 
-        if (!is_dir($directory)) {
+        if (! is_dir($directory)) {
             mkdir($directory, 0755, true);
         }
 

@@ -12,7 +12,7 @@ class CreateDapodikLogOtorisasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('token_sesi')->primary();
             $table->uuid('id_role_pengguna');
             $table->timestamp('last_activity')->nullable();

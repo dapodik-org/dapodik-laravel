@@ -12,7 +12,7 @@ class CreateDapodikMapelBiblioTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_biblio');
             $table->integer('mata_pelajaran_id');
             $table->primary(['id_biblio', 'mata_pelajaran_id']);

@@ -12,7 +12,7 @@ class CreateDapodikMataPelajaranKurikulumTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('kurikulum_id');
             $table->bigInteger('mata_pelajaran_id');
             $table->bigInteger('tingkat_pendidikan_id');

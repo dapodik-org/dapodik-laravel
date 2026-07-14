@@ -12,7 +12,7 @@ class CreateDapodikSekolahTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('sekolah_id')->primary();
             $table->string('nama');
             $table->string('nama_nomenklatur')->nullable();

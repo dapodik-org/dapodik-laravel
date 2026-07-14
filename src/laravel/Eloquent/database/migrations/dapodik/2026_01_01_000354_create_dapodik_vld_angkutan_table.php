@@ -12,7 +12,7 @@ class CreateDapodikVldAngkutanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('id_angkutan');
             $table->integer('idtype');

@@ -12,7 +12,7 @@ class CreateDapodikBukuTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_buku')->primary();
             $table->integer('mata_pelajaran_id');
             $table->uuid('id_ruang')->nullable();

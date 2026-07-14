@@ -12,7 +12,7 @@ class CreateDapodikJenisKerusakanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('kerusakan_id')->primary();
             $table->string('klasifikasi');
             $table->boolean('u_bangunan');

@@ -12,7 +12,7 @@ class CreateDapodikPekerjaanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('pekerjaan_id')->primary();
             $table->string('nama')->nullable();
             $table->boolean('a_wirausaha')->default(false);

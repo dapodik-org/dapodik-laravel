@@ -12,7 +12,7 @@ class CreateDapodikTemplateRaporTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('template_id');
             $table->bigInteger('mata_pelajaran_id');
             $table->decimal('no_urut', 3, 0);

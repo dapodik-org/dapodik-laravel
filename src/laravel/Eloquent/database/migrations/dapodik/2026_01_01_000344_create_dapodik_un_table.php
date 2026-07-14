@@ -12,7 +12,7 @@ class CreateDapodikUnTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('un_id')->primary();
             $table->uuid('registrasi_id');
             $table->integer('tahun_ajaran_id');

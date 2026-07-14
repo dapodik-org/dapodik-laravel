@@ -12,7 +12,7 @@ class CreateDapodikTingkatPendidikanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('tingkat_pendidikan_id')->primary();
             $table->string('kode');
             $table->string('nama');

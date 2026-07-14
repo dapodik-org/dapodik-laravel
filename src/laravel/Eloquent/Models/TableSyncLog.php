@@ -12,6 +12,7 @@ class TableSyncLog extends Model
 {
     use HasCompositeKey;
     use HasConnection;
+
     public $incrementing = false;
 
     public const CREATED_AT = 'create_date';

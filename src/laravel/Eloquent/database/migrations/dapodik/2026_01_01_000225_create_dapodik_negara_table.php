@@ -12,7 +12,7 @@ class CreateDapodikNegaraTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('negara_id', 2)->primary();
             $table->string('nama');
             $table->boolean('luar_negeri');

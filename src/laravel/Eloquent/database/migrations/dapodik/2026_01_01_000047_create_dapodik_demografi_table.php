@@ -12,7 +12,7 @@ class CreateDapodikDemografiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('demografi_id')->primary();
             $table->char('kode_wilayah', 8);
             $table->decimal('tahun_ajaran_id', 4, 0);

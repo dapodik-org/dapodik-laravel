@@ -12,7 +12,7 @@ class CreateDapodikAlasanLayakPipTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_layak_pip')->primary();
             $table->string('alasan_layak_pip');
             $table->timestamp('last_sync')->nullable();

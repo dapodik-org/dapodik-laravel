@@ -12,7 +12,7 @@ class CreateDapodikTableSyncTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->string('table_name', 30)->primary();
             $table->string('table_alias', 50)->nullable();
             $table->char('sync_type', 1);

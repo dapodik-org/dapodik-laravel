@@ -12,7 +12,7 @@ class CreateDapodikRwyPendFormalTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('riwayat_pendidikan_formal_id')->primary();
             $table->integer('bidang_studi_id');
             $table->decimal('jenjang_pendidikan_id', 2, 0);

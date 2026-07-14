@@ -12,7 +12,7 @@ class CreateDapodikJenisKepanitiaanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_jns_panitia')->primary();
             $table->string('nm_jns_panitia');
             $table->timestamp('last_sync')->nullable();

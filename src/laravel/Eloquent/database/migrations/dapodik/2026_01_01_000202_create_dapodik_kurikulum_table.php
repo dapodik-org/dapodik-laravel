@@ -12,7 +12,7 @@ class CreateDapodikKurikulumTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('kurikulum_id')->primary();
             $table->string('nama_kurikulum');
             $table->date('mulai_berlaku');

@@ -12,7 +12,7 @@ class CreateDapodikVldUnTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('un_id');
             $table->integer('idtype');

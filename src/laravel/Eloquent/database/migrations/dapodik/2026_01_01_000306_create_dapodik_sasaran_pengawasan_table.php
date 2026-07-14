@@ -12,7 +12,7 @@ class CreateDapodikSasaranPengawasanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('pengawas_terdaftar_id');
             $table->uuid('sekolah_id');
             $table->primary(['pengawas_terdaftar_id', 'sekolah_id']);

@@ -12,7 +12,7 @@ class CreateDapodikSumberDanaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('sumber_dana_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

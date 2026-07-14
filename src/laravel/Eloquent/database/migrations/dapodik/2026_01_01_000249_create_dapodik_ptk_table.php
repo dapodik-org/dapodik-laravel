@@ -12,7 +12,7 @@ class CreateDapodikPtkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('ptk_id')->primary();
             $table->string('nama');
             $table->char('nip', 18)->nullable();

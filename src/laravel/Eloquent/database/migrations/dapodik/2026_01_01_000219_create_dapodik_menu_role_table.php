@@ -12,7 +12,7 @@ class CreateDapodikMenuRoleTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_menu');
             $table->integer('peran_id');
             $table->string('akses_menu')->nullable();

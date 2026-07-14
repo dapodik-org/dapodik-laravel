@@ -39,7 +39,7 @@ trait Authentication
     protected function getRolePage()
     {
         return $this->_request('POST', '/roleperan', [
-            'on_stats' => function(TransferStats $stats) {
+            'on_stats' => function (TransferStats $stats) {
                 if ($stats->hasResponse()) {
                     if ($stats->getResponse()->getStatusCode() === 302) {
                         $location = preg_match("/\/#(\S*)/", $stats->getResponse()->getHeader('Location')[0], $match) ? $match[1] : null;
@@ -81,7 +81,7 @@ trait Authentication
         $this->setFormParams('koreg', $kode_registrasi);
         $status = json_decode($this->_request('POST', '/cekkoreg')->getBody()->getContents());
         $this->forgeOptions('form_params');
-        if (!$status->success) {
+        if (! $status->success) {
             $this->logout();
 
             throw new \InvalidArgumentException($status->message);

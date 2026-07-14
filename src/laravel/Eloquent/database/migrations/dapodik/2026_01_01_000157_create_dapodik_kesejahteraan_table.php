@@ -12,7 +12,7 @@ class CreateDapodikKesejahteraanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('kesejahteraan_id')->primary();
             $table->uuid('ptk_id');
             $table->integer('jenis_kesejahteraan_id');

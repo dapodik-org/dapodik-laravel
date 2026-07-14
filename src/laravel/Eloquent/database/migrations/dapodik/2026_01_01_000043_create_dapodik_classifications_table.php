@@ -12,7 +12,7 @@ class CreateDapodikClassificationsTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_classification')->primary();
             $table->uuid('id_classification_parent')->nullable();
             $table->string('classification_name')->nullable();

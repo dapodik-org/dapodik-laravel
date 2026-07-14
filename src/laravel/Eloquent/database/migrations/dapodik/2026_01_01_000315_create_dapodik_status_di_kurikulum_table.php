@@ -12,7 +12,7 @@ class CreateDapodikStatusDiKurikulumTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('status_di_kurikulum')->primary();
             $table->string('ket_stat_di_kurikulum');
             $table->timestamp('last_sync')->nullable();

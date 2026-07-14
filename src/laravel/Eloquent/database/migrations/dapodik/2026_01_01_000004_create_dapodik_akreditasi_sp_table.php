@@ -12,7 +12,7 @@ class CreateDapodikAkreditasiSpTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('akred_sp_id')->primary();
             $table->uuid('sekolah_id');
             $table->string('akred_sp_sk', 80);

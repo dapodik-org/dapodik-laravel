@@ -12,7 +12,7 @@ class CreateDapodikInpassingTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('inpassing_id')->primary();
             $table->decimal('pangkat_golongan_id', 2, 0);
             $table->uuid('ptk_id')->nullable();

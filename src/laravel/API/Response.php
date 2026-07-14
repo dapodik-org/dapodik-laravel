@@ -36,7 +36,7 @@ class Response implements ResponseContract
         if (is_null($this->content)) {
             $content = self::__toString();
 
-            if (!is_null($error = preg_match("/\{.*?['\"]success['\"]:.*?false,(.*?)}/", $content, $match) ? $match[0] : null)) {
+            if (! is_null($error = preg_match("/\{.*?['\"]success['\"]:.*?false,(.*?)}/", $content, $match) ? $match[0] : null)) {
                 throw new \InvalidArgumentException(json_decode($error)->message, json_decode($error)->http_code);
             }
 

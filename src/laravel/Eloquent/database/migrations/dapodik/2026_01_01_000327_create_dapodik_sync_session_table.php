@@ -12,7 +12,7 @@ class CreateDapodikSyncSessionTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('token')->primary();
             $table->uuid('id_instalasi');
             $table->uuid('pengguna_id');

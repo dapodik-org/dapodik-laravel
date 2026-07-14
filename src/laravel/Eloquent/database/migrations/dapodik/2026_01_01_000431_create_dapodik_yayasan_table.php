@@ -12,7 +12,7 @@ class CreateDapodikYayasanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('yayasan_id')->primary();
             $table->string('nama');
             $table->string('alamat_jalan');

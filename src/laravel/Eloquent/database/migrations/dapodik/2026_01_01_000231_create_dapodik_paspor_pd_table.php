@@ -12,7 +12,7 @@ class CreateDapodikPasporPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->string('no_paspor', 20);
             $table->uuid('peserta_didik_id');
             $table->string('tempat_terbit', 100);

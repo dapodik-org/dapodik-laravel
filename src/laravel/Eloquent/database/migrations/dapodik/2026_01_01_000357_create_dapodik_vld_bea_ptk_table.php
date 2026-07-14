@@ -12,7 +12,7 @@ class CreateDapodikVldBeaPtkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('beasiswa_ptk_id');
             $table->integer('idtype');

@@ -26,7 +26,7 @@ class MigrationTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
@@ -35,7 +35,8 @@ class MigrationTest extends TestCase
     /** @test */
     public function returns_the_model_class()
     {
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
         $this->assertEquals(Agama::class, $migration->getModel());
@@ -44,7 +45,8 @@ class MigrationTest extends TestCase
     /** @test */
     public function returns_the_table_name_from_the_model()
     {
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
         $this->assertEquals('dapodik_ref_agama', $migration->getTable());
@@ -57,12 +59,13 @@ class MigrationTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
         $this->assertEquals('testing', $migration->getConnection());
@@ -76,12 +79,13 @@ class MigrationTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
         $this->assertEquals('custom_conn', $migration->getConnection());
@@ -96,31 +100,33 @@ class MigrationTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
         $this->assertEquals('testing_ref', $migration->getConnection());
     }
 
     /** @test */
-    public function does_not_call_createSchemaIfNotExist_for_non_pgsql_drivers()
+    public function does_not_call_create_schema_if_not_exist_for_non_pgsql_drivers()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['split_connection'] = true;
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
         $migration->createSchemaIfNotExist();
@@ -128,23 +134,24 @@ class MigrationTest extends TestCase
     }
 
     /** @test */
-    public function creates_table_via_createTable()
+    public function creates_table_via_create_table()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
 
         $this->assertFalse(Schema::hasTable('dapodik_ref_agama'));
-        $migration->createTable(function($table) {
+        $migration->createTable(function ($table) {
             $table->string('agama_id', 10)->primary();
             $table->string('nama', 100);
         });
@@ -152,22 +159,23 @@ class MigrationTest extends TestCase
     }
 
     /** @test */
-    public function drops_table_via_dropTable()
+    public function drops_table_via_drop_table()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
 
-        $migration->createTable(function($table) {
+        $migration->createTable(function ($table) {
             $table->string('agama_id', 10)->primary();
             $table->string('nama', 100);
         });
@@ -178,22 +186,23 @@ class MigrationTest extends TestCase
     }
 
     /** @test */
-    public function drops_columns_via_dropColumns()
+    public function drops_columns_via_drop_columns()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
 
-        $migration->createTable(function($table) {
+        $migration->createTable(function ($table) {
             $table->string('agama_id', 10)->primary();
             $table->string('nama', 100);
             $table->string('keterangan', 200)->nullable();
@@ -205,26 +214,27 @@ class MigrationTest extends TestCase
     }
 
     /** @test */
-    public function is_idempotent_on_createTable()
+    public function is_idempotent_on_create_table()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $migration = new class() extends Migration {
+        $migration = new class extends Migration
+        {
             protected $model = Agama::class;
         };
 
-        $migration->createTable(function($table) {
+        $migration->createTable(function ($table) {
             $table->string('agama_id', 10)->primary();
             $table->string('nama', 100);
         });
-        $migration->createTable(function($table) {
+        $migration->createTable(function ($table) {
             $table->string('agama_id', 10)->primary();
             $table->string('nama', 100);
         });

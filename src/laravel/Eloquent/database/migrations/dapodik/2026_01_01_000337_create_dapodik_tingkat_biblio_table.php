@@ -12,7 +12,7 @@ class CreateDapodikTingkatBiblioTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_biblio');
             $table->integer('tingkat_pendidikan_id');
             $table->smallInteger('bentuk_pendidikan_id');

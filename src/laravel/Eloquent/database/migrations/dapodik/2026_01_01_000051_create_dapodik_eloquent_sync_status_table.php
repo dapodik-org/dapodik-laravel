@@ -12,7 +12,7 @@ class CreateDapodikEloquentSyncStatusTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id')->unsigned()->autoIncrement();
             $table->string('target_table')->unique();
             $table->bigInteger('records_synced')->default(0);

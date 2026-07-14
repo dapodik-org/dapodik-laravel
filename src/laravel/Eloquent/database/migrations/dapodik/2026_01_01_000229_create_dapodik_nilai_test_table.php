@@ -12,7 +12,7 @@ class CreateDapodikNilaiTestTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('nilai_test_id')->primary();
             $table->decimal('jenis_test_id', 3, 0);
             $table->uuid('ptk_id');

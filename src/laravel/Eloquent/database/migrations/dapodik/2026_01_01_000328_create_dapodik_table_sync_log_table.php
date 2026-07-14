@@ -12,7 +12,7 @@ class CreateDapodikTableSyncLogTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->string('table_name', 30);
             $table->uuid('id_instalasi');
             $table->primary(['table_name', 'id_instalasi']);

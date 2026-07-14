@@ -12,7 +12,7 @@ class CreateDapodikKepanitiaanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_panitia')->primary();
             $table->uuid('sekolah_id')->nullable();
             $table->integer('id_jns_panitia');

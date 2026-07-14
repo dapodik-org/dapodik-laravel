@@ -12,7 +12,7 @@ class CreateDapodikWaktuPenyelenggaraanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('waktu_penyelenggaraan_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

@@ -12,7 +12,7 @@ class CreateDapodikGugusSekolahTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('gugus_id')->primary();
             $table->char('asal_data', 1)->default('1');
             $table->string('nama', 50);

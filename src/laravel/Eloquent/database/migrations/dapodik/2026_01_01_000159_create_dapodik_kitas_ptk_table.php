@@ -12,7 +12,7 @@ class CreateDapodikKitasPtkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->string('no_kitas', 20);
             $table->uuid('ptk_id');
             $table->date('tmt_kitas');

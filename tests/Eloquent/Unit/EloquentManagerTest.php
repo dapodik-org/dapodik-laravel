@@ -41,7 +41,7 @@ class EloquentManagerTest extends TestCase
     }
 
     /** @test */
-    public function returns_false_for_useSplitConnection_when_split_connection_config_is_false()
+    public function returns_false_for_use_split_connection_when_split_connection_config_is_false()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
@@ -50,7 +50,7 @@ class EloquentManagerTest extends TestCase
     }
 
     /** @test */
-    public function returns_true_for_useSplitConnection_when_split_connection_config_is_true()
+    public function returns_true_for_use_split_connection_when_split_connection_config_is_true()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['split_connection'] = true;
@@ -114,7 +114,7 @@ class EloquentManagerTest extends TestCase
     }
 
     /** @test */
-    public function returns_config_array_from_getConfig()
+    public function returns_config_array_from_get_config()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
@@ -162,7 +162,7 @@ class EloquentManagerTest extends TestCase
     }
 
     /** @test */
-    public function does_nothing_when_dropAllTables_called_with_no_connections()
+    public function does_nothing_when_drop_all_tables_called_with_no_connections()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         config()->set('dapodik-eloquent', $config);
@@ -184,7 +184,7 @@ class EloquentManagerTest extends TestCase
     }
 
     /** @test */
-    public function returns_configured_connection_name_from_getConnectionName()
+    public function returns_configured_connection_name_from_get_connection_name()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['connection'] = 'dapodik';
@@ -194,7 +194,7 @@ class EloquentManagerTest extends TestCase
     }
 
     /** @test */
-    public function returns_default_connection_name_from_getConnectionName_when_config_is_null()
+    public function returns_default_connection_name_from_get_connection_name_when_config_is_null()
     {
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['connection'] = null;

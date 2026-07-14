@@ -12,7 +12,7 @@ class CreateDapodikKesejahteraanPdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_sejahtera_pd')->primary();
             $table->uuid('peserta_didik_id');
             $table->integer('jenis_kesejahteraan_id');

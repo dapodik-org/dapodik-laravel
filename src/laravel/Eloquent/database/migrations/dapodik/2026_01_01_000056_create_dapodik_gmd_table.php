@@ -12,7 +12,7 @@ class CreateDapodikGmdTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->string('id_gmd')->primary();
             $table->string('nm_gmd');
             $table->timestamp('last_sync')->nullable();

@@ -20,10 +20,10 @@ class HasConnectionTest extends TestCase
     }
 
     /** @test */
-    public function returns_config_default_connection_when_useSplitConnection_is_false()
+    public function returns_config_default_connection_when_use_split_connection_is_false()
     {
         Config::set('database.default', 'testing');
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('testing', $model->getConnectionName());
     }
 
@@ -33,7 +33,7 @@ class HasConnectionTest extends TestCase
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['connection'] = 'dapodik';
         config()->set('dapodik-eloquent', $config);
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('dapodik', $model->getConnectionName());
     }
 
@@ -46,12 +46,12 @@ class HasConnectionTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('testing_ref', $model->getConnectionName());
     }
 
@@ -64,19 +64,19 @@ class HasConnectionTest extends TestCase
         config()->set('dapodik-eloquent', $config);
 
         app()->forgetInstance('dapodik.eloquent.laravel');
-        app()->singleton('dapodik.eloquent.laravel', function($app) {
+        app()->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
         app('dapodik.eloquent.laravel');
 
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('testing_ref', $model->getConnectionName());
     }
 
     /** @test */
     public function returns_table_name_with_folder_segment_for_namespaced_models()
     {
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('dapodik_ref_agama', $model->getTable());
     }
 
@@ -86,7 +86,7 @@ class HasConnectionTest extends TestCase
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['prefix'] = 'custom';
         config()->set('dapodik-eloquent', $config);
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('custom_ref_agama', $model->getTable());
     }
 
@@ -96,7 +96,7 @@ class HasConnectionTest extends TestCase
         $config = require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php';
         $config['suffix'] = '2024';
         config()->set('dapodik-eloquent', $config);
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('dapodik_ref_agama_2024', $model->getTable());
     }
 
@@ -107,29 +107,29 @@ class HasConnectionTest extends TestCase
         $config['prefix'] = 'custom';
         $config['suffix'] = '2024';
         config()->set('dapodik-eloquent', $config);
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals('custom_ref_agama_2024', $model->getTable());
     }
 
     /** @test */
-    public function getSchema_returns_null_on_fresh_model()
+    public function get_schema_returns_null_on_fresh_model()
     {
-        $model = new Agama();
+        $model = new Agama;
         $this->assertNull($model->getSchema());
     }
 
     /** @test */
-    public function setSchema_stores_and_getSchema_retrieves()
+    public function set_schema_stores_and_get_schema_retrieves()
     {
-        $model = new Agama();
+        $model = new Agama;
         $model->setSchema('custom_schema');
         $this->assertEquals('custom_schema', $model->getSchema());
     }
 
     /** @test */
-    public function getGuarded_returns_empty_array()
+    public function get_guarded_returns_empty_array()
     {
-        $model = new Agama();
+        $model = new Agama;
         $this->assertEquals([], $model->getGuarded());
     }
 }

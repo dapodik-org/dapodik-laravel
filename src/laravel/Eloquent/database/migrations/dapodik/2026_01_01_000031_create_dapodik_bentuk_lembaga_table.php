@@ -12,7 +12,7 @@ class CreateDapodikBentukLembagaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('bentuk_lembaga_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

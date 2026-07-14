@@ -12,7 +12,7 @@ class CreateDapodikSemesterTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('semester_id', 5)->primary();
             $table->bigInteger('tahun_ajaran_id');
             $table->string('nama');

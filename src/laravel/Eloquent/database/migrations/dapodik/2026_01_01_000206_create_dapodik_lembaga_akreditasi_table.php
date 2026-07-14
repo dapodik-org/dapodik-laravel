@@ -12,7 +12,7 @@ class CreateDapodikLembagaAkreditasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('la_id', 5)->primary();
             $table->string('nama');
             $table->date('la_tgl_mulai');

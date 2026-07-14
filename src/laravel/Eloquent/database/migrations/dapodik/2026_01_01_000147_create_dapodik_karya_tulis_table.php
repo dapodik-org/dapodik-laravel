@@ -12,7 +12,7 @@ class CreateDapodikKaryaTulisTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('karya_tulis_id')->primary();
             $table->uuid('ptk_id');
             $table->string('judul', 200);

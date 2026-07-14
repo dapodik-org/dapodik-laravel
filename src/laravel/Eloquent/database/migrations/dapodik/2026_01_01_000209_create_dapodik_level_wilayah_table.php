@@ -12,7 +12,7 @@ class CreateDapodikLevelWilayahTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_level_wilayah')->primary();
             $table->string('level_wilayah');
             $table->timestamp('last_sync')->nullable();

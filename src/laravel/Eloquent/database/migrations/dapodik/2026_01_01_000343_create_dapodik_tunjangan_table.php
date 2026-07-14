@@ -12,7 +12,7 @@ class CreateDapodikTunjanganTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('tunjangan_id')->primary();
             $table->uuid('ptk_id');
             $table->integer('jenis_tunjangan_id')->nullable();

@@ -12,7 +12,7 @@ class CreateDapodikJenisKeluarTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('jenis_keluar_id', 1)->primary();
             $table->string('ket_keluar');
             $table->boolean('keluar_pd');

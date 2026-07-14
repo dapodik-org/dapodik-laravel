@@ -12,7 +12,7 @@ class CreateDapodikKategoriDesaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('kategori_desa_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

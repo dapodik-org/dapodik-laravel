@@ -12,7 +12,7 @@ class CreateDapodikLembagaNonSekolahTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('lembaga_id')->primary();
             $table->string('nama', 250);
             $table->string('singkatan', 15)->nullable();

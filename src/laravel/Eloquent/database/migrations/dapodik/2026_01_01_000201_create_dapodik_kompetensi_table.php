@@ -12,7 +12,7 @@ class CreateDapodikKompetensiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_komp')->primary();
             $table->text('desk');
             $table->string('nmr', 5);

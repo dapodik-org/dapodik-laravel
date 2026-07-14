@@ -12,7 +12,7 @@ class CreateDapodikStatusAnakTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('status_anak_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

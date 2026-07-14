@@ -12,7 +12,7 @@ class CreateDapodikPeranTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->integer('peran_id')->primary();
             $table->smallInteger('bentuk_pendidikan_id');
             $table->string('nama')->nullable();

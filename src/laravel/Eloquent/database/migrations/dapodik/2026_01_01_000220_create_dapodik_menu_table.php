@@ -12,7 +12,7 @@ class CreateDapodikMenuTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_menu')->primary();
             $table->uuid('men_id_menu')->nullable();
             $table->uuid('id_aplikasi');

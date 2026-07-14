@@ -12,7 +12,7 @@ class CreateDapodikBlockgrantTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('blockgrant_id')->primary();
             $table->uuid('sekolah_id');
             $table->string('nama', 150);

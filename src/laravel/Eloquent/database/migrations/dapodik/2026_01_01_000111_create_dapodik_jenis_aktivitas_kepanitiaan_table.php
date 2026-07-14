@@ -12,7 +12,7 @@ class CreateDapodikJenisAktivitasKepanitiaanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_jns_akt_pan');
             $table->string('nm_jns_akt_pan');
             $table->timestamp('last_sync')->nullable();

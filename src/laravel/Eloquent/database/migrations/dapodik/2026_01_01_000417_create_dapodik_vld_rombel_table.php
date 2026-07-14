@@ -12,7 +12,7 @@ class CreateDapodikVldRombelTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('rombongan_belajar_id');
             $table->integer('idtype');

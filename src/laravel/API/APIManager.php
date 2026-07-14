@@ -34,7 +34,7 @@ class APIManager
     {
         $config = $this->laravel['config']["dapodik-api.connections.$name"];
 
-        if (!isset($config)) {
+        if (! isset($config)) {
             throw new \InvalidArgumentException("Connection [$name] not configured.");
         }
 

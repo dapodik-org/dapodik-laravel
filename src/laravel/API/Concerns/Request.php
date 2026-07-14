@@ -16,7 +16,7 @@ trait Request
 
     protected function getHeaders($key = null)
     {
-        if (!is_null($key)) {
+        if (! is_null($key)) {
             return $this->config['options']['headers'][$key];
         }
 
@@ -30,7 +30,7 @@ trait Request
 
     protected function getQuery($key = null)
     {
-        if (!is_null($key)) {
+        if (! is_null($key)) {
             return $this->config['options']['query'][$key];
         }
 
@@ -44,7 +44,7 @@ trait Request
 
     protected function getFormParams($key = null)
     {
-        if (!is_null($key)) {
+        if (! is_null($key)) {
             return $this->config['options']['form_params'][$key];
         }
 
@@ -81,7 +81,7 @@ trait Request
     }
 
     /**
-     * @param string|null $find key|value
+     * @param  string|null  $find  key|value
      */
     protected function getSemester($find = null)
     {
@@ -101,7 +101,7 @@ trait Request
 
     public function isConnect()
     {
-        return !is_null($this->loginPage());
+        return ! is_null($this->loginPage());
     }
 
     protected function getPath()

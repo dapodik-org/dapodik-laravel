@@ -12,7 +12,7 @@ class CreateDapodikMstWilayahTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('kode_wilayah', 8)->primary();
             $table->string('nama');
             $table->bigInteger('id_level_wilayah');

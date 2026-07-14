@@ -12,7 +12,7 @@ class CreateDapodikListrikTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('listrik_id')->primary();
             $table->uuid('sekolah_id');
             $table->decimal('sumber_listrik_id', 2, 0);

@@ -12,7 +12,7 @@ class CreateDapodikJurSpLongTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('jurusan_sp_id');
             $table->char('semester_id', 5);
             $table->primary(['jurusan_sp_id', 'semester_id']);

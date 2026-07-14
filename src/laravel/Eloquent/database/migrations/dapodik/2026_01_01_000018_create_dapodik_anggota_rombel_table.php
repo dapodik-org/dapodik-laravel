@@ -12,7 +12,7 @@ class CreateDapodikAnggotaRombelTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('anggota_rombel_id')->primary();
             $table->uuid('rombongan_belajar_id');
             $table->uuid('peserta_didik_id');

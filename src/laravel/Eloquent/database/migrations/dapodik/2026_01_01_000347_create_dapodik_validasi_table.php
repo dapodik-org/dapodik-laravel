@@ -12,7 +12,7 @@ class CreateDapodikValidasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('sekolah_id');
             $table->integer('no_urut')->nullable();
             $table->uuid('id')->nullable();

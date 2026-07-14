@@ -12,7 +12,7 @@ class CreateDapodikVariabelValueTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('variabel_id', 36);
             $table->bigInteger('value_id');
             $table->string('value_name', 200);

@@ -12,7 +12,7 @@ class CreateDapodikJenisBeasiswaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_beasiswa_id')->primary();
             $table->bigInteger('sumber_dana_id');
             $table->string('nama');

@@ -12,7 +12,7 @@ class CreateDapodikTracerLulusanTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_tracer')->primary();
             $table->integer('penghasilan_id')->nullable();
             $table->uuid('registrasi_id');

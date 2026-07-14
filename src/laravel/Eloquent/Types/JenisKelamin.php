@@ -5,6 +5,7 @@ namespace Dapodik\Laravel\Eloquent\Types;
 class JenisKelamin
 {
     const LakiLaki = 'L';
+
     const Perempuan = 'P';
 
     public static function label($value)

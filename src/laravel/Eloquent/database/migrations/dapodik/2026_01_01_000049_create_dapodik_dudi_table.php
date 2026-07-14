@@ -12,7 +12,7 @@ class CreateDapodikDudiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('dudi_id')->primary();
             $table->string('nama', 100);
             $table->char('bidang_usaha_id', 10);

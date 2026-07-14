@@ -1,53 +1,89 @@
 <?php
 
+use Dapodik\Laravel\Eloquent\Commands\DapodikEloquentDatabaseCreateCommand;
+use Dapodik\Laravel\Eloquent\Commands\DapodikEloquentPublishCommand;
+use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
+use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\EloquentManager;
+use Dapodik\Laravel\Eloquent\EloquentServiceProvider;
+use Dapodik\Laravel\Eloquent\Facades\Eloquent;
+use Dapodik\Laravel\Eloquent\Migration;
+use Dapodik\Laravel\Eloquent\Model;
+use Dapodik\Laravel\Eloquent\Models\AnggotaRombel;
+use Dapodik\Laravel\Eloquent\Models\Audit\LoggedActions;
+use Dapodik\Laravel\Eloquent\Models\Blob\LargeObject;
+use Dapodik\Laravel\Eloquent\Models\Eloquent\SyncStatus;
+use Dapodik\Laravel\Eloquent\Models\ManAkses\Aplikasi;
+use Dapodik\Laravel\Eloquent\Models\ManAkses\Pengguna;
+use Dapodik\Laravel\Eloquent\Models\ManAkses\Peran;
+use Dapodik\Laravel\Eloquent\Models\Nilai\NilaiRapor;
+use Dapodik\Laravel\Eloquent\Models\Nilai\Un;
+use Dapodik\Laravel\Eloquent\Models\Pembelajaran;
+use Dapodik\Laravel\Eloquent\Models\PesertaDidik;
+use Dapodik\Laravel\Eloquent\Models\Ptk;
+use Dapodik\Laravel\Eloquent\Models\Pustaka\Biblio;
+use Dapodik\Laravel\Eloquent\Models\Pustaka\Publisher;
+use Dapodik\Laravel\Eloquent\Models\Ref\Agama;
+use Dapodik\Laravel\Eloquent\Models\Ref\BentukPendidikan;
+use Dapodik\Laravel\Eloquent\Models\Ref\Jurusan;
+use Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah;
+use Dapodik\Laravel\Eloquent\Models\RombonganBelajar;
+use Dapodik\Laravel\Eloquent\Models\Sekolah;
+use Dapodik\Laravel\Eloquent\Models\SyncLog;
+use Dapodik\Laravel\Eloquent\Models\Yayasan;
+use Dapodik\Laravel\Eloquent\Types\JenisKelamin;
+use Dapodik\Laravel\Eloquent\Types\PosisiGelar;
+use Dapodik\Laravel\Eloquent\Types\StatusPerkawinan;
+use Dapodik\Laravel\Eloquent\Types\StatusSekolah;
+
 // Quick autoload test without Laravel framework boot
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
 $classes = [
     // Core
-    \Dapodik\Laravel\Eloquent\EloquentServiceProvider::class,
-    \Dapodik\Laravel\Eloquent\EloquentManager::class,
-    \Dapodik\Laravel\Eloquent\Model::class,
-    \Dapodik\Laravel\Eloquent\Migration::class,
-    \Dapodik\Laravel\Eloquent\Facades\Eloquent::class,
-    \Dapodik\Laravel\Eloquent\Concerns\HasConnection::class,
-    \Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey::class,
-    \Dapodik\Laravel\Eloquent\Commands\DapodikEloquentPublishCommand::class,
-    \Dapodik\Laravel\Eloquent\Commands\DapodikEloquentDatabaseCreateCommand::class,
+    EloquentServiceProvider::class,
+    EloquentManager::class,
+    Model::class,
+    Migration::class,
+    Eloquent::class,
+    HasConnection::class,
+    HasCompositeKey::class,
+    DapodikEloquentPublishCommand::class,
+    DapodikEloquentDatabaseCreateCommand::class,
     // Enums → Types
-    \Dapodik\Laravel\Eloquent\Types\JenisKelamin::class,
-    \Dapodik\Laravel\Eloquent\Types\PosisiGelar::class,
-    \Dapodik\Laravel\Eloquent\Types\StatusPerkawinan::class,
-    \Dapodik\Laravel\Eloquent\Types\StatusSekolah::class,
+    JenisKelamin::class,
+    PosisiGelar::class,
+    StatusPerkawinan::class,
+    StatusSekolah::class,
     // Models - Ref
-    \Dapodik\Laravel\Eloquent\Models\Ref\Agama::class,
-    \Dapodik\Laravel\Eloquent\Models\Ref\BentukPendidikan::class,
-    \Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah::class,
-    \Dapodik\Laravel\Eloquent\Models\Ref\Jurusan::class,
+    Agama::class,
+    BentukPendidikan::class,
+    MstWilayah::class,
+    Jurusan::class,
     // Models - Root (ex-Publik)
-    \Dapodik\Laravel\Eloquent\Models\Sekolah::class,
-    \Dapodik\Laravel\Eloquent\Models\Ptk::class,
-    \Dapodik\Laravel\Eloquent\Models\PesertaDidik::class,
-    \Dapodik\Laravel\Eloquent\Models\RombonganBelajar::class,
-    \Dapodik\Laravel\Eloquent\Models\Pembelajaran::class,
-    \Dapodik\Laravel\Eloquent\Models\AnggotaRombel::class,
-    \Dapodik\Laravel\Eloquent\Models\Yayasan::class,
-    \Dapodik\Laravel\Eloquent\Models\SyncLog::class,
+    Sekolah::class,
+    Ptk::class,
+    PesertaDidik::class,
+    RombonganBelajar::class,
+    Pembelajaran::class,
+    AnggotaRombel::class,
+    Yayasan::class,
+    SyncLog::class,
     // Models - ManAkses
-    \Dapodik\Laravel\Eloquent\Models\ManAkses\Pengguna::class,
-    \Dapodik\Laravel\Eloquent\Models\ManAkses\Peran::class,
-    \Dapodik\Laravel\Eloquent\Models\ManAkses\Aplikasi::class,
+    Pengguna::class,
+    Peran::class,
+    Aplikasi::class,
     // Models - Nilai
-    \Dapodik\Laravel\Eloquent\Models\Nilai\NilaiRapor::class,
-    \Dapodik\Laravel\Eloquent\Models\Nilai\Un::class,
+    NilaiRapor::class,
+    Un::class,
     // Models - Pustaka
-    \Dapodik\Laravel\Eloquent\Models\Pustaka\Biblio::class,
-    \Dapodik\Laravel\Eloquent\Models\Pustaka\Publisher::class,
+    Biblio::class,
+    Publisher::class,
     // Models - Audit & Blob & Eloquent
-    \Dapodik\Laravel\Eloquent\Models\Audit\LoggedActions::class,
-    \Dapodik\Laravel\Eloquent\Models\Blob\LargeObject::class,
-    \Dapodik\Laravel\Eloquent\Models\Eloquent\SyncStatus::class,
+    LoggedActions::class,
+    LargeObject::class,
+    SyncStatus::class,
 ];
 
 $ok = 0;

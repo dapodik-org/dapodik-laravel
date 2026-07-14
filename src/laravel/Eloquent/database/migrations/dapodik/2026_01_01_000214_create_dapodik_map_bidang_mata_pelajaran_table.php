@@ -12,7 +12,7 @@ class CreateDapodikMapBidangMataPelajaranTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('mata_pelajaran_id');
             $table->bigInteger('bidang_studi_id');
             $table->decimal('sesuai', 1, 0);

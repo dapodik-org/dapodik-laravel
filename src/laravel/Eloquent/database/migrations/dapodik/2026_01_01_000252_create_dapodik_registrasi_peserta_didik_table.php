@@ -12,7 +12,7 @@ class CreateDapodikRegistrasiPesertaDidikTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('registrasi_id')->primary();
             $table->uuid('jurusan_sp_id')->nullable();
             $table->uuid('peserta_didik_id');

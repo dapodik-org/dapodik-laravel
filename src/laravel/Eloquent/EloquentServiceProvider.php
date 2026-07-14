@@ -557,7 +557,7 @@ class EloquentServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/config/dapodik-eloquent.php', 'dapodik-eloquent');
 
-        $this->app->singleton('dapodik.eloquent.laravel', function($app) {
+        $this->app->singleton('dapodik.eloquent.laravel', function ($app) {
             return new EloquentManager($app);
         });
     }
@@ -582,8 +582,8 @@ class EloquentServiceProvider extends ServiceProvider
 
         $manager = app('dapodik.eloquent.laravel');
 
-        $this->app['events']->listen(CommandStarting::class, function(CommandStarting $event) use ($manager) {
-            if ($event->command === 'migrate:fresh' && !$manager->getConfig()['skip_fresh']) {
+        $this->app['events']->listen(CommandStarting::class, function (CommandStarting $event) use ($manager) {
+            if ($event->command === 'migrate:fresh' && ! $manager->getConfig()['skip_fresh']) {
                 if ($manager->getConfig()['connection'] !== null) {
                     $manager->dropConnectionTables();
                 }
@@ -615,7 +615,7 @@ class EloquentServiceProvider extends ServiceProvider
 
         if (is_dir($migrationsPath)) {
             $excludeTables = config('dapodik-eloquent.exclude_tables', []);
-            if (!empty($excludeTables)) {
+            if (! empty($excludeTables)) {
                 $this->removeExcludedMigrationFiles($migrationsPath, $excludeTables);
             }
             $this->loadMigrationsFrom($migrationsPath);
@@ -633,7 +633,7 @@ class EloquentServiceProvider extends ServiceProvider
 
     private function removeExcludedMigrationFiles($migrationsPath, array $excludeTables = [])
     {
-        if (empty($excludeTables) || !is_dir($migrationsPath)) {
+        if (empty($excludeTables) || ! is_dir($migrationsPath)) {
             return;
         }
 
@@ -649,6 +649,7 @@ class EloquentServiceProvider extends ServiceProvider
             foreach ($excludeTables as $excluded) {
                 if ($this->matchesExcludePattern($basenameNoExt, $info, $excluded)) {
                     @unlink($filePath);
+
                     continue 2;
                 }
             }

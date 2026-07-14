@@ -12,7 +12,7 @@ class CreateDapodikKelompokUsahaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('kelompok_usaha_id', 8)->primary();
             $table->string('nama_kelompok_usaha');
             $table->timestamp('last_sync')->nullable();

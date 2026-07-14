@@ -64,7 +64,7 @@ class APIManagerTest extends TestCase
     /** @test */
     public function it_supports_macro_calls()
     {
-        APIManager::macro('customMethod', function() {
+        APIManager::macro('customMethod', function () {
             return 'macro result';
         });
 

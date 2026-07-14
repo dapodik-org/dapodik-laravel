@@ -12,7 +12,7 @@ class CreateDapodikRolePenggunaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_role_pengguna')->primary();
             $table->uuid('sekolah_id')->nullable();
             $table->uuid('lembaga_id')->nullable();

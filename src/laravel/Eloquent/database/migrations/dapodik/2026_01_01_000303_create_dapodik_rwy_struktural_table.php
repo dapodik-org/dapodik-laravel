@@ -12,7 +12,7 @@ class CreateDapodikRwyStrukturalTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('riwayat_struktural_id')->primary();
             $table->uuid('ptk_id');
             $table->decimal('jabatan_ptk_id', 5, 0);

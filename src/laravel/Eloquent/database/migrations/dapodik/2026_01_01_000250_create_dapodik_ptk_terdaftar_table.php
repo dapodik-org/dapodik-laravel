@@ -12,7 +12,7 @@ class CreateDapodikPtkTerdaftarTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('ptk_terdaftar_id')->primary();
             $table->uuid('ptk_id');
             $table->uuid('sekolah_id');

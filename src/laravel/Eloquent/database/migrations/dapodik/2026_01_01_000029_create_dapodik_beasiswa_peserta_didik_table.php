@@ -12,7 +12,7 @@ class CreateDapodikBeasiswaPesertaDidikTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('beasiswa_peserta_didik_id')->primary();
             $table->uuid('peserta_didik_id');
             $table->integer('jenis_beasiswa_id');

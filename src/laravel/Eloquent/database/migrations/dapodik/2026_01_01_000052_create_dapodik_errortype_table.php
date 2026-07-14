@@ -12,7 +12,7 @@ class CreateDapodikErrortypeTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('idtype')->primary();
             $table->bigInteger('kategori_error')->nullable();
             $table->string('keterangan')->nullable();

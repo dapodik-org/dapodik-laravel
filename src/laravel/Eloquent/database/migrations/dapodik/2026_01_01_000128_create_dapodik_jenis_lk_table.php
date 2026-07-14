@@ -12,7 +12,7 @@ class CreateDapodikJenisLkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('id_jenis_lk', 6)->primary();
             $table->string('nm_jenis_lk');
             $table->string('ket_jenis_lk')->nullable();

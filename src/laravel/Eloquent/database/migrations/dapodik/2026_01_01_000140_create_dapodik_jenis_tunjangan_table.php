@@ -12,7 +12,7 @@ class CreateDapodikJenisTunjanganTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('jenis_tunjangan_id')->primary();
             $table->string('nama')->nullable();
             $table->timestamp('last_sync')->nullable();

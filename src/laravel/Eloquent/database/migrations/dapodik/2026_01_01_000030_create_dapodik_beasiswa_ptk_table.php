@@ -12,7 +12,7 @@ class CreateDapodikBeasiswaPtkTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('beasiswa_ptk_id')->primary();
             $table->integer('jenis_beasiswa_id');
             $table->uuid('ptk_id');

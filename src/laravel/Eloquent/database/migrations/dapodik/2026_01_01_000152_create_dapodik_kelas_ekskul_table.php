@@ -12,7 +12,7 @@ class CreateDapodikKelasEkskulTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('id_kelas_ekskul')->primary();
             $table->uuid('rombongan_belajar_id');
             $table->integer('id_ekskul');

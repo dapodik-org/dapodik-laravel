@@ -26,7 +26,7 @@ class Connection
     public function __construct(array $config)
     {
         $this->config = $this->parseConfig($config);
-        $this->cookie = new CookieJar();
+        $this->cookie = new CookieJar;
         $this->client = $this->setClient();
         $this->auth();
     }
@@ -69,7 +69,7 @@ class Connection
 
     protected function setClient()
     {
-        if (!isset($this->config['host'])) {
+        if (! isset($this->config['host'])) {
             throw new \InvalidArgumentException("Parameter 'host' not set.");
         }
 

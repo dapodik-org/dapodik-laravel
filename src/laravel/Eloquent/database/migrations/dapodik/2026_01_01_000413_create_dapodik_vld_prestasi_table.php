@@ -12,7 +12,7 @@ class CreateDapodikVldPrestasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('logid')->primary();
             $table->uuid('prestasi_id');
             $table->integer('idtype');

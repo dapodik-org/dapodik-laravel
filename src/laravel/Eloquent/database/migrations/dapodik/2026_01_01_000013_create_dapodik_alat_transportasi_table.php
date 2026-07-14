@@ -12,7 +12,7 @@ class CreateDapodikAlatTransportasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('alat_transportasi_id')->primary();
             $table->string('nama');
             $table->timestamp('last_sync')->nullable();

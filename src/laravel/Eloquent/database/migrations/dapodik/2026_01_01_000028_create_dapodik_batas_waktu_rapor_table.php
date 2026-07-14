@@ -12,7 +12,7 @@ class CreateDapodikBatasWaktuRaporTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->char('semester_id', 5)->primary();
             $table->date('tgl_rapor_mulai');
             $table->date('tgl_rapor_selesai');

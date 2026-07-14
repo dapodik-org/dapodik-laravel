@@ -12,7 +12,7 @@ class CreateDapodikPenggunaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('pengguna_id')->primary();
             $table->uuid('sekolah_id')->nullable();
             $table->uuid('lembaga_id')->nullable();

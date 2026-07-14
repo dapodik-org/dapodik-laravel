@@ -12,7 +12,7 @@ class CreateDapodikRwyKerjaTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('rwy_kerja_id')->primary();
             $table->decimal('jenjang_pendidikan_id', 2, 0)->nullable();
             $table->decimal('jenis_lembaga_id', 5, 0);

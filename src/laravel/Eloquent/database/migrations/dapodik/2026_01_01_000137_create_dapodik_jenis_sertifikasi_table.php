@@ -12,7 +12,7 @@ class CreateDapodikJenisSertifikasiTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->bigInteger('id_jenis_sertifikasi')->primary();
             $table->string('jenis_sertifikasi');
             $table->boolean('prof_guru');

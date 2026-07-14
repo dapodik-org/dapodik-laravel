@@ -12,7 +12,7 @@ class CreateDapodikBidangSdmTable extends Migration
     {
         $this->createSchemaIfNotExist();
 
-        $this->createTable(function(Blueprint $table) {
+        $this->createTable(function (Blueprint $table) {
             $table->uuid('ptk_id');
             $table->integer('bidang_studi_id');
             $table->primary(['ptk_id', 'bidang_studi_id']);
