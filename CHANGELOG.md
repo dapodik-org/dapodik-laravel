@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.1 - 2026-07-15
+
+## What's Changed
+
+### Fixed
+- fix: prevent unnecessary namespace prefixing for empty directory paths
 ## 2.1.0 - 2026-07-14
 
 ## What's Changed
