@@ -98,7 +98,7 @@ class DapodikEloquentPublishCommand extends Command
         $relativeDir = pathinfo($relativePath, PATHINFO_DIRNAME);
         $namespaceDir = str_replace(DIRECTORY_SEPARATOR, '\\', $relativeDir);
 
-        return 'Dapodik\\Laravel\\Eloquent\\Models'.($namespaceDir ? '\\'.$namespaceDir : '');
+        return 'Dapodik\\Laravel\\Eloquent\\Models'.($namespaceDir && $namespaceDir !== '.' ? '\\'.$namespaceDir : '');
     }
 
     protected function getAppNamespace($sourceFile, $sourceRoot)
@@ -107,7 +107,7 @@ class DapodikEloquentPublishCommand extends Command
         $relativeDir = pathinfo($relativePath, PATHINFO_DIRNAME);
         $namespaceDir = str_replace(DIRECTORY_SEPARATOR, '\\', $relativeDir);
 
-        return 'App\\Models\\Dapodik'.($namespaceDir ? '\\'.$namespaceDir : '');
+        return 'App\\Models\\Dapodik'.($namespaceDir && $namespaceDir !== '.' ? '\\'.$namespaceDir : '');
     }
 
     protected function generateStub($appNamespace, $packageNamespace, $className, $baseClassName)
