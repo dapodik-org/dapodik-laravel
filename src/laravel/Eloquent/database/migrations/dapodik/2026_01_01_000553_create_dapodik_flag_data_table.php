@@ -31,11 +31,6 @@ return new class extends Migration
             $table->timestamp('create_date')->nullable();
             $table->timestamp('last_update')->nullable();
             $table->softDeletes('expired_date');
-
-            $table->foreign('jenis_flag_id')->references('jenis_flag_id')->on('ref.jenis_flag');
-            $table->foreign('sekolah_id')->references('sekolah_id')->on('sekolah');
-            $table->foreign('peserta_didik_id')->references('peserta_didik_id')->on('peserta_didik');
-            $table->foreign('ptk_id')->references('ptk_id')->on('ptk');
         });
     }
 
