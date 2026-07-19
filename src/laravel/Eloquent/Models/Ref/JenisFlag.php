@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models\Ref;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\FlagData;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +40,6 @@ class JenisFlag extends Model
      */
     public function flagDatas(): HasMany
     {
-        return $this->hasMany(\Dapodik\Laravel\Eloquent\Models\FlagData::class, 'jenis_flag_id', 'jenis_flag_id');
+        return $this->hasMany(FlagData::class, 'jenis_flag_id', 'jenis_flag_id');
     }
 }

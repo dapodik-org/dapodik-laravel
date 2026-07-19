@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisFlag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,7 +43,7 @@ class FlagData extends Model
      */
     public function jenisFlag(): BelongsTo
     {
-        return $this->belongsTo(\Dapodik\Laravel\Eloquent\Models\Ref\JenisFlag::class, 'jenis_flag_id', 'jenis_flag_id');
+        return $this->belongsTo(JenisFlag::class, 'jenis_flag_id', 'jenis_flag_id');
     }
 
     /**
