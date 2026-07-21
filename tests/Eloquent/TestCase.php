@@ -26,30 +26,35 @@ abstract class TestCase extends OrchestraTestCase
     {
         // Ensure tests use the testing connection
         config()->set('database.default', 'testing');
+    }
 
-        // Register Doctrine DBAL type mappings for database platforms that
-        // expose types like `char` or `enum` which DBAL may not map by default.
-        if (class_exists(\Doctrine\DBAL\Types\Type::class)) {
-            try {
-                $connection = DB::connection();
+    /**
+     * Register Doctrine DBAL type mappings after providers are booted so the
+     * database connection/platform is available.
+     */
+    protected function registerDoctrineTypeMappings(): void
+    {
+        if (! class_exists(\Doctrine\DBAL\Types\Type::class)) {
+            return;
+        }
 
-                if (method_exists($connection, 'getDoctrineSchemaManager')) {
-                    $platform = $connection->getDoctrineSchemaManager()->getDatabasePlatform();
-                } elseif (method_exists($connection, 'getDoctrineConnection')) {
-                    $platform = $connection->getDoctrineConnection()->getDatabasePlatform();
-                } else {
-                    $platform = null;
-                }
+        try {
+            $connection = DB::connection();
 
-                if ($platform) {
-                    // Map DB `char` to Doctrine `string` to avoid Unknown column type errors
-                    $platform->registerDoctrineTypeMapping('char', 'string');
-                    // Optional: map enum to string if your schema uses MySQL enums
-                    $platform->registerDoctrineTypeMapping('enum', 'string');
-                }
-            } catch (\Throwable $e) {
-                // Swallow errors here so tests don't fail if DBAL/platform is unavailable
+            if (method_exists($connection, 'getDoctrineSchemaManager')) {
+                $platform = $connection->getDoctrineSchemaManager()->getDatabasePlatform();
+            } elseif (method_exists($connection, 'getDoctrineConnection')) {
+                $platform = $connection->getDoctrineConnection()->getDatabasePlatform();
+            } else {
+                $platform = null;
             }
+
+            if ($platform) {
+                $platform->registerDoctrineTypeMapping('char', 'string');
+                $platform->registerDoctrineTypeMapping('enum', 'string');
+            }
+        } catch (\Throwable $e) {
+            // swallow errors to avoid breaking test bootstrap
         }
     }
 
@@ -65,6 +70,9 @@ abstract class TestCase extends OrchestraTestCase
         $this->getEnvironmentSetUp($app);
 
         $app->make('Illuminate\Foundation\Bootstrap\BootProviders')->bootstrap($app);
+
+        // Now that providers are booted and DB is available, register Doctrine mappings
+        $this->registerDoctrineTypeMappings();
 
         if (method_exists($this, 'parseTestMethodAnnotations')) {
             $this->parseTestMethodAnnotations($app, 'environment-setup');
