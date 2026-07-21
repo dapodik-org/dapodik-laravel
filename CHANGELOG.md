@@ -3,6 +3,17 @@
 ## Unreleased
 
 
+## 2.1.2 - 2026-07-21
+
+## What's Changed
+
+### Added
+- feat: add FlagData and JenisFlag models with migrations for database schema
+
+### Fixed
+- fix: update phpstan.neon.dist to clarify excluded vendor paths
+- fix: update phpstan version constraint for compatibility with newer versions
+- fix: allow compatibility with Guzzle 8.0 in composer.json
 ## 2.1.1 - 2026-07-15
 
 ## What's Changed
