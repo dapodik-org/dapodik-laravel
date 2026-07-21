@@ -19,7 +19,6 @@ use Dapodik\Laravel\Eloquent\Models\AnggotaRombel;
 use Dapodik\Laravel\Eloquent\Models\Angkutan;
 use Dapodik\Laravel\Eloquent\Models\AngkutanDariBlockgrant;
 use Dapodik\Laravel\Eloquent\Models\Audit\LoggedActions;
-use Dapodik\Laravel\Eloquent\Models\Author;
 use Dapodik\Laravel\Eloquent\Models\Bangunan;
 use Dapodik\Laravel\Eloquent\Models\BangunanDariBlockgrant;
 use Dapodik\Laravel\Eloquent\Models\BangunanLongitudinal;
@@ -40,6 +39,7 @@ use Dapodik\Laravel\Eloquent\Models\Demografi;
 use Dapodik\Laravel\Eloquent\Models\Diklat;
 use Dapodik\Laravel\Eloquent\Models\Dudi;
 use Dapodik\Laravel\Eloquent\Models\Eloquent\SyncStatus;
+use Dapodik\Laravel\Eloquent\Models\FlagData;
 use Dapodik\Laravel\Eloquent\Models\GugusSekolah;
 use Dapodik\Laravel\Eloquent\Models\GuruSasaranPengawas;
 use Dapodik\Laravel\Eloquent\Models\IjazahPd;
@@ -91,6 +91,7 @@ use Dapodik\Laravel\Eloquent\Models\ProgramInklusi;
 use Dapodik\Laravel\Eloquent\Models\Ptk;
 use Dapodik\Laravel\Eloquent\Models\PtkBaru;
 use Dapodik\Laravel\Eloquent\Models\PtkTerdaftar;
+use Dapodik\Laravel\Eloquent\Models\Pustaka\Author;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Biblio;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\Classifications;
 use Dapodik\Laravel\Eloquent\Models\Pustaka\DaftarAuthor;
@@ -125,6 +126,7 @@ use Dapodik\Laravel\Eloquent\Models\Ref\JenisBantuan;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisBeasiswa;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisCita;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisDiklat;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisFlag;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisGugus;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisHapusBuku;
 use Dapodik\Laravel\Eloquent\Models\Ref\JenisHobby;
@@ -551,6 +553,8 @@ class EloquentServiceProvider extends ServiceProvider
         'create_dapodik_logged_actions_table' => ['table' => 'logged_actions', 'model' => LoggedActions::class],
         'create_dapodik_large_object_table' => ['table' => 'large_object', 'model' => LargeObject::class],
         'create_dapodik_eloquent_sync_status_table' => ['table' => 'eloquent_sync_status', 'model' => SyncStatus::class],
+        'create_dapodik_flag_data_table' => ['table' => 'flag_data', 'model' => FlagData::class],
+        'create_dapodik_jenis_flag_table' => ['table' => 'jenis_flag', 'model' => JenisFlag::class],
     ];
 
     public function register()
