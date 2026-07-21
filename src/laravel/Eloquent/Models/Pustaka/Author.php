@@ -1,9 +1,10 @@
 <?php
 
-namespace Dapodik\Laravel\Eloquent\Models;
+namespace Dapodik\Laravel\Eloquent\Models\Pustaka;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Author extends Model
@@ -24,5 +25,15 @@ class Author extends Model
         return [
             'last_sync' => 'datetime',
         ];
+    }
+
+    public function getTable()
+    {
+        return 'author';
+    }
+
+    public function daftarAuthors(): HasMany
+    {
+        return $this->hasMany(DaftarAuthor::class, 'id_author', 'id_author');
     }
 }

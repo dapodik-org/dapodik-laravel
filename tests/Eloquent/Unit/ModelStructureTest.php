@@ -261,7 +261,15 @@ class ModelStructureTest extends TestCase
     {
         config()->set('dapodik-eloquent', require __DIR__.'/../../../src/laravel/Eloquent/config/dapodik-eloquent.php');
 
+        $overridden = [
+            'Dapodik\\Laravel\\Eloquent\\Models\\Pustaka\\Author',
+        ];
+
         foreach ($this->getModelFqcns() as $fqcn) {
+            if (in_array($fqcn, $overridden, true)) {
+                continue;
+            }
+
             $instance = new $fqcn();
             $table = $instance->getTable();
             $this->assertStringContainsString('dapodik_', $table);

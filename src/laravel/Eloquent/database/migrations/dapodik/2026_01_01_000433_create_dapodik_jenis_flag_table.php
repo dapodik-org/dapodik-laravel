@@ -1,24 +1,23 @@
 <?php
 
 use Dapodik\Laravel\Eloquent\Migration;
-use Dapodik\Laravel\Eloquent\Models\Pustaka\Author;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisFlag;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDapodikAuthorTable extends Migration
+class CreateDapodikJenisFlagTable extends Migration
 {
-    protected $model = Author::class;
+    protected $model = JenisFlag::class;
 
     public function up()
     {
         $this->createSchemaIfNotExist();
 
         $this->createTable(function(Blueprint $table) {
-            $table->uuid('id_author')->primary();
-            $table->string('nm_auhor', 100);
-            $table->string('nm_alias1', 100)->nullable();
-            $table->string('nm_alias2', 100)->nullable();
-            $table->string('nm_alias3', 100)->nullable();
-            $table->char('nik_author', 16)->nullable();
+            $table->integer('jenis_flag_id')->primary();
+            $table->string('jenis_flag', 30);
+            $table->boolean('untuk_sekolah');
+            $table->boolean('untuk_peserta_didik');
+            $table->boolean('untuk_ptk');
             $table->timestamp('last_sync')->nullable();
             $table->timestamp('create_date')->nullable();
             $table->timestamp('last_update')->nullable();
