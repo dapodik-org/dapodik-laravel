@@ -8,14 +8,14 @@ beforeEach(function () {
 
     File::ensureDirectoryExists($this->migrationsPath);
 
-    $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
+    $existing = glob($this->migrationsPath.'/*.php');
     foreach ($existing as $file) {
         File::delete($file);
     }
 });
 
 afterEach(function () {
-    $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
+    $existing = glob($this->migrationsPath.'/*.php');
     foreach ($existing as $file) {
         File::delete($file);
     }
