@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 1.0.3 - 2026-07-21
+
+## What's Changed
+
+### Added
+- feat: add migration files to fix nullable fields and primary keys in various models
 ## 1.0.2 - 2026-07-21
 
 ## What's Changed
