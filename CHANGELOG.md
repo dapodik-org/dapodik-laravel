@@ -3,6 +3,15 @@
 ## Unreleased
 
 
+## 1.0.2 - 2026-07-21
+
+## What's Changed
+
+### Added
+- feat: add FlagData and JenisFlag models with migrations, and update Author model namespace
+
+### Fixed
+- fix: allow compatibility with Guzzle 8.0 in composer.json
 ## 1.0.1 - 2026-07-15
 
 ## What's Changed
