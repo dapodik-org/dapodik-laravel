@@ -64,6 +64,12 @@ Root configs: `.php-cs-fixer.dist.php` and `phpstan.neon.dist`.
 - Adding a model? Always add corresponding migration + register in `EloquentServiceProvider::MIGRATION_MODEL_MAP`
 - Custom `tests/bootstrap.php` suppresses `E_DEPRECATED` (needed on PHP 8+)
 
+## Git rules
+
+- Jangan pernah commit atau push tanpa izin eksplisit dari user
+- Selalu tanya sebelum menjalankan git commit, push, atau operasi yang mengubah remote
+- Perubahan hanya boleh dilakukan setelah user menyetujui
+
 ## API subpackage (src/laravel/API/)
 
 - Namespace: `Dapodik\Laravel\API`
