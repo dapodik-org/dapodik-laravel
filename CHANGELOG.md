@@ -3,6 +3,19 @@
 ## Unreleased
 
 
+## 2.1.3 - 2026-07-21
+
+## What's Changed
+
+### Added
+- feat: add migrations to fix nullable fields and primary keys in various models
+
+### Changed
+- tests: register Doctrine DBAL type mappings after providers boot in Eloquent TestCase (fix unknown 'char' type)
+- tests: register Doctrine DBAL type mappings in Eloquent TestCase to fix Unknown column type 'char' during migrations
+
+### Fixed
+- fix: register 'char' type in Doctrine DBAL for column introspection
 ## 2.1.2 - 2026-07-21
 
 ## What's Changed
