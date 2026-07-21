@@ -62,6 +62,9 @@ Root configs: `.php-cs-fixer.dist.php` and `phpstan.neon.dist`.
 - SoftDeletes: `CREATED_AT = 'create_date'`, `UPDATED_AT = 'last_update'`, `DELETED_AT = 'expired_date'`
 - Table naming: `{prefix}_{subdir}_{table}_{suffix}` derived from namespace
 - Adding a model? Always add corresponding migration + register in `EloquentServiceProvider::MIGRATION_MODEL_MAP`
+- Schema change? Always create a **new** migration file — never modify an existing one (data already exists)
+- Migration timestamp: use `Y_m_d_HiId` beyond the highest existing ID (currently `000433`)
+- Always mirror the same migration to both `main` and `1.x` branches
 - Custom `tests/bootstrap.php` suppresses `E_DEPRECATED` (needed on PHP 8+)
 
 ## API subpackage (src/laravel/API/)

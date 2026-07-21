@@ -18,7 +18,7 @@ class EloquentServiceProviderTest extends TestCase
 
         File::ensureDirectoryExists($this->migrationsPath);
 
-        $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
+        $existing = glob($this->migrationsPath.'/*.php');
         foreach ($existing as $file) {
             File::delete($file);
         }
@@ -26,7 +26,7 @@ class EloquentServiceProviderTest extends TestCase
 
     protected function tearDown(): void
     {
-        $existing = glob($this->migrationsPath.'/*_create_dapodik_*_table.php');
+        $existing = glob($this->migrationsPath.'/*.php');
         foreach ($existing as $file) {
             File::delete($file);
         }
