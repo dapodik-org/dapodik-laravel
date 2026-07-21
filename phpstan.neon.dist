@@ -5,7 +5,7 @@ parameters:
     excludePaths:
         - vendor
         - bin
-        - src/laravel/Eloquent/vendor
-        - src/laravel/API/vendor
+        - src/laravel/Eloquent/vendor (?)
+        - src/laravel/API/vendor (?)
         - '*.blade.php'
     inferPrivatePropertyTypeFromConstructor: true
