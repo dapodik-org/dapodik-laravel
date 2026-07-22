@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id_biblio')->primary();
             $table->integer('id_freq')->nullable();
             $table->uuid('id_publisher')->nullable();
-            $table->string('negara_id', 1)->nullable();
+            $table->char('negara_id', 2)->nullable();
             $table->string('id_gmd')->nullable();
             $table->uuid('id_classification')->nullable();
             $table->string('title')->nullable();

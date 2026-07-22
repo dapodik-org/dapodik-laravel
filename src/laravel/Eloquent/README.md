@@ -40,6 +40,26 @@ php artisan vendor:publish --tag="dapodik-eloquent-migrations"
 php artisan migrate
 ```
 
+### Publikasi migration via command
+
+Publikasikan seluruh migration ke direktori `database/migrations/`:
+
+```bash
+php artisan dapodik:eloquent-publish-migration
+```
+
+Untuk satu migration saja, gunakan key migration seperti `agama`:
+
+```bash
+php artisan dapodik:eloquent-publish-migration agama
+```
+
+Gunakan `--force` untuk menimpa file yang sudah ada:
+
+```bash
+php artisan dapodik:eloquent-publish-migration --force
+```
+
 ## Publikasi konfigurasi
 
 ```bash
