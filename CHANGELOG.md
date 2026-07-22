@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.5 - 2026-07-22
+
+## What's Changed
+
+### Added
+- feat: add command to publish Eloquent migration stubs and update README
 ## 2.1.4 - 2026-07-22
 
 ## What's Changed
