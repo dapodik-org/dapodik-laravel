@@ -16,14 +16,14 @@ class CreateDapodikBiblioTable extends Migration
             $table->uuid('id_biblio')->primary();
             $table->integer('id_freq')->nullable();
             $table->uuid('id_publisher')->nullable();
-            $table->string('negara_id', 1);
-            $table->string('id_gmd');
+            $table->string('negara_id', 1)->nullable();
+            $table->string('id_gmd')->nullable();
             $table->uuid('id_classification')->nullable();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('sor')->nullable();
             $table->string('edition')->nullable();
             $table->string('isbn_issn')->nullable();
-            $table->string('collations');
+            $table->string('collations')->nullable();
             $table->string('publisher')->nullable();
             $table->string('publish_year')->nullable();
             $table->string('series_title')->nullable();

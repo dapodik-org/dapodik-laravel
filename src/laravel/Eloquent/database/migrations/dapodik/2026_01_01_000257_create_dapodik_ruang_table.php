@@ -14,13 +14,13 @@ class CreateDapodikRuangTable extends Migration
 
         $this->createTable(function(Blueprint $table) {
             $table->uuid('id_ruang')->primary();
-            $table->integer('jenis_prasarana_id');
-            $table->uuid('sekolah_id');
+            $table->integer('jenis_prasarana_id')->nullable();
+            $table->uuid('sekolah_id')->nullable();
             $table->uuid('parent_id_ruang')->nullable();
-            $table->uuid('id_bangunan');
+            $table->uuid('id_bangunan')->nullable();
             $table->char('asal_data', 1)->default('1');
-            $table->string('kd_ruang', 10);
-            $table->string('nm_ruang', 100);
+            $table->string('kd_ruang', 10)->nullable();
+            $table->string('nm_ruang', 100)->nullable();
             $table->decimal('lantai', 3, 0)->default(1);
             $table->float('panjang')->nullable();
             $table->float('lebar')->nullable();
@@ -43,7 +43,7 @@ class CreateDapodikRuangTable extends Migration
             $table->decimal('luas_finish_plafon_m2', 7, 1)->nullable();
             $table->decimal('luas_finish_dinding_m2', 7, 1)->nullable();
             $table->decimal('luas_finish_kpj_m2', 7, 1)->nullable();
-            $table->uuid('updater_id');
+            $table->uuid('updater_id')->nullable();
             $table->timestamp('last_sync')->nullable();
             $table->timestamp('create_date')->nullable();
             $table->timestamp('last_update')->nullable();

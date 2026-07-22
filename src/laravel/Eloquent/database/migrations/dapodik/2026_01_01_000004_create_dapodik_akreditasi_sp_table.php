@@ -14,13 +14,13 @@ class CreateDapodikAkreditasiSpTable extends Migration
 
         $this->createTable(function(Blueprint $table) {
             $table->uuid('akred_sp_id')->primary();
-            $table->uuid('sekolah_id');
-            $table->string('akred_sp_sk', 80);
-            $table->date('akred_sp_tmt');
-            $table->date('akred_sp_tst');
-            $table->decimal('akreditasi_id', 1, 0);
-            $table->char('la_id', 5);
-            $table->uuid('updater_id');
+            $table->uuid('sekolah_id')->nullable();
+            $table->string('akred_sp_sk', 80)->nullable();
+            $table->date('akred_sp_tmt')->nullable();
+            $table->date('akred_sp_tst')->nullable();
+            $table->decimal('akreditasi_id', 1, 0)->nullable();
+            $table->char('la_id', 5)->nullable();
+            $table->uuid('updater_id')->nullable();
             $table->timestamp('last_sync')->nullable();
             $table->timestamp('create_date')->nullable();
             $table->timestamp('last_update')->nullable();
