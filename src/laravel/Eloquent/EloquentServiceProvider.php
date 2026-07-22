@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent;
 
 use Dapodik\Laravel\Eloquent\Commands\DapodikEloquentDatabaseCreateCommand;
 use Dapodik\Laravel\Eloquent\Commands\DapodikEloquentPublishCommand;
+use Dapodik\Laravel\Eloquent\Commands\DapodikEloquentPublishMigrationCommand;
 use Dapodik\Laravel\Eloquent\Models\AkreditasiProdi;
 use Dapodik\Laravel\Eloquent\Models\AkreditasiSp;
 use Dapodik\Laravel\Eloquent\Models\AktivitasKepanitiaan;
@@ -580,6 +581,7 @@ class EloquentServiceProvider extends ServiceProvider
 
             $this->commands([
                 DapodikEloquentPublishCommand::class,
+                DapodikEloquentPublishMigrationCommand::class,
                 DapodikEloquentDatabaseCreateCommand::class,
             ]);
         }
