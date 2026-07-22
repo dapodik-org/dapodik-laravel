@@ -14,10 +14,10 @@ return new class extends Migration
 
         $this->createTable(function (Blueprint $table) {
             $table->char('kode_wilayah', 8)->primary();
-            $table->string('nama');
-            $table->bigInteger('id_level_wilayah');
+            $table->string('nama')->nullable();
+            $table->bigInteger('id_level_wilayah')->nullable();
             $table->char('mst_kode_wilayah', 8)->nullable();
-            $table->char('negara_id', 2);
+            $table->char('negara_id', 2)->nullable();
             $table->char('asal_wilayah', 8)->nullable();
             $table->char('kode_bps', 7)->nullable();
             $table->char('kode_dagri', 10)->nullable();

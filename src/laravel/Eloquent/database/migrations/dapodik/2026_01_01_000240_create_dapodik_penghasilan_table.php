@@ -14,9 +14,9 @@ return new class extends Migration
 
         $this->createTable(function (Blueprint $table) {
             $table->bigInteger('penghasilan_id')->primary();
-            $table->string('nama');
-            $table->bigInteger('batas_bawah');
-            $table->bigInteger('batas_atas');
+            $table->string('nama')->nullable();
+            $table->bigInteger('batas_bawah')->nullable();
+            $table->bigInteger('batas_atas')->nullable();
             $table->timestamp('last_sync')->nullable();
             $table->timestamp('create_date')->nullable();
             $table->timestamp('last_update')->nullable();

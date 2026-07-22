@@ -14,22 +14,22 @@ return new class extends Migration
 
         $this->createTable(function (Blueprint $table) {
             $table->uuid('riwayat_pendidikan_formal_id')->primary();
-            $table->integer('bidang_studi_id');
-            $table->decimal('jenjang_pendidikan_id', 2, 0);
+            $table->integer('bidang_studi_id')->nullable();
+            $table->decimal('jenjang_pendidikan_id', 2, 0)->nullable();
             $table->integer('gelar_akademik_id')->nullable();
-            $table->uuid('ptk_id');
-            $table->string('satuan_pendidikan_formal', 100);
+            $table->uuid('ptk_id')->nullable();
+            $table->string('satuan_pendidikan_formal', 100)->nullable();
             $table->string('fakultas', 200)->nullable();
-            $table->decimal('kependidikan', 1, 0);
-            $table->decimal('tahun_masuk', 4, 0);
+            $table->decimal('kependidikan', 1, 0)->nullable();
+            $table->decimal('tahun_masuk', 4, 0)->nullable();
             $table->decimal('tahun_lulus', 4, 0)->nullable();
-            $table->string('nim', 50);
-            $table->decimal('status_kuliah', 1, 0);
+            $table->string('nim', 50)->nullable();
+            $table->decimal('status_kuliah', 1, 0)->nullable();
             $table->decimal('semester', 2, 0)->nullable();
-            $table->decimal('ipk', 5, 2);
+            $table->decimal('ipk', 5, 2)->nullable();
             $table->uuid('prodi')->nullable();
             $table->uuid('id_reg_pd')->nullable();
-            $table->uuid('updater_id');
+            $table->uuid('updater_id')->nullable();
             $table->timestamp('last_sync')->nullable();
             $table->timestamp('create_date')->nullable();
             $table->timestamp('last_update')->nullable();

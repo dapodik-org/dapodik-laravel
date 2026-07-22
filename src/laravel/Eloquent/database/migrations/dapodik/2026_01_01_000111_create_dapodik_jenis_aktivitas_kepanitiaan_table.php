@@ -13,7 +13,7 @@ return new class extends Migration
         $this->createSchemaIfNotExist();
 
         $this->createTable(function (Blueprint $table) {
-            $table->bigInteger('id_jns_akt_pan');
+            $table->bigInteger('id_jns_akt_pan')->primary();
             $table->string('nm_jns_akt_pan');
             $table->timestamp('last_sync')->nullable();
             $table->timestamp('create_date')->nullable();

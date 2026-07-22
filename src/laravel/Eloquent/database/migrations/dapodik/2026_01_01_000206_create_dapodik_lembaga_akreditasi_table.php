@@ -15,14 +15,14 @@ return new class extends Migration
         $this->createTable(function (Blueprint $table) {
             $table->char('la_id', 5)->primary();
             $table->string('nama');
-            $table->date('la_tgl_mulai');
+            $table->date('la_tgl_mulai')->nullable();
             $table->string('la_ket')->nullable();
-            $table->string('alamat_jalan');
+            $table->string('alamat_jalan')->nullable();
             $table->decimal('rt', 2, 0)->nullable();
             $table->decimal('rw', 2, 0)->nullable();
             $table->string('nama_dusun')->nullable();
-            $table->string('desa_kelurahan');
-            $table->char('kode_wilayah', 8);
+            $table->string('desa_kelurahan')->nullable();
+            $table->char('kode_wilayah', 8)->nullable();
             $table->char('kode_pos', 5)->nullable();
             $table->decimal('lintang', 18, 12)->nullable();
             $table->decimal('bujur', 18, 12)->nullable();

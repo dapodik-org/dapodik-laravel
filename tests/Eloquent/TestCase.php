@@ -3,8 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Tests;
 
 use Dapodik\Laravel\Eloquent\EloquentServiceProvider;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\Facades\DB;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -34,7 +35,7 @@ abstract class TestCase extends OrchestraTestCase
      */
     protected function registerDoctrineTypeMappings(): void
     {
-        if (! class_exists(\Doctrine\DBAL\Types\Type::class)) {
+        if (! class_exists(Type::class)) {
             return;
         }
 
