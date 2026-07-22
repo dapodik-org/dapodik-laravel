@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.4 - 2026-07-22
+
+## What's Changed
+
+### Added
+- feat: update database schema to allow nullable fields in various tables
 ## 2.1.3 - 2026-07-21
 
 ## What's Changed
