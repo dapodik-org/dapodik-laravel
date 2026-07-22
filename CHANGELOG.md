@@ -3,6 +3,15 @@
 ## Unreleased
 
 
+## 1.0.4 - 2026-07-22
+
+## What's Changed
+
+### Added
+- feat: update migration files to make several fields nullable across various tables
+
+### Changed
+- add git rules to AGENTS.md
 ## 1.0.3 - 2026-07-21
 
 ## What's Changed
