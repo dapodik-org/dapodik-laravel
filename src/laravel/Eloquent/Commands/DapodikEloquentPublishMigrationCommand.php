@@ -120,6 +120,18 @@ class DapodikEloquentPublishMigrationCommand extends Command
             $stub
         );
 
+        $stub = str_replace(
+            '$this->changeTable(function (Blueprint $table) {',
+            "Schema::table('{$tableName}', function (Blueprint \$table) {",
+            $stub
+        );
+
+        $stub = preg_replace(
+            '/\$this->dropColumns\(([^;]+)\);/',
+            "Schema::table('{$tableName}', function (Blueprint \$table) {\n            \$table->dropColumn(\$1);\n        });",
+            $stub
+        );
+
         return $stub;
     }
 }

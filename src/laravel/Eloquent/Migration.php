@@ -48,6 +48,15 @@ abstract class Migration extends BaseMigration
         Schema::connection($this->getConnection())->dropIfExists($this->getTable());
     }
 
+    public function changeTable(\Closure $blueprint)
+    {
+        if (Schema::connection($this->getConnection())->hasTable($this->getTable())) {
+            Schema::connection($this->getConnection())->table($this->getTable(), function (Blueprint $table) use ($blueprint) {
+                $blueprint($table);
+            });
+        }
+    }
+
     public function dropColumns($columns)
     {
         $columns = (array) $columns;

@@ -16,7 +16,9 @@ function assertIsStandardLaravelMigration($content)
 }
 
 afterEach(function () {
-    $files = glob(database_path('migrations/*create_dapodik_*.php'));
+    $files = glob(database_path('migrations/*_create_dapodik_*.php'))
+        ?: [];
+    $files = array_merge($files, glob(database_path('migrations/*_add_*_to_*.php')) ?: []);
     foreach ($files as $file) {
         File::delete($file);
     }
