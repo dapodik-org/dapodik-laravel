@@ -23,6 +23,7 @@ class KesejahteraanPd extends Model
     protected function casts(): array
     {
         return [
+            'asal_data' => 'string',
             'dari_tahun' => 'decimal',
             'sampai_tahun' => 'decimal',
             'last_sync' => 'datetime',

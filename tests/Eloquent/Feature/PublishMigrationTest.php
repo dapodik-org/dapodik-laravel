@@ -19,9 +19,13 @@ class PublishMigrationTest extends TestCase
 
     protected function tearDown(): void
     {
-        $files = glob($this->migrationsPath.'/*create_dapodik_*.php');
-        foreach ($files as $file) {
-            File::delete($file);
+        $sourcePath = realpath(__DIR__.'/../../../src/laravel/Eloquent/database/migrations/dapodik');
+
+        foreach (glob($sourcePath.'/*.php') as $source) {
+            $published = $this->migrationsPath.'/'.basename($source);
+            if (is_file($published)) {
+                File::delete($published);
+            }
         }
 
         parent::tearDown();

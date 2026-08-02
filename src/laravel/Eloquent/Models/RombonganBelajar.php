@@ -27,10 +27,19 @@ class RombonganBelajar extends Model
             'moving_class' => 'decimal',
             'jenis_rombel' => 'decimal',
             'sks' => 'decimal',
+            'parent_rombongan_belajar_id' => 'string',
             'tanggal_mulai' => 'date',
             'tanggal_selesai' => 'date',
             'last_sync' => 'datetime',
         ];
+    }
+
+    /**
+     * public.rombongan_belajar → public.rombongan_belajar (parent_rombongan_belajar_id → rombongan_belajar_id).
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_rombongan_belajar_id', 'rombongan_belajar_id');
     }
 
     /**
