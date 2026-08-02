@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 1.0.6 - 2026-08-02
+
+## What's Changed
+
+### Added
+- feat: add migration files to include asal_data and parent_rombongan_belajar_id fields
 ## 1.0.5 - 2026-07-22
 
 ## What's Changed
