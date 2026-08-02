@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.7 - 2026-08-02
+
+## What's Changed
+
+### Added
+- feat: add auto_load_migrations configuration to enable automatic migration loading
 ## 2.1.6 - 2026-08-02
 
 ## What's Changed
