@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.6 - 2026-08-02
+
+## What's Changed
+
+### Added
+- feat: add changeTable method and update migration files for new columns
 ## 2.1.5 - 2026-07-22
 
 ## What's Changed
