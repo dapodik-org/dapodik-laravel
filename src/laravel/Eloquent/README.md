@@ -40,6 +40,8 @@ php artisan vendor:publish --tag="dapodik-eloquent-migrations"
 php artisan migrate
 ```
 
+> **Catatan:** Secara default, migrasi **tidak akan berjalan otomatis** jika belum di-publish. Setel `auto_load_migrations` ke `true` pada config jika Anda ingin migrasi auto-load dari package.
+
 ### Publikasi migration via command
 
 Publikasikan seluruh migration ke direktori `database/migrations/`:
@@ -164,6 +166,13 @@ return [
      * Lihat penjelasan di bawah untuk detailnya.
      */
     'exclude_tables' => [],
+
+    /*
+     * Muat migrasi otomatis dari direktori package jika belum di-publish.
+     * Set ke true agar migrasi berjalan otomatis tanpa perlu publish.
+     * Default: false — migrasi hanya berjalan setelah di-publish.
+     */
+    'auto_load_migrations' => env('DAPODIK_ELOQUENT_AUTO_LOAD_MIGRATIONS', false),
 ];
 ```
 

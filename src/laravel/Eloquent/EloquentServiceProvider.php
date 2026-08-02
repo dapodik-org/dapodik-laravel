@@ -629,7 +629,9 @@ class EloquentServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations/dapodik');
+        if (config('dapodik-eloquent.auto_load_migrations', false)) {
+            $this->loadMigrationsFrom(__DIR__.'/database/migrations/dapodik');
+        }
     }
 
     private function getExcludeTablesFromConfig()

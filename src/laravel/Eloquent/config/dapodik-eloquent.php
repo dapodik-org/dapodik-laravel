@@ -35,4 +35,10 @@ return [
         'eloquent_sync_status',
     ],
 
+    /*
+     * Muat migrasi otomatis dari direktori package jika belum di-publish.
+     * Set ke false agar migrasi tidak berjalan otomatis sebelum di-publish.
+     */
+    'auto_load_migrations' => env('DAPODIK_ELOQUENT_AUTO_LOAD_MIGRATIONS', false),
+
 ];
