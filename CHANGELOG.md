@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 1.0.7 - 2026-08-02
+
+## What's Changed
+
+### Added
+- feat: add auto-load migrations feature and update documentation
 ## 1.0.6 - 2026-08-02
 
 ## What's Changed
