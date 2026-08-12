@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisLk;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class LayananKhusus extends Model
     public function sekolah(): BelongsTo
     {
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'sekolah_id');
+    }
+
+    /**
+     * public.layanan_khusus → ref.jenis_lk (id_jenis_lk → id_jenis_lk).
+     */
+    public function jenisLk(): BelongsTo
+    {
+        return $this->belongsTo(JenisLk::class, 'id_jenis_lk', 'id_jenis_lk');
     }
 }

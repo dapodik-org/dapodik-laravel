@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKesejahteraan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class KesejahteraanPd extends Model
     public function pesertaDidik(): BelongsTo
     {
         return $this->belongsTo(PesertaDidik::class, 'peserta_didik_id', 'peserta_didik_id');
+    }
+
+    /**
+     * public.kesejahteraan_pd → ref.jenis_kesejahteraan (jenis_kesejahteraan_id → jenis_kesejahteraan_id).
+     */
+    public function jenisKesejahteraan(): BelongsTo
+    {
+        return $this->belongsTo(JenisKesejahteraan::class, 'jenis_kesejahteraan_id', 'jenis_kesejahteraan_id');
     }
 }

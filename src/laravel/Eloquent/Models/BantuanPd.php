@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisBantuan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class BantuanPd extends Model
     public function anggotaRombel(): BelongsTo
     {
         return $this->belongsTo(AnggotaRombel::class, 'anggota_rombel_id', 'anggota_rombel_id');
+    }
+
+    /**
+     * public.bantuan_pd → ref.jenis_bantuan (jenis_bantuan_id → jenis_bantuan_id).
+     */
+    public function jenisBantuan(): BelongsTo
+    {
+        return $this->belongsTo(JenisBantuan::class, 'jenis_bantuan_id', 'jenis_bantuan_id');
     }
 }

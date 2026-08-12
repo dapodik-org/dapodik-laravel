@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\EkstraKurikuler;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class KelasEkskul extends Model
     public function rombonganBelajar(): BelongsTo
     {
         return $this->belongsTo(RombonganBelajar::class, 'rombongan_belajar_id', 'rombongan_belajar_id');
+    }
+
+    /**
+     * public.kelas_ekskul → ref.ekstra_kurikuler (id_ekskul → id_ekskul).
+     */
+    public function ekskul(): BelongsTo
+    {
+        return $this->belongsTo(EkstraKurikuler::class, 'id_ekskul', 'id_ekskul');
     }
 }

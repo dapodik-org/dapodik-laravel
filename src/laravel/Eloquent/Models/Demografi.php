@@ -3,7 +3,10 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah;
+use Dapodik\Laravel\Eloquent\Models\Ref\TahunAjaran;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -39,5 +42,21 @@ class Demografi extends Model
     public function vldDemografis(): HasMany
     {
         return $this->hasMany(VldDemografi::class, 'demografi_id', 'demografi_id');
+    }
+
+    /**
+     * public.demografi → ref.mst_wilayah (kode_wilayah → kode_wilayah).
+     */
+    public function kodeWilayah(): BelongsTo
+    {
+        return $this->belongsTo(MstWilayah::class, 'kode_wilayah', 'kode_wilayah');
+    }
+
+    /**
+     * public.demografi → ref.tahun_ajaran (tahun_ajaran_id → tahun_ajaran_id).
+     */
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id', 'tahun_ajaran_id');
     }
 }

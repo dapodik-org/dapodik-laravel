@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisAktivitasKepanitiaan;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +37,21 @@ class AktivitasKepanitiaan extends Model
     public function panitia(): BelongsTo
     {
         return $this->belongsTo(Kepanitiaan::class, 'id_panitia', 'id_panitia');
+    }
+
+    /**
+     * public.aktivitas_kepanitiaan → ref.jenis_aktivitas_kepanitiaan (id_jns_akt_pan → id_jns_akt_pan).
+     */
+    public function jnsAktPan(): BelongsTo
+    {
+        return $this->belongsTo(JenisAktivitasKepanitiaan::class, 'id_jns_akt_pan', 'id_jns_akt_pan');
+    }
+
+    /**
+     * public.aktivitas_kepanitiaan → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
     }
 }

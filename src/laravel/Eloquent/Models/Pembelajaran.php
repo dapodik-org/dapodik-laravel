@@ -3,6 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\MataPelajaran;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
+use Dapodik\Laravel\Eloquent\Models\Ref\StatusDiKurikulum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -106,4 +109,28 @@ class Pembelajaran extends Model
     /*
      * public.pembelajaran ← public.vld_pembelajaran (pembelajaran_id → pembelajaran_id)
      */
+
+    /**
+     * public.pembelajaran → ref.status_di_kurikulum (status_di_kurikulum → status_di_kurikulum).
+     */
+    public function statusDiKurikulum(): BelongsTo
+    {
+        return $this->belongsTo(StatusDiKurikulum::class, 'status_di_kurikulum', 'status_di_kurikulum');
+    }
+
+    /**
+     * public.pembelajaran → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.pembelajaran → ref.mata_pelajaran (mata_pelajaran_id → mata_pelajaran_id).
+     */
+    public function mataPelajaran(): BelongsTo
+    {
+        return $this->belongsTo(MataPelajaran::class, 'mata_pelajaran_id', 'mata_pelajaran_id');
+    }
 }

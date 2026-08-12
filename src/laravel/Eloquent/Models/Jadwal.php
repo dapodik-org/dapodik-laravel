@@ -47,11 +47,11 @@ class Jadwal extends Model
     }
 
     /**
-     * public.jadwal → public.sekolah_longitudinal (sekolah_id → semester_id).
+     * public.jadwal → public.sekolah_longitudinal (sekolah_id → sekolah_id).
      */
     public function sekolah(): BelongsTo
     {
-        return $this->belongsTo(SekolahLongitudinal::class, 'sekolah_id', 'semester_id');
+        return $this->belongsTo(SekolahLongitudinal::class, 'sekolah_id', 'sekolah_id');
     }
 
     /**
@@ -207,10 +207,10 @@ class Jadwal extends Model
     }
 
     /**
-     * public.jadwal → public.sekolah_longitudinal (semester_id → sekolah_id).
+     * public.jadwal → public.sekolah_longitudinal (semester_id → semester_id).
      */
     public function semester(): BelongsTo
     {
-        return $this->belongsTo(SekolahLongitudinal::class, 'semester_id', 'sekolah_id');
+        return $this->belongsTo(SekolahLongitudinal::class, 'semester_id', 'semester_id');
     }
 }

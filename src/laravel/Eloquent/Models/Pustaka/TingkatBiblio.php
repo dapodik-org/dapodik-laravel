@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models\Pustaka;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\TingkatPendidikan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class TingkatBiblio extends Model
     public function biblio(): BelongsTo
     {
         return $this->belongsTo(Biblio::class, 'id_biblio', 'id_biblio');
+    }
+
+    /**
+     * pustaka.tingkat_biblio → ref.tingkat_pendidikan (tingkat_pendidikan_id → tingkat_pendidikan_id).
+     */
+    public function tingkatPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(TingkatPendidikan::class, 'tingkat_pendidikan_id', 'tingkat_pendidikan_id');
     }
 }

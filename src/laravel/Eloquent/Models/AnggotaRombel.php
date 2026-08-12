@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisPendaftaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,5 +51,13 @@ class AnggotaRombel extends Model
     public function bantuanPds(): HasMany
     {
         return $this->hasMany(BantuanPd::class, 'anggota_rombel_id', 'anggota_rombel_id');
+    }
+
+    /**
+     * public.anggota_rombel → ref.jenis_pendaftaran (jenis_pendaftaran_id → jenis_pendaftaran_id).
+     */
+    public function jenisPendaftaran(): BelongsTo
+    {
+        return $this->belongsTo(JenisPendaftaran::class, 'jenis_pendaftaran_id', 'jenis_pendaftaran_id');
     }
 }

@@ -3,6 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisHapusBuku;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisSarana;
+use Dapodik\Laravel\Eloquent\Models\Ref\StatusKepemilikanSarpras;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -60,5 +63,29 @@ class Angkutan extends Model
     public function vldAngkutans(): HasMany
     {
         return $this->hasMany(VldAngkutan::class, 'id_angkutan', 'id_angkutan');
+    }
+
+    /**
+     * public.angkutan → ref.jenis_hapus_buku (id_hapus_buku → id_hapus_buku).
+     */
+    public function hapusBuku(): BelongsTo
+    {
+        return $this->belongsTo(JenisHapusBuku::class, 'id_hapus_buku', 'id_hapus_buku');
+    }
+
+    /**
+     * public.angkutan → ref.status_kepemilikan_sarpras (kepemilikan_sarpras_id → kepemilikan_sarpras_id).
+     */
+    public function kepemilikanSarpras(): BelongsTo
+    {
+        return $this->belongsTo(StatusKepemilikanSarpras::class, 'kepemilikan_sarpras_id', 'kepemilikan_sarpras_id');
+    }
+
+    /**
+     * public.angkutan → ref.jenis_sarana (jenis_sarana_id → jenis_sarana_id).
+     */
+    public function jenisSarana(): BelongsTo
+    {
+        return $this->belongsTo(JenisSarana::class, 'jenis_sarana_id', 'jenis_sarana_id');
     }
 }

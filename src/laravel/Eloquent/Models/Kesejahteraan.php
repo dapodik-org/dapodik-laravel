@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKesejahteraan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -45,5 +46,13 @@ class Kesejahteraan extends Model
     public function vldKesejahteraans(): HasMany
     {
         return $this->hasMany(VldKesejahteraan::class, 'kesejahteraan_id', 'kesejahteraan_id');
+    }
+
+    /**
+     * public.kesejahteraan → ref.jenis_kesejahteraan (jenis_kesejahteraan_id → jenis_kesejahteraan_id).
+     */
+    public function jenisKesejahteraan(): BelongsTo
+    {
+        return $this->belongsTo(JenisKesejahteraan::class, 'jenis_kesejahteraan_id', 'jenis_kesejahteraan_id');
     }
 }

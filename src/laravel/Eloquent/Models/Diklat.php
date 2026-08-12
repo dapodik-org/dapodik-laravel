@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisDiklat;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class Diklat extends Model
     public function ptk(): BelongsTo
     {
         return $this->belongsTo(Ptk::class, 'ptk_id', 'ptk_id');
+    }
+
+    /**
+     * public.diklat → ref.jenis_diklat (jenis_diklat_id → jenis_diklat_id).
+     */
+    public function jenisDiklat(): BelongsTo
+    {
+        return $this->belongsTo(JenisDiklat::class, 'jenis_diklat_id', 'jenis_diklat_id');
     }
 }

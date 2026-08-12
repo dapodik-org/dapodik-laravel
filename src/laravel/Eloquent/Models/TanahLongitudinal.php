@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\TahunAjaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class TanahLongitudinal extends Model
     public function tanah(): BelongsTo
     {
         return $this->belongsTo(Tanah::class, 'id_tanah', 'id_tanah');
+    }
+
+    /**
+     * public.tanah_longitudinal → ref.tahun_ajaran (tahun_ajaran_id → tahun_ajaran_id).
+     */
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id', 'tahun_ajaran_id');
     }
 }

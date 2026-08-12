@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\PangkatGolongan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -47,5 +48,13 @@ class Inpassing extends Model
     public function vldInpassings(): HasMany
     {
         return $this->hasMany(VldInpassing::class, 'inpassing_id', 'inpassing_id');
+    }
+
+    /**
+     * public.inpassing → ref.pangkat_golongan (pangkat_golongan_id → pangkat_golongan_id).
+     */
+    public function pangkatGolongan(): BelongsTo
+    {
+        return $this->belongsTo(PangkatGolongan::class, 'pangkat_golongan_id', 'pangkat_golongan_id');
     }
 }

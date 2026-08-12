@@ -29,18 +29,18 @@ class SyncPrimer extends Model
     }
 
     /**
-     * public.sync_primer → public.table_sync_log (table_name → id_instalasi).
+     * public.sync_primer → public.table_sync_log (table_name → table_name).
      */
     public function tableName(): BelongsTo
     {
-        return $this->belongsTo(TableSyncLog::class, 'table_name', 'id_instalasi');
+        return $this->belongsTo(TableSyncLog::class, 'table_name', 'table_name');
     }
 
     /**
-     * public.sync_primer → public.table_sync_log (id_instalasi → table_name).
+     * public.sync_primer → public.table_sync_log (id_instalasi → id_instalasi).
      */
     public function instalasi(): BelongsTo
     {
-        return $this->belongsTo(TableSyncLog::class, 'id_instalasi', 'table_name');
+        return $this->belongsTo(TableSyncLog::class, 'id_instalasi', 'id_instalasi');
     }
 }

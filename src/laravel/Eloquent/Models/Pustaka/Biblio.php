@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models\Pustaka;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Negara;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -84,5 +85,13 @@ class Biblio extends Model
     public function tingkatBiblios(): HasMany
     {
         return $this->hasMany(TingkatBiblio::class, 'id_biblio', 'id_biblio');
+    }
+
+    /**
+     * pustaka.biblio → ref.negara (negara_id → negara_id).
+     */
+    public function negara(): BelongsTo
+    {
+        return $this->belongsTo(Negara::class, 'negara_id', 'negara_id');
     }
 }

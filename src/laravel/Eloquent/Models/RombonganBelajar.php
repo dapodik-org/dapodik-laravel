@@ -3,6 +3,11 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisRombel;
+use Dapodik\Laravel\Eloquent\Models\Ref\KebutuhanKhusus;
+use Dapodik\Laravel\Eloquent\Models\Ref\Kurikulum;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
+use Dapodik\Laravel\Eloquent\Models\Ref\TingkatPendidikan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -104,5 +109,45 @@ class RombonganBelajar extends Model
     public function vldRombels(): HasMany
     {
         return $this->hasMany(VldRombel::class, 'rombongan_belajar_id', 'rombongan_belajar_id');
+    }
+
+    /**
+     * public.rombongan_belajar → ref.jenis_rombel (jenis_rombel → jenis_rombel).
+     */
+    public function jenisRombel(): BelongsTo
+    {
+        return $this->belongsTo(JenisRombel::class, 'jenis_rombel', 'jenis_rombel');
+    }
+
+    /**
+     * public.rombongan_belajar → ref.kebutuhan_khusus (kebutuhan_khusus_id → kebutuhan_khusus_id).
+     */
+    public function kebutuhanKhusus(): BelongsTo
+    {
+        return $this->belongsTo(KebutuhanKhusus::class, 'kebutuhan_khusus_id', 'kebutuhan_khusus_id');
+    }
+
+    /**
+     * public.rombongan_belajar → ref.kurikulum (kurikulum_id → kurikulum_id).
+     */
+    public function kurikulum(): BelongsTo
+    {
+        return $this->belongsTo(Kurikulum::class, 'kurikulum_id', 'kurikulum_id');
+    }
+
+    /**
+     * public.rombongan_belajar → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.rombongan_belajar → ref.tingkat_pendidikan (tingkat_pendidikan_id → tingkat_pendidikan_id).
+     */
+    public function tingkatPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(TingkatPendidikan::class, 'tingkat_pendidikan_id', 'tingkat_pendidikan_id');
     }
 }

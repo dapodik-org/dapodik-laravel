@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\PangkatGolongan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,5 +39,13 @@ class RiwayatGajiBerkala extends Model
     public function ptk(): BelongsTo
     {
         return $this->belongsTo(Ptk::class, 'ptk_id', 'ptk_id');
+    }
+
+    /**
+     * public.riwayat_gaji_berkala → ref.pangkat_golongan (pangkat_golongan_id → pangkat_golongan_id).
+     */
+    public function pangkatGolongan(): BelongsTo
+    {
+        return $this->belongsTo(PangkatGolongan::class, 'pangkat_golongan_id', 'pangkat_golongan_id');
     }
 }

@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenjangPendidikan;
+use Dapodik\Laravel\Eloquent\Models\Ref\StatusAnak;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -44,5 +46,21 @@ class Anak extends Model
     public function vldAnaks(): HasMany
     {
         return $this->hasMany(VldAnak::class, 'anak_id', 'anak_id');
+    }
+
+    /**
+     * public.anak → ref.status_anak (status_anak_id → status_anak_id).
+     */
+    public function statusAnak(): BelongsTo
+    {
+        return $this->belongsTo(StatusAnak::class, 'status_anak_id', 'status_anak_id');
+    }
+
+    /**
+     * public.anak → ref.jenjang_pendidikan (jenjang_pendidikan_id → jenjang_pendidikan_id).
+     */
+    public function jenjangPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(JenjangPendidikan::class, 'jenjang_pendidikan_id', 'jenjang_pendidikan_id');
     }
 }

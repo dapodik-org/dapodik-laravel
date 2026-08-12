@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKs;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -77,5 +78,13 @@ class Mou extends Model
     public function vldMous(): HasMany
     {
         return $this->hasMany(VldMou::class, 'mou_id', 'mou_id');
+    }
+
+    /**
+     * public.mou → ref.jenis_ks (id_jns_ks → id_jns_ks).
+     */
+    public function jnsKs(): BelongsTo
+    {
+        return $this->belongsTo(JenisKs::class, 'id_jns_ks', 'id_jns_ks');
     }
 }

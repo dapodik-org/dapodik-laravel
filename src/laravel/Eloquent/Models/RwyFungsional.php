@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JabatanFungsional;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,5 +44,13 @@ class RwyFungsional extends Model
     public function vldRwyFungsionals(): HasMany
     {
         return $this->hasMany(VldRwyFungsional::class, 'riwayat_fungsional_id', 'riwayat_fungsional_id');
+    }
+
+    /**
+     * public.rwy_fungsional → ref.jabatan_fungsional (jabatan_fungsional_id → jabatan_fungsional_id).
+     */
+    public function jabatanFungsional(): BelongsTo
+    {
+        return $this->belongsTo(JabatanFungsional::class, 'jabatan_fungsional_id', 'jabatan_fungsional_id');
     }
 }

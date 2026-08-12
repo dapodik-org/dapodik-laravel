@@ -3,7 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models\Nilai;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\AnggotaRombel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NilaiSmt extends Model
@@ -26,5 +28,13 @@ class NilaiSmt extends Model
         return [
             'last_sync' => 'datetime',
         ];
+    }
+
+    /**
+     * nilai.nilai_smt → public.anggota_rombel (anggota_rombel_id → anggota_rombel_id).
+     */
+    public function anggotaRombel(): BelongsTo
+    {
+        return $this->belongsTo(AnggotaRombel::class, 'anggota_rombel_id', 'anggota_rombel_id');
     }
 }

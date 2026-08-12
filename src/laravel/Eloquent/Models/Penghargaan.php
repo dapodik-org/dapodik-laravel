@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisPenghargaan;
+use Dapodik\Laravel\Eloquent\Models\Ref\TingkatPenghargaan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,5 +45,21 @@ class Penghargaan extends Model
     public function vldPenghargaans(): HasMany
     {
         return $this->hasMany(VldPenghargaan::class, 'penghargaan_id', 'penghargaan_id');
+    }
+
+    /**
+     * public.penghargaan → ref.jenis_penghargaan (jenis_penghargaan_id → jenis_penghargaan_id).
+     */
+    public function jenisPenghargaan(): BelongsTo
+    {
+        return $this->belongsTo(JenisPenghargaan::class, 'jenis_penghargaan_id', 'jenis_penghargaan_id');
+    }
+
+    /**
+     * public.penghargaan → ref.tingkat_penghargaan (tingkat_penghargaan_id → tingkat_penghargaan_id).
+     */
+    public function tingkatPenghargaan(): BelongsTo
+    {
+        return $this->belongsTo(TingkatPenghargaan::class, 'tingkat_penghargaan_id', 'tingkat_penghargaan_id');
     }
 }

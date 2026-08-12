@@ -4,6 +4,9 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Blob\LargeObject;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKerusakan;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -53,5 +56,29 @@ class RuangLongitudinal extends Model
     public function ruang(): BelongsTo
     {
         return $this->belongsTo(Ruang::class, 'id_ruang', 'id_ruang');
+    }
+
+    /**
+     * public.ruang_longitudinal → ref.jenis_kerusakan (kerusakan_id → kerusakan_id).
+     */
+    public function kerusakan(): BelongsTo
+    {
+        return $this->belongsTo(JenisKerusakan::class, 'kerusakan_id', 'kerusakan_id');
+    }
+
+    /**
+     * public.ruang_longitudinal → blob.large_object (blob_id → blob_id).
+     */
+    public function blob(): BelongsTo
+    {
+        return $this->belongsTo(LargeObject::class, 'blob_id', 'blob_id');
+    }
+
+    /**
+     * public.ruang_longitudinal → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
     }
 }

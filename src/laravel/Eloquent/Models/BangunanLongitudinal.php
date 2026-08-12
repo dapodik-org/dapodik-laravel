@@ -4,6 +4,8 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKerusakan;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,5 +46,21 @@ class BangunanLongitudinal extends Model
     public function bangunan(): BelongsTo
     {
         return $this->belongsTo(Bangunan::class, 'id_bangunan', 'id_bangunan');
+    }
+
+    /**
+     * public.bangunan_longitudinal → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.bangunan_longitudinal → ref.jenis_kerusakan (kerusakan_id → kerusakan_id).
+     */
+    public function kerusakan(): BelongsTo
+    {
+        return $this->belongsTo(JenisKerusakan::class, 'kerusakan_id', 'kerusakan_id');
     }
 }

@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\TableSync;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -50,5 +51,13 @@ class TableSyncLog extends Model
     public function syncPrimers(): HasMany
     {
         return $this->hasMany(SyncPrimer::class, 'id_instalasi', 'id_instalasi');
+    }
+
+    /**
+     * public.table_sync_log → ref.table_sync (table_name → table_name).
+     */
+    public function tableName(): BelongsTo
+    {
+        return $this->belongsTo(TableSync::class, 'table_name', 'table_name');
     }
 }

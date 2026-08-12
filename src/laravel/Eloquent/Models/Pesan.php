@@ -3,7 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisPesan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pesan extends Model
@@ -24,5 +26,13 @@ class Pesan extends Model
         return [
             'status_pesan' => 'integer',
         ];
+    }
+
+    /**
+     * public.pesan → ref.jenis_pesan (jenis_pesan_id → jenis_pesan_id).
+     */
+    public function jenisPesan(): BelongsTo
+    {
+        return $this->belongsTo(JenisPesan::class, 'jenis_pesan_id', 'jenis_pesan_id');
     }
 }

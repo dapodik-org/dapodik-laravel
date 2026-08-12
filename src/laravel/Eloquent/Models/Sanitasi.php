@@ -4,6 +4,8 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
+use Dapodik\Laravel\Eloquent\Models\Ref\SumberAir;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -100,5 +102,29 @@ class Sanitasi extends Model
     public function sekolah(): BelongsTo
     {
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'sekolah_id');
+    }
+
+    /**
+     * public.sanitasi → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.sanitasi → ref.sumber_air (sumber_air_id → sumber_air_id).
+     */
+    public function sumberAir(): BelongsTo
+    {
+        return $this->belongsTo(SumberAir::class, 'sumber_air_id', 'sumber_air_id');
+    }
+
+    /**
+     * public.sanitasi → ref.sumber_air (sumber_air_minum_id → sumber_air_id).
+     */
+    public function sumberAirMinum(): BelongsTo
+    {
+        return $this->belongsTo(SumberAir::class, 'sumber_air_minum_id', 'sumber_air_id');
     }
 }

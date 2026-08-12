@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JabatanTugasPtk;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -61,5 +62,13 @@ class TugasTambahan extends Model
     public function vldTugasTambahans(): HasMany
     {
         return $this->hasMany(VldTugasTambahan::class, 'ptk_tugas_tambahan_id', 'ptk_tugas_tambahan_id');
+    }
+
+    /**
+     * public.tugas_tambahan → ref.jabatan_tugas_ptk (jabatan_ptk_id → jabatan_ptk_id).
+     */
+    public function jabatanPtk(): BelongsTo
+    {
+        return $this->belongsTo(JabatanTugasPtk::class, 'jabatan_ptk_id', 'jabatan_ptk_id');
     }
 }
