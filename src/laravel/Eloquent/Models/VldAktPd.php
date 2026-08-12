@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class VldAktPd extends Model
     public function aktPd(): BelongsTo
     {
         return $this->belongsTo(AktPd::class, 'id_akt_pd', 'id_akt_pd');
+    }
+
+    /**
+     * public.vld_akt_pd → ref.errortype (idtype → idtype).
+     */
+    public function idtype(): BelongsTo
+    {
+        return $this->belongsTo(Errortype::class, 'idtype', 'idtype');
     }
 }

@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisTest;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -49,5 +50,13 @@ class NilaiTest extends Model
     public function vldNilaiTests(): HasMany
     {
         return $this->hasMany(VldNilaiTest::class, 'nilai_test_id', 'nilai_test_id');
+    }
+
+    /**
+     * public.nilai_test → ref.jenis_test (jenis_test_id → jenis_test_id).
+     */
+    public function jenisTest(): BelongsTo
+    {
+        return $this->belongsTo(JenisTest::class, 'jenis_test_id', 'jenis_test_id');
     }
 }

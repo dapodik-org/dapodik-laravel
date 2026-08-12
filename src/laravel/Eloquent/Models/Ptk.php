@@ -3,7 +3,22 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Blob\LargeObject;
+use Dapodik\Laravel\Eloquent\Models\Ref\Agama;
+use Dapodik\Laravel\Eloquent\Models\Ref\Bank;
+use Dapodik\Laravel\Eloquent\Models\Ref\BidangStudi;
+use Dapodik\Laravel\Eloquent\Models\Ref\KeahlianLaboratorium;
+use Dapodik\Laravel\Eloquent\Models\Ref\KebutuhanKhusus;
+use Dapodik\Laravel\Eloquent\Models\Ref\LembagaPengangkat;
+use Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah;
+use Dapodik\Laravel\Eloquent\Models\Ref\Negara;
+use Dapodik\Laravel\Eloquent\Models\Ref\PangkatGolongan;
+use Dapodik\Laravel\Eloquent\Models\Ref\Pekerjaan;
+use Dapodik\Laravel\Eloquent\Models\Ref\StatusKeaktifanPegawai;
+use Dapodik\Laravel\Eloquent\Models\Ref\StatusKepegawaian;
+use Dapodik\Laravel\Eloquent\Models\Ref\SumberGaji;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -286,5 +301,125 @@ class Ptk extends Model
     public function vldPtks(): HasMany
     {
         return $this->hasMany(VldPtk::class, 'ptk_id', 'ptk_id');
+    }
+
+    /**
+     * public.ptk → ref.negara (kewarganegaraan → negara_id).
+     */
+    public function kewarganegaraan(): BelongsTo
+    {
+        return $this->belongsTo(Negara::class, 'kewarganegaraan', 'negara_id');
+    }
+
+    /**
+     * public.ptk → ref.bank (id_bank → id_bank).
+     */
+    public function bank(): BelongsTo
+    {
+        return $this->belongsTo(Bank::class, 'id_bank', 'id_bank');
+    }
+
+    /**
+     * public.ptk → blob.large_object (blob_id → blob_id).
+     */
+    public function blob(): BelongsTo
+    {
+        return $this->belongsTo(LargeObject::class, 'blob_id', 'blob_id');
+    }
+
+    /**
+     * public.ptk → ref.mst_wilayah (kode_wilayah → kode_wilayah).
+     */
+    public function kodeWilayah(): BelongsTo
+    {
+        return $this->belongsTo(MstWilayah::class, 'kode_wilayah', 'kode_wilayah');
+    }
+
+    /**
+     * public.ptk → ref.kebutuhan_khusus (kebutuhan_khusus_id → kebutuhan_khusus_id).
+     */
+    public function kebutuhanKhusus(): BelongsTo
+    {
+        return $this->belongsTo(KebutuhanKhusus::class, 'kebutuhan_khusus_id', 'kebutuhan_khusus_id');
+    }
+
+    /**
+     * public.ptk → ref.kebutuhan_khusus (mampu_handle_kk → kebutuhan_khusus_id).
+     */
+    public function mampuHandleKk(): BelongsTo
+    {
+        return $this->belongsTo(KebutuhanKhusus::class, 'mampu_handle_kk', 'kebutuhan_khusus_id');
+    }
+
+    /**
+     * public.ptk → ref.lembaga_pengangkat (lembaga_pengangkat_id → lembaga_pengangkat_id).
+     */
+    public function lembagaPengangkat(): BelongsTo
+    {
+        return $this->belongsTo(LembagaPengangkat::class, 'lembaga_pengangkat_id', 'lembaga_pengangkat_id');
+    }
+
+    /**
+     * public.ptk → ref.status_keaktifan_pegawai (status_keaktifan_id → status_keaktifan_id).
+     */
+    public function statusKeaktifan(): BelongsTo
+    {
+        return $this->belongsTo(StatusKeaktifanPegawai::class, 'status_keaktifan_id', 'status_keaktifan_id');
+    }
+
+    /**
+     * public.ptk → ref.sumber_gaji (sumber_gaji_id → sumber_gaji_id).
+     */
+    public function sumberGaji(): BelongsTo
+    {
+        return $this->belongsTo(SumberGaji::class, 'sumber_gaji_id', 'sumber_gaji_id');
+    }
+
+    /**
+     * public.ptk → ref.pangkat_golongan (pangkat_golongan_id → pangkat_golongan_id).
+     */
+    public function pangkatGolongan(): BelongsTo
+    {
+        return $this->belongsTo(PangkatGolongan::class, 'pangkat_golongan_id', 'pangkat_golongan_id');
+    }
+
+    /**
+     * public.ptk → ref.bidang_studi (pengawas_bidang_studi_id → bidang_studi_id).
+     */
+    public function pengawasBidangStudi(): BelongsTo
+    {
+        return $this->belongsTo(BidangStudi::class, 'pengawas_bidang_studi_id', 'bidang_studi_id');
+    }
+
+    /**
+     * public.ptk → ref.keahlian_laboratorium (keahlian_laboratorium_id → keahlian_laboratorium_id).
+     */
+    public function keahlianLaboratorium(): BelongsTo
+    {
+        return $this->belongsTo(KeahlianLaboratorium::class, 'keahlian_laboratorium_id', 'keahlian_laboratorium_id');
+    }
+
+    /**
+     * public.ptk → ref.pekerjaan (pekerjaan_suami_istri → pekerjaan_id).
+     */
+    public function pekerjaanSuamiIstri(): BelongsTo
+    {
+        return $this->belongsTo(Pekerjaan::class, 'pekerjaan_suami_istri', 'pekerjaan_id');
+    }
+
+    /**
+     * public.ptk → ref.agama (agama_id → agama_id).
+     */
+    public function agama(): BelongsTo
+    {
+        return $this->belongsTo(Agama::class, 'agama_id', 'agama_id');
+    }
+
+    /**
+     * public.ptk → ref.status_kepegawaian (status_kepegawaian_id → status_kepegawaian_id).
+     */
+    public function statusKepegawaian(): BelongsTo
+    {
+        return $this->belongsTo(StatusKepegawaian::class, 'status_kepegawaian_id', 'status_kepegawaian_id');
     }
 }

@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JabatanTugasPtk;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,5 +44,13 @@ class RwyStruktural extends Model
     public function vldRwyStrukturals(): HasMany
     {
         return $this->hasMany(VldRwyStruktural::class, 'riwayat_struktural_id', 'riwayat_struktural_id');
+    }
+
+    /**
+     * public.rwy_struktural → ref.jabatan_tugas_ptk (jabatan_ptk_id → jabatan_ptk_id).
+     */
+    public function jabatanPtk(): BelongsTo
+    {
+        return $this->belongsTo(JabatanTugasPtk::class, 'jabatan_ptk_id', 'jabatan_ptk_id');
     }
 }

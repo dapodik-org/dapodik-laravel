@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class JurSpLong extends Model
     public function jurusanSp(): BelongsTo
     {
         return $this->belongsTo(JurusanSp::class, 'jurusan_sp_id', 'jurusan_sp_id');
+    }
+
+    /**
+     * public.jur_sp_long → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
     }
 }

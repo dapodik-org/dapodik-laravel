@@ -3,7 +3,10 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisLembaga;
+use Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -61,5 +64,21 @@ class LembagaNonSekolah extends Model
     public function vldNonsekolahs(): HasMany
     {
         return $this->hasMany(VldNonsekolah::class, 'lembaga_id', 'lembaga_id');
+    }
+
+    /**
+     * public.lembaga_non_sekolah → ref.mst_wilayah (kode_wilayah → kode_wilayah).
+     */
+    public function kodeWilayah(): BelongsTo
+    {
+        return $this->belongsTo(MstWilayah::class, 'kode_wilayah', 'kode_wilayah');
+    }
+
+    /**
+     * public.lembaga_non_sekolah → ref.jenis_lembaga (jenis_lembaga_id → jenis_lembaga_id).
+     */
+    public function jenisLembaga(): BelongsTo
+    {
+        return $this->belongsTo(JenisLembaga::class, 'jenis_lembaga_id', 'jenis_lembaga_id');
     }
 }

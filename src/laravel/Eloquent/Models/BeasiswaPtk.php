@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisBeasiswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -45,5 +46,13 @@ class BeasiswaPtk extends Model
     public function vldBeaPtks(): HasMany
     {
         return $this->hasMany(VldBeaPtk::class, 'beasiswa_ptk_id', 'beasiswa_ptk_id');
+    }
+
+    /**
+     * public.beasiswa_ptk → ref.jenis_beasiswa (jenis_beasiswa_id → jenis_beasiswa_id).
+     */
+    public function jenisBeasiswa(): BelongsTo
+    {
+        return $this->belongsTo(JenisBeasiswa::class, 'jenis_beasiswa_id', 'jenis_beasiswa_id');
     }
 }

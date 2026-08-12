@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class VldRombel extends Model
     public function rombonganBelajar(): BelongsTo
     {
         return $this->belongsTo(RombonganBelajar::class, 'rombongan_belajar_id', 'rombongan_belajar_id');
+    }
+
+    /**
+     * public.vld_rombel → ref.errortype (idtype → idtype).
+     */
+    public function idtype(): BelongsTo
+    {
+        return $this->belongsTo(Errortype::class, 'idtype', 'idtype');
     }
 }

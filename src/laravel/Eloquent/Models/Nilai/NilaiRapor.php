@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models\Nilai;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\AnggotaRombel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class NilaiRapor extends Model
     public function evaluasi(): BelongsTo
     {
         return $this->belongsTo(MatevRapor::class, 'id_evaluasi', 'id_evaluasi');
+    }
+
+    /**
+     * nilai.nilai_rapor → public.anggota_rombel (anggota_rombel_id → anggota_rombel_id).
+     */
+    public function anggotaRombel(): BelongsTo
+    {
+        return $this->belongsTo(AnggotaRombel::class, 'anggota_rombel_id', 'anggota_rombel_id');
     }
 }

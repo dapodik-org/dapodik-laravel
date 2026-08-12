@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Akreditasi;
+use Dapodik\Laravel\Eloquent\Models\Ref\LembagaAkreditasi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +37,21 @@ class AkreditasiProdi extends Model
     public function jurusanSp(): BelongsTo
     {
         return $this->belongsTo(JurusanSp::class, 'jurusan_sp_id', 'jurusan_sp_id');
+    }
+
+    /**
+     * public.akreditasi_prodi → ref.lembaga_akreditasi (la_id → la_id).
+     */
+    public function la(): BelongsTo
+    {
+        return $this->belongsTo(LembagaAkreditasi::class, 'la_id', 'la_id');
+    }
+
+    /**
+     * public.akreditasi_prodi → ref.akreditasi (akreditasi_id → akreditasi_id).
+     */
+    public function akreditasi(): BelongsTo
+    {
+        return $this->belongsTo(Akreditasi::class, 'akreditasi_id', 'akreditasi_id');
     }
 }

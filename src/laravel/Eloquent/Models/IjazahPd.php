@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisIjazah;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,5 +35,13 @@ class IjazahPd extends Model
     public function registrasi(): BelongsTo
     {
         return $this->belongsTo(RegistrasiPesertaDidik::class, 'registrasi_id', 'registrasi_id');
+    }
+
+    /**
+     * public.ijazah_pd → ref.jenis_ijazah (jenis_ijazah_id → jenis_ijazah_id).
+     */
+    public function jenisIjazah(): BelongsTo
+    {
+        return $this->belongsTo(JenisIjazah::class, 'jenis_ijazah_id', 'jenis_ijazah_id');
     }
 }

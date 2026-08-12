@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisAktPd;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -63,5 +64,13 @@ class AktPd extends Model
     public function vldAktPds(): HasMany
     {
         return $this->hasMany(VldAktPd::class, 'id_akt_pd', 'id_akt_pd');
+    }
+
+    /**
+     * public.akt_pd → ref.jenis_akt_pd (id_jns_akt_pd → id_jns_akt_pd).
+     */
+    public function jnsAktPd(): BelongsTo
+    {
+        return $this->belongsTo(JenisAktPd::class, 'id_jns_akt_pd', 'id_jns_akt_pd');
     }
 }

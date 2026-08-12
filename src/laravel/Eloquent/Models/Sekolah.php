@@ -3,6 +3,10 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\BentukPendidikan;
+use Dapodik\Laravel\Eloquent\Models\Ref\KebutuhanKhusus;
+use Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah;
+use Dapodik\Laravel\Eloquent\Models\Ref\StatusKepemilikan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -317,5 +321,37 @@ class Sekolah extends Model
     public function vldSekolahs(): HasMany
     {
         return $this->hasMany(VldSekolah::class, 'sekolah_id', 'sekolah_id');
+    }
+
+    /**
+     * public.sekolah → ref.mst_wilayah (kode_wilayah → kode_wilayah).
+     */
+    public function kodeWilayah(): BelongsTo
+    {
+        return $this->belongsTo(MstWilayah::class, 'kode_wilayah', 'kode_wilayah');
+    }
+
+    /**
+     * public.sekolah → ref.kebutuhan_khusus (kebutuhan_khusus_id → kebutuhan_khusus_id).
+     */
+    public function kebutuhanKhusus(): BelongsTo
+    {
+        return $this->belongsTo(KebutuhanKhusus::class, 'kebutuhan_khusus_id', 'kebutuhan_khusus_id');
+    }
+
+    /**
+     * public.sekolah → ref.bentuk_pendidikan (bentuk_pendidikan_id → bentuk_pendidikan_id).
+     */
+    public function bentukPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(BentukPendidikan::class, 'bentuk_pendidikan_id', 'bentuk_pendidikan_id');
+    }
+
+    /**
+     * public.sekolah → ref.status_kepemilikan (status_kepemilikan_id → status_kepemilikan_id).
+     */
+    public function statusKepemilikan(): BelongsTo
+    {
+        return $this->belongsTo(StatusKepemilikan::class, 'status_kepemilikan_id', 'status_kepemilikan_id');
     }
 }

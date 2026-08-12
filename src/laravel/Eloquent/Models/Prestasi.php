@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisPrestasi;
+use Dapodik\Laravel\Eloquent\Models\Ref\TingkatPrestasi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -44,5 +46,21 @@ class Prestasi extends Model
     public function vldPrestasis(): HasMany
     {
         return $this->hasMany(VldPrestasi::class, 'prestasi_id', 'prestasi_id');
+    }
+
+    /**
+     * public.prestasi → ref.jenis_prestasi (jenis_prestasi_id → jenis_prestasi_id).
+     */
+    public function jenisPrestasi(): BelongsTo
+    {
+        return $this->belongsTo(JenisPrestasi::class, 'jenis_prestasi_id', 'jenis_prestasi_id');
+    }
+
+    /**
+     * public.prestasi → ref.tingkat_prestasi (tingkat_prestasi_id → tingkat_prestasi_id).
+     */
+    public function tingkatPrestasi(): BelongsTo
+    {
+        return $this->belongsTo(TingkatPrestasi::class, 'tingkat_prestasi_id', 'tingkat_prestasi_id');
     }
 }

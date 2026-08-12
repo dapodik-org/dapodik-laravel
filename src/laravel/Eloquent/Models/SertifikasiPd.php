@@ -3,6 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\BidangStudi;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisSertifikasi;
+use Dapodik\Laravel\Eloquent\Models\Ref\LembSertifikasi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,5 +40,29 @@ class SertifikasiPd extends Model
     public function pesertaDidik(): BelongsTo
     {
         return $this->belongsTo(PesertaDidik::class, 'peserta_didik_id', 'peserta_didik_id');
+    }
+
+    /**
+     * public.sertifikasi_pd → ref.bidang_studi (bidang_studi_id → bidang_studi_id).
+     */
+    public function bidangStudi(): BelongsTo
+    {
+        return $this->belongsTo(BidangStudi::class, 'bidang_studi_id', 'bidang_studi_id');
+    }
+
+    /**
+     * public.sertifikasi_pd → ref.jenis_sertifikasi (id_jenis_sertifikasi → id_jenis_sertifikasi).
+     */
+    public function jenisSertifikasi(): BelongsTo
+    {
+        return $this->belongsTo(JenisSertifikasi::class, 'id_jenis_sertifikasi', 'id_jenis_sertifikasi');
+    }
+
+    /**
+     * public.sertifikasi_pd → ref.lemb_sertifikasi (kode_lemb_sert → kode_lemb_sert).
+     */
+    public function kodeLembSert(): BelongsTo
+    {
+        return $this->belongsTo(LembSertifikasi::class, 'kode_lemb_sert', 'kode_lemb_sert');
     }
 }

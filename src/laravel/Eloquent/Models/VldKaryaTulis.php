@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class VldKaryaTulis extends Model
     public function karyaTulis(): BelongsTo
     {
         return $this->belongsTo(KaryaTulis::class, 'karya_tulis_id', 'karya_tulis_id');
+    }
+
+    /**
+     * public.vld_karya_tulis → ref.errortype (idtype → idtype).
+     */
+    public function idtype(): BelongsTo
+    {
+        return $this->belongsTo(Errortype::class, 'idtype', 'idtype');
     }
 }

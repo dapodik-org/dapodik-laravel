@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisBantuan;
+use Dapodik\Laravel\Eloquent\Models\Ref\SumberDana;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -69,5 +71,21 @@ class Blockgrant extends Model
     public function tanahDariBlockgrants(): HasMany
     {
         return $this->hasMany(TanahDariBlockgrant::class, 'blockgrant_id', 'blockgrant_id');
+    }
+
+    /**
+     * public.blockgrant → ref.jenis_bantuan (jenis_bantuan_id → jenis_bantuan_id).
+     */
+    public function jenisBantuan(): BelongsTo
+    {
+        return $this->belongsTo(JenisBantuan::class, 'jenis_bantuan_id', 'jenis_bantuan_id');
+    }
+
+    /**
+     * public.blockgrant → ref.sumber_dana (sumber_dana_id → sumber_dana_id).
+     */
+    public function sumberDana(): BelongsTo
+    {
+        return $this->belongsTo(SumberDana::class, 'sumber_dana_id', 'sumber_dana_id');
     }
 }

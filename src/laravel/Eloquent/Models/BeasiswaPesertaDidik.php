@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisBeasiswa;
+use Dapodik\Laravel\Eloquent\Models\Ref\TahunAjaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -44,5 +46,29 @@ class BeasiswaPesertaDidik extends Model
     public function vldBeaPds(): HasMany
     {
         return $this->hasMany(VldBeaPd::class, 'beasiswa_peserta_didik_id', 'beasiswa_peserta_didik_id');
+    }
+
+    /**
+     * public.beasiswa_peserta_didik → ref.tahun_ajaran (tahun_selesai → tahun_ajaran_id).
+     */
+    public function tahunSelesai(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class, 'tahun_selesai', 'tahun_ajaran_id');
+    }
+
+    /**
+     * public.beasiswa_peserta_didik → ref.tahun_ajaran (tahun_mulai → tahun_ajaran_id).
+     */
+    public function tahunMulai(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class, 'tahun_mulai', 'tahun_ajaran_id');
+    }
+
+    /**
+     * public.beasiswa_peserta_didik → ref.jenis_beasiswa (jenis_beasiswa_id → jenis_beasiswa_id).
+     */
+    public function jenisBeasiswa(): BelongsTo
+    {
+        return $this->belongsTo(JenisBeasiswa::class, 'jenis_beasiswa_id', 'jenis_beasiswa_id');
     }
 }

@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\SumberDana;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,5 +46,13 @@ class UnitUsahaKerjasama extends Model
     public function mou(): BelongsTo
     {
         return $this->belongsTo(Mou::class, 'mou_id', 'mou_id');
+    }
+
+    /**
+     * public.unit_usaha_kerjasama → ref.sumber_dana (sumber_dana_id → sumber_dana_id).
+     */
+    public function sumberDana(): BelongsTo
+    {
+        return $this->belongsTo(SumberDana::class, 'sumber_dana_id', 'sumber_dana_id');
     }
 }

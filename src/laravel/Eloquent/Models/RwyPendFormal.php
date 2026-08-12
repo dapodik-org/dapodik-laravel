@@ -3,6 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\BidangStudi;
+use Dapodik\Laravel\Eloquent\Models\Ref\GelarAkademik;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenjangPendidikan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -48,5 +51,29 @@ class RwyPendFormal extends Model
     public function vldRwyPendFormals(): HasMany
     {
         return $this->hasMany(VldRwyPendFormal::class, 'riwayat_pendidikan_formal_id', 'riwayat_pendidikan_formal_id');
+    }
+
+    /**
+     * public.rwy_pend_formal → ref.gelar_akademik (gelar_akademik_id → gelar_akademik_id).
+     */
+    public function gelarAkademik(): BelongsTo
+    {
+        return $this->belongsTo(GelarAkademik::class, 'gelar_akademik_id', 'gelar_akademik_id');
+    }
+
+    /**
+     * public.rwy_pend_formal → ref.bidang_studi (bidang_studi_id → bidang_studi_id).
+     */
+    public function bidangStudi(): BelongsTo
+    {
+        return $this->belongsTo(BidangStudi::class, 'bidang_studi_id', 'bidang_studi_id');
+    }
+
+    /**
+     * public.rwy_pend_formal → ref.jenjang_pendidikan (jenjang_pendidikan_id → jenjang_pendidikan_id).
+     */
+    public function jenjangPendidikan(): BelongsTo
+    {
+        return $this->belongsTo(JenjangPendidikan::class, 'jenjang_pendidikan_id', 'jenjang_pendidikan_id');
     }
 }

@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisGugus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -42,5 +43,13 @@ class GugusSekolah extends Model
     public function anggotaGuguses(): HasMany
     {
         return $this->hasMany(AnggotaGugus::class, 'gugus_id', 'gugus_id');
+    }
+
+    /**
+     * public.gugus_sekolah → ref.jenis_gugus (jenis_gugus_id → jenis_gugus_id).
+     */
+    public function jenisGugus(): BelongsTo
+    {
+        return $this->belongsTo(JenisGugus::class, 'jenis_gugus_id', 'jenis_gugus_id');
     }
 }

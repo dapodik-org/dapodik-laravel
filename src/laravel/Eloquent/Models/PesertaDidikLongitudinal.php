@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -47,10 +48,18 @@ class PesertaDidikLongitudinal extends Model
     }
 
     /**
-     * public.peserta_didik_longitudinal ← public.vld_pd_long (peserta_didik_id → semester_id).
+     * public.peserta_didik_longitudinal ← public.vld_pd_long (semester_id → semester_id).
      */
     public function vldPdLongs(): HasMany
     {
-        return $this->hasMany(VldPdLong::class, 'semester_id', 'peserta_didik_id');
+        return $this->hasMany(VldPdLong::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.peserta_didik_longitudinal → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
     }
 }

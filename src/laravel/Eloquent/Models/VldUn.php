@@ -3,7 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VldUn extends Model
@@ -26,5 +28,13 @@ class VldUn extends Model
             'status_validasi' => 'decimal',
             'last_sync' => 'datetime',
         ];
+    }
+
+    /**
+     * public.vld_un → ref.errortype (idtype → idtype).
+     */
+    public function idtype(): BelongsTo
+    {
+        return $this->belongsTo(Errortype::class, 'idtype', 'idtype');
     }
 }

@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\KelompokUsaha;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -42,5 +43,13 @@ class UnitUsaha extends Model
     public function unitUsahaKerjasamas(): HasMany
     {
         return $this->hasMany(UnitUsahaKerjasama::class, 'unit_usaha_id', 'unit_usaha_id');
+    }
+
+    /**
+     * public.unit_usaha → ref.kelompok_usaha (kelompok_usaha_id → kelompok_usaha_id).
+     */
+    public function kelompokUsaha(): BelongsTo
+    {
+        return $this->belongsTo(KelompokUsaha::class, 'kelompok_usaha_id', 'kelompok_usaha_id');
     }
 }

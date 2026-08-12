@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Errortype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,11 +31,11 @@ class VldPdLong extends Model
     }
 
     /**
-     * public.vld_pd_long → public.peserta_didik_longitudinal (peserta_didik_id → semester_id).
+     * public.vld_pd_long → public.peserta_didik_longitudinal (peserta_didik_id → peserta_didik_id).
      */
     public function pesertaDidik(): BelongsTo
     {
-        return $this->belongsTo(PesertaDidikLongitudinal::class, 'peserta_didik_id', 'semester_id');
+        return $this->belongsTo(PesertaDidikLongitudinal::class, 'peserta_didik_id', 'peserta_didik_id');
     }
 
     /**
@@ -43,5 +44,13 @@ class VldPdLong extends Model
     public function semester(): BelongsTo
     {
         return $this->belongsTo(PesertaDidikLongitudinal::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.vld_pd_long → ref.errortype (idtype → idtype).
+     */
+    public function idtype(): BelongsTo
+    {
+        return $this->belongsTo(Errortype::class, 'idtype', 'idtype');
     }
 }

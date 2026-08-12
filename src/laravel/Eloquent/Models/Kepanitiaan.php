@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKepanitiaan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -59,5 +60,13 @@ class Kepanitiaan extends Model
     public function anggotaPanitias(): HasMany
     {
         return $this->hasMany(AnggotaPanitia::class, 'id_panitia', 'id_panitia');
+    }
+
+    /**
+     * public.kepanitiaan → ref.jenis_kepanitiaan (id_jns_panitia → id_jns_panitia).
+     */
+    public function jnsPanitia(): BelongsTo
+    {
+        return $this->belongsTo(JenisKepanitiaan::class, 'id_jns_panitia', 'id_jns_panitia');
     }
 }

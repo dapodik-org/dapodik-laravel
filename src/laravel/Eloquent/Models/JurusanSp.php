@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\Jurusan;
+use Dapodik\Laravel\Eloquent\Models\Ref\KebutuhanKhusus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -91,5 +93,21 @@ class JurusanSp extends Model
     public function vldJurusanSps(): HasMany
     {
         return $this->hasMany(VldJurusanSp::class, 'jurusan_sp_id', 'jurusan_sp_id');
+    }
+
+    /**
+     * public.jurusan_sp → ref.jurusan (jurusan_id → jurusan_id).
+     */
+    public function jurusan(): BelongsTo
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'jurusan_id');
+    }
+
+    /**
+     * public.jurusan_sp → ref.kebutuhan_khusus (kebutuhan_khusus_id → kebutuhan_khusus_id).
+     */
+    public function kebutuhanKhusus(): BelongsTo
+    {
+        return $this->belongsTo(KebutuhanKhusus::class, 'kebutuhan_khusus_id', 'kebutuhan_khusus_id');
     }
 }

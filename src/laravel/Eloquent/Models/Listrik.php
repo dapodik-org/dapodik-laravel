@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\SumberListrik;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class Listrik extends Model
     public function sekolah(): BelongsTo
     {
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'sekolah_id');
+    }
+
+    /**
+     * public.listrik → ref.sumber_listrik (sumber_listrik_id → sumber_listrik_id).
+     */
+    public function sumberListrik(): BelongsTo
+    {
+        return $this->belongsTo(SumberListrik::class, 'sumber_listrik_id', 'sumber_listrik_id');
     }
 }

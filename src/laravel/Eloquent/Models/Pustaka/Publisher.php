@@ -3,7 +3,9 @@
 namespace Dapodik\Laravel\Eloquent\Models\Pustaka;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\MstWilayah;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,5 +37,13 @@ class Publisher extends Model
     public function biblios(): HasMany
     {
         return $this->hasMany(Biblio::class, 'id_publisher', 'id_publisher');
+    }
+
+    /**
+     * pustaka.publisher → ref.mst_wilayah (kode_wilayah → kode_wilayah).
+     */
+    public function kodeWilayah(): BelongsTo
+    {
+        return $this->belongsTo(MstWilayah::class, 'kode_wilayah', 'kode_wilayah');
     }
 }

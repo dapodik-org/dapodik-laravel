@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\PangkatGolongan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -46,5 +47,13 @@ class RwyKepangkatan extends Model
     public function vldRwyKepangkatans(): HasMany
     {
         return $this->hasMany(VldRwyKepangkatan::class, 'riwayat_kepangkatan_id', 'riwayat_kepangkatan_id');
+    }
+
+    /**
+     * public.rwy_kepangkatan → ref.pangkat_golongan (pangkat_golongan_id → pangkat_golongan_id).
+     */
+    public function pangkatGolongan(): BelongsTo
+    {
+        return $this->belongsTo(PangkatGolongan::class, 'pangkat_golongan_id', 'pangkat_golongan_id');
     }
 }

@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models\Pustaka;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\MataPelajaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,5 +36,13 @@ class MapelBiblio extends Model
     public function biblio(): BelongsTo
     {
         return $this->belongsTo(Biblio::class, 'id_biblio', 'id_biblio');
+    }
+
+    /**
+     * pustaka.mapel_biblio → ref.mata_pelajaran (mata_pelajaran_id → mata_pelajaran_id).
+     */
+    public function mataPelajaran(): BelongsTo
+    {
+        return $this->belongsTo(MataPelajaran::class, 'mata_pelajaran_id', 'mata_pelajaran_id');
     }
 }

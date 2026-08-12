@@ -4,6 +4,7 @@ namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasCompositeKey;
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\BidangStudi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class BidangSdm extends Model
     public function ptk(): BelongsTo
     {
         return $this->belongsTo(Ptk::class, 'ptk_id', 'ptk_id');
+    }
+
+    /**
+     * public.bidang_sdm → ref.bidang_studi (bidang_studi_id → bidang_studi_id).
+     */
+    public function bidangStudi(): BelongsTo
+    {
+        return $this->belongsTo(BidangStudi::class, 'bidang_studi_id', 'bidang_studi_id');
     }
 }

@@ -3,6 +3,10 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisCita;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisHobby;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisKeluar;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisPendaftaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -88,5 +92,37 @@ class RegistrasiPesertaDidik extends Model
     public function vldRegPds(): HasMany
     {
         return $this->hasMany(VldRegPd::class, 'registrasi_id', 'registrasi_id');
+    }
+
+    /**
+     * public.registrasi_peserta_didik → ref.jenis_pendaftaran (jenis_pendaftaran_id → jenis_pendaftaran_id).
+     */
+    public function jenisPendaftaran(): BelongsTo
+    {
+        return $this->belongsTo(JenisPendaftaran::class, 'jenis_pendaftaran_id', 'jenis_pendaftaran_id');
+    }
+
+    /**
+     * public.registrasi_peserta_didik → ref.jenis_keluar (jenis_keluar_id → jenis_keluar_id).
+     */
+    public function jenisKeluar(): BelongsTo
+    {
+        return $this->belongsTo(JenisKeluar::class, 'jenis_keluar_id', 'jenis_keluar_id');
+    }
+
+    /**
+     * public.registrasi_peserta_didik → ref.jenis_cita (id_cita → id_cita).
+     */
+    public function cita(): BelongsTo
+    {
+        return $this->belongsTo(JenisCita::class, 'id_cita', 'id_cita');
+    }
+
+    /**
+     * public.registrasi_peserta_didik → ref.jenis_hobby (id_hobby → id_hobby).
+     */
+    public function hobby(): BelongsTo
+    {
+        return $this->belongsTo(JenisHobby::class, 'id_hobby', 'id_hobby');
     }
 }

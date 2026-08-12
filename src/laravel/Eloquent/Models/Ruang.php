@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisPrasarana;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -160,4 +161,12 @@ class Ruang extends Model
     /*
      * public.ruang ← public.tugas_tambahan (id_ruang → id_ruang)
      */
+
+    /**
+     * public.ruang → ref.jenis_prasarana (jenis_prasarana_id → jenis_prasarana_id).
+     */
+    public function jenisPrasarana(): BelongsTo
+    {
+        return $this->belongsTo(JenisPrasarana::class, 'jenis_prasarana_id', 'jenis_prasarana_id');
+    }
 }

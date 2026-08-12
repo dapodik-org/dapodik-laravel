@@ -3,6 +3,8 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\JenisTunjangan;
+use Dapodik\Laravel\Eloquent\Models\Ref\Semester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -47,5 +49,21 @@ class Tunjangan extends Model
     public function vldTunjangans(): HasMany
     {
         return $this->hasMany(VldTunjangan::class, 'tunjangan_id', 'tunjangan_id');
+    }
+
+    /**
+     * public.tunjangan → ref.semester (semester_id → semester_id).
+     */
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+    }
+
+    /**
+     * public.tunjangan → ref.jenis_tunjangan (jenis_tunjangan_id → jenis_tunjangan_id).
+     */
+    public function jenisTunjangan(): BelongsTo
+    {
+        return $this->belongsTo(JenisTunjangan::class, 'jenis_tunjangan_id', 'jenis_tunjangan_id');
     }
 }

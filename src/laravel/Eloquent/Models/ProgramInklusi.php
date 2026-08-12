@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\KebutuhanKhusus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,5 +37,13 @@ class ProgramInklusi extends Model
     public function sekolah(): BelongsTo
     {
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'sekolah_id');
+    }
+
+    /**
+     * public.program_inklusi → ref.kebutuhan_khusus (kebutuhan_khusus_id → kebutuhan_khusus_id).
+     */
+    public function kebutuhanKhusus(): BelongsTo
+    {
+        return $this->belongsTo(KebutuhanKhusus::class, 'kebutuhan_khusus_id', 'kebutuhan_khusus_id');
     }
 }

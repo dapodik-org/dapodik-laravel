@@ -3,6 +3,7 @@
 namespace Dapodik\Laravel\Eloquent\Models;
 
 use Dapodik\Laravel\Eloquent\Concerns\HasConnection;
+use Dapodik\Laravel\Eloquent\Models\Ref\TahunAjaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,5 +45,13 @@ class PtkBaru extends Model
     public function ptk(): BelongsTo
     {
         return $this->belongsTo(Ptk::class, 'ptk_id', 'ptk_id');
+    }
+
+    /**
+     * public.ptk_baru → ref.tahun_ajaran (tahun_ajaran_id → tahun_ajaran_id).
+     */
+    public function tahunAjaran(): BelongsTo
+    {
+        return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id', 'tahun_ajaran_id');
     }
 }
