@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.8 - 2026-08-12
+
+## What's Changed
+
+### Added
+- feat: add relationships to various models for error types and other references
 ## 2.1.7 - 2026-08-02
 
 ## What's Changed
