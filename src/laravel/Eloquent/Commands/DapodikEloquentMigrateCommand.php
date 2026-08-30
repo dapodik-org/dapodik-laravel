@@ -24,6 +24,12 @@ class DapodikEloquentMigrateCommand extends Command
 
     protected function resolveDapodikMigrationsPath(): string
     {
+        $publishedPath = $this->laravel->databasePath('migrations/dapodik');
+
+        if (is_dir($publishedPath) && count(glob($publishedPath.'/*.php')) > 0) {
+            return $publishedPath;
+        }
+
         $packagePath = realpath(__DIR__.'/../database/migrations/dapodik');
 
         if ($packagePath === false) {
@@ -42,7 +48,7 @@ class DapodikEloquentMigrateCommand extends Command
         $dapodikPath = $this->option('path')
             ?: $this->resolveDapodikMigrationsPath();
 
-        if (! is_dir($dapodikPath)) {
+        if (!is_dir($dapodikPath)) {
             $this->error("Dapodik migrations path not found: {$dapodikPath}");
 
             return self::FAILURE;
@@ -50,11 +56,16 @@ class DapodikEloquentMigrateCommand extends Command
 
         if ($this->option('fresh')) {
             $this->warn('Dropping all dapodik tables on connection: '.$connection);
-            $this->callSilently('db:wipe', [
+            $this->call('db:wipe', [
                 '--database' => $connection,
                 '--force' => true,
             ]);
         }
+
+        $reflection = new \ReflectionClass($this->laravel->make('migrator'));
+        $pathsProperty = $reflection->getProperty('paths');
+        $pathsProperty->setAccessible(true);
+        $pathsProperty->setValue($this->laravel->make('migrator'), []);
 
         $params = [
             '--path' => [$dapodikPath],

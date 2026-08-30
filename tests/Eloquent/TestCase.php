@@ -20,7 +20,7 @@ abstract class TestCase extends OrchestraTestCase
             'Eloquent' => 'Dapodik\Laravel\Eloquent\Facades\Eloquent',
         ];
     }
-protected function resolveApplicationBootstrappers($app)
+    protected function resolveApplicationBootstrappers($app)
     {
         $app->make('Illuminate\Foundation\Bootstrap\RegisterFacades')->bootstrap($app);
         $app->make('Illuminate\Foundation\Bootstrap\RegisterProviders')->bootstrap($app);
