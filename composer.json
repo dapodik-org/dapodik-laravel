@@ -59,8 +59,8 @@
     }
   },
   "scripts": {
-    "test:eloquent": "@php vendor/bin/phpunit --testsuite Eloquent --exclude-group migrate-command",
-    "test:migrate-command": "@php vendor/bin/phpunit tests/Eloquent/Feature/MigrateCommandTest.php",
+    "test:eloquent": "@php vendor/bin/phpunit --testsuite Eloquent",
+    "test:migrate-command": "@php vendor/bin/phpunit --testsuite MigrateCommand",
     "test:api": "@php vendor/bin/phpunit --testsuite API",
     "test": [
       "@test:eloquent",

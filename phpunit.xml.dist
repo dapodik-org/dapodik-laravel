@@ -6,10 +6,14 @@
          convertDeprecationsToExceptions="false">
     <testsuites>
         <testsuite name="Eloquent">
-            <directory>tests/Eloquent</directory>
+            <directory suffix="Test.php">tests/Eloquent/Unit</directory>
+            <directory suffix="Test.php">tests/Eloquent/Feature</directory>
         </testsuite>
         <testsuite name="API">
             <directory>tests/API</directory>
+        </testsuite>
+        <testsuite name="MigrateCommand">
+            <file>tests/Eloquent/MigrateCommand/MigrateCommandTest.php</file>
         </testsuite>
     </testsuites>
     <php>
