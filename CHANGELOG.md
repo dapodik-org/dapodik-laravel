@@ -3,6 +3,12 @@
 ## Unreleased
 
 
+## 2.1.9 - 2026-08-30
+
+## What's Changed
+
+### Added
+- feat: add DapodikEloquentMigrateCommand for managing Dapodik migrations
 ## 2.1.8 - 2026-08-12
 
 ## What's Changed
