@@ -3,6 +3,13 @@
 ## Unreleased
 
 
+## 1.0.9 - 2026-08-30
+
+## What's Changed
+
+### Added
+- feat: adapt DapodikEloquentMigrateCommand for Laravel 7|8
+- feat: add DapodikEloquentMigrateCommand for managing Dapodik migrations
 ## 1.0.8 - 2026-08-12
 
 ## What's Changed
