@@ -25,7 +25,6 @@ abstract class TestCase extends OrchestraTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        // Ensure tests use the testing connection
         config()->set('database.default', 'testing');
     }
 

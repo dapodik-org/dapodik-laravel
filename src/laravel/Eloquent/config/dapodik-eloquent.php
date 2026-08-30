@@ -36,8 +36,10 @@ return [
     ],
 
     /*
-     * Muat migrasi otomatis dari direktori package jika belum di-publish.
-     * Set ke false agar migrasi tidak berjalan otomatis sebelum di-publish.
+     * Muat migrasi otomatis dari direktori package.
+     * Set ke false (default) agar `php artisan migrate` TIDAK ikut menjalankan
+     * migrasi dapodik. Gunakan `php artisan dapodik:migrate` untuk migrasi
+     * tabel-tabel dapodik secara eksplisit.
      */
     'auto_load_migrations' => env('DAPODIK_ELOQUENT_AUTO_LOAD_MIGRATIONS', false),
 
